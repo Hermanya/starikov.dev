@@ -9,6 +9,10 @@ const posts = files.map(file =>
   fs.readFileSync(`${__dirname}/../reviews/${file}`, "utf8")
 );
 
+if (!fs.existsSync(`${__dirname}/../components/__generated__`)) {
+  fs.mkdirSync(`${__dirname}/../components/__generated__`);
+}
+
 posts.forEach((post, index) => {
   const componentName = `BlogPost${index}`;
   const meta = getMeta(post);

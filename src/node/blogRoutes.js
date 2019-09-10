@@ -7,6 +7,10 @@ const posts = files.map(file =>
   fs.readFileSync(`${__dirname}/../reviews/${file}`, "utf8")
 );
 
+if (!fs.existsSync(`${__dirname}/../__generated__`)) {
+  fs.mkdirSync(`${__dirname}/../__generated__`);
+}
+
 fs.writeFileSync(
   `${__dirname}/../__generated__/blogRoutes.tsx`,
   `
