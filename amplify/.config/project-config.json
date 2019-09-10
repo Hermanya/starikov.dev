@@ -7,7 +7,7 @@
     "config": {
       "SourceDir": "src",
       "DistributionDir": "build",
-      "BuildCommand": "npm run-script installchrome; npm run-script prebuild; npm run-script build; npm run-script postbuild",
+      "BuildCommand": "npm run-script prebuild; npm run-script build; npm run-script postbuild",
       "StartCommand": "npm run-script start"
     }
   },
