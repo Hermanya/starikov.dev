@@ -2,6 +2,7 @@
   "name": "haha",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.starikov.dev",
   "dependencies": {
     "@loadable/component": "^5.10.2",
     "react": "^16.9.0",
