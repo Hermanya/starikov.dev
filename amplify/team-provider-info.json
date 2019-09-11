@@ -1,0 +1,14 @@
+{
+    "production": {
+        "awscloudformation": {
+            "AuthRoleName": "starikovdev-production-20190910220828-authRole",
+            "UnauthRoleArn": "arn:aws:iam::317189602285:role/starikovdev-production-20190910220828-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::317189602285:role/starikovdev-production-20190910220828-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "starikovdev-production-20190910220828-deployment",
+            "UnauthRoleName": "starikovdev-production-20190910220828-unauthRole",
+            "StackName": "starikovdev-production-20190910220828",
+            "StackId": "arn:aws:cloudformation:us-east-1:317189602285:stack/starikovdev-production-20190910220828/0c0af5a0-d439-11e9-a938-0e6c2daa9b2c"
+        }
+    }
+}
