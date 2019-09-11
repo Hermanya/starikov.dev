@@ -89,7 +89,7 @@ const About = () => {
         I'm a Software Developer in Toronto,{" "}
         <CanadaHighlight>Canada</CanadaHighlight>. If you are into React,
         JavaScript, TypeScript, Web, or Programming in general, check out stuff
-        I made.
+        I made..
       </Intro>
 
       {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
