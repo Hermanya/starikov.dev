@@ -3,8 +3,6 @@ backend:
   phases:
     build:
       commands:
-        - "# This installs Chrome on any RHEL/CentOS/Amazon Linux variant."
-        - curl https://intoli.com/install-google-chrome.sh | bash
         - "# Execute Amplify CLI with the helper script"
         - amplifyPush --simple
 frontend:
@@ -12,6 +10,8 @@ frontend:
     preBuild:
       commands:
         - yarn install
+        - "# This installs Chrome on any RHEL/CentOS/Amazon Linux variant."
+        - curl https://intoli.com/install-google-chrome.sh | bash
     build:
       commands:
         - yarn run build
