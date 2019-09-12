@@ -18,6 +18,8 @@ frontend:
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: build
+    files:
+      - "**/*"
   cache:
     paths:
       - node_modules/**/*
