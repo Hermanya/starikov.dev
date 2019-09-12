@@ -17,7 +17,7 @@ frontend:
         - yarn run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: /build
+    baseDirectory: build
   cache:
     paths:
       - node_modules/**/*
