@@ -16,7 +16,7 @@ const LandingPage = ({ match }: { match: any }) => {
           </TabBarLink>
           <TabBarLink to={`${match.path}/projects`}>
             <Trello />
-            Pet Projects
+            Projects
           </TabBarLink>
           <TabBarLink to={`${match.path}/blog`}>
             <BookOpen />
