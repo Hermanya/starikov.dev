@@ -46,8 +46,8 @@ const ResponsiveReactApp: React.FC<{
   routerProps?: any;
 }> = ({ children, tabs, minimumTabSize = 350, paths }) => {
   const size = useWindowSize();
-  const compnentsPerScreen = (size.width / minimumTabSize) | 0;
-  const childSize = size.width / compnentsPerScreen;
+  const componentsPerScreen = (size.width / minimumTabSize) | 0;
+  const childSize = size.width / componentsPerScreen;
   console.log(size, childSize);
   return (
     <ThemeProvider
@@ -62,26 +62,26 @@ const ResponsiveReactApp: React.FC<{
               exact
               path={`${paths[index] || index || ""}`}
               render={({ location }) => {
-                console.log(index, compnentsPerScreen, children.flat().length);
+                console.log(index, componentsPerScreen, children.flat().length);
 
                 return (
                   <>
                     <Board
                       style={{
-                        transform: `translateX(-${childSize *
+                        transform: `translateX(-${(100 / componentsPerScreen) *
                           Math.min(
                             index,
-                            children.flat().length - compnentsPerScreen
-                          )}px)`
+                            children.flat().length - componentsPerScreen
+                          )}vw)`
                       }}
                     >
                       {children.flat().map((child, index) => {
                         return <Mobile key={index}>{child}</Mobile>;
                       })}
                     </Board>
-                    {compnentsPerScreen < children.flat().length && (
+                    {componentsPerScreen < children.flat().length && (
                       <TabBar
-                        compnentsPerScreen={compnentsPerScreen}
+                        compnentsPerScreen={componentsPerScreen}
                         paths={paths}
                         pathname={location.pathname}
                       >
