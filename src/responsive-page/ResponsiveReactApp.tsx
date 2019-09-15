@@ -60,32 +60,45 @@ const ResponsiveReactApp: React.FC<{
             <Route
               exact
               path={`${paths[index] || index || ""}`}
-              render={({ location }) => (
-                <>
-                  <Board
-                    style={{
-                      transform: `translateX(-${childSize *
-                        Math.min(
-                          index,
-                          children.flat().length - compnentsPerScreen
-                        )}px)`
-                    }}
-                  >
-                    {children.flat().map((child, index) => {
-                      return <Mobile key={index}>{child}</Mobile>;
-                    })}
-                  </Board>
-                  {compnentsPerScreen < children.flat().length && (
-                    <TabBar
-                      compnentsPerScreen={compnentsPerScreen}
-                      paths={paths}
-                      pathname={location.pathname}
+              render={({ location }) => {
+                console.log(
+                  `translateX(-${childSize *
+                    Math.min(
+                      index,
+                      children.flat().length - compnentsPerScreen
+                    )}px)`,
+                  childSize,
+                  index,
+                  children.flat().length,
+                  compnentsPerScreen
+                );
+                return (
+                  <>
+                    <Board
+                      style={{
+                        transform: `translateX(-${childSize *
+                          Math.min(
+                            index,
+                            children.flat().length - compnentsPerScreen
+                          )}px)`
+                      }}
                     >
-                      {tabs.props.children.slice(0)}
-                    </TabBar>
-                  )}
-                </>
-              )}
+                      {children.flat().map((child, index) => {
+                        return <Mobile key={index}>{child}</Mobile>;
+                      })}
+                    </Board>
+                    {compnentsPerScreen < children.flat().length && (
+                      <TabBar
+                        compnentsPerScreen={compnentsPerScreen}
+                        paths={paths}
+                        pathname={location.pathname}
+                      >
+                        {tabs.props.children.slice(0)}
+                      </TabBar>
+                    )}
+                  </>
+                );
+              }}
             />
           ))}
         </Switch>

@@ -75,13 +75,18 @@ const About = () => {
             height: 218,
             position: "absolute",
             fill: "var(--gray)",
-            zIndex: 0
+            zIndex: 0,
+            filter: "drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2))"
           }}
         ></img>
         <img
           src={me}
           width={250}
-          style={{ zIndex: 1, position: "relative" }}
+          style={{
+            zIndex: 1,
+            position: "relative",
+            filter: "drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2))"
+          }}
         ></img>
       </Me>
       <PageTitle as="h1">Herman Starikov</PageTitle>
