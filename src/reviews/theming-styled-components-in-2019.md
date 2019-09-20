@@ -13,7 +13,7 @@ previous_post_title: "Atomic-layout vs styled-system"
 
 [CSS-in-JS is on the rise][npm-trends]! So far [Styled Components] is leading this movement. This CSS-in-JS library lets you use the best bits of ES6 and CSS to style your apps. I have been using styled-components on various projects at 2 different jobs for about a year now. In this post, I will go over the theming approaches I have seen, and new libraries that came out as recently as June 2019. I will go over what styled-components are and 5 different ways to make them more re-usable and customizable.
 
-## Styled Components basics
+## Basics
 
 In Styled Components there are 2 ways to apply CSS to HTML elements:
 
@@ -33,19 +33,22 @@ This is a `BrandLink` React component which renders an `<a>` tag with pale viole
 If I want to have another component that has the underline removed I can do this:
 
 ```js
-const NavLink = styled(BrandLink)`
+const NavLink = styled(
+  BrandLink
+)`
   text-decoration: none;
 `
 ```
 
 And that's pretty much all you need to know to get started with styled-components.
 
-## Styled Components theming
+## Theming
 
 [The recommended theming approach](sc-theming) is pretty simple. There is a `ThemeProvider` component that takes any javascript object and injects it as a prop into all styled components.
 
 ```jsx
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } 
+  from 'styled-components'
 
 const theme = { 
   primary: "mediumseagreen" 
@@ -63,7 +66,8 @@ Now you can get `mediumseagreen` by accessing `props.theme.primary` like so:
 ```js
 
 const BrandLink = styled.a`
-  color: ${props => props.theme.primary};
+  color: ${props => 
+    props.theme.primary};
 `;
 ```
 
@@ -119,8 +123,10 @@ This is easier to write because it's shorter and the chances are that autocomple
 
 
 ```js
-import styled from 'styled-components'
-import {color} from 'styled-system'
+import styled 
+  from 'styled-components'
+import {color} 
+  from 'styled-system'
 
 const BrandLink = styled.a`
   ${color}
@@ -139,7 +145,9 @@ The `${color}` part adds 2 props to `BrandLink`
 To consume this component wrap your app into a regular `ThemeProvider` and pass it a _theme that has a `colors` property_.
 
 ```jsx
-import { ThemeProvider } from 'styled-components'
+import { 
+  ThemeProvider 
+} from 'styled-components'
 
 const theme = { 
   colors: {
@@ -166,7 +174,8 @@ In addition to that Styled Components v4 made it difficult to extend `defaultPro
 [Xstyled] solves the `${props => props.theme.primary}` verbosity problem in a different way:
 
 ```js
-import styled from '@xstyled/styled-components'
+import styled from 
+  '@xstyled/styled-components'
 
 const BrandLink = styled.a`
   color: primary;
@@ -188,7 +197,9 @@ Not very long after Xstyled came out, Brent Jackson showed the world Theme UI.
 It's a theming solution for React apps built with MDX + Emotion + Styled System + Typography.js. Keep in mind that Styled Components are very similar to Emotion, which is why I'm including Theme UI in this post.
 
 ```jsx
-import { ThemeProvider, Styled } from 'theme-ui'
+import { 
+  ThemeProvider, Styled 
+} from 'theme-ui'
 
 const theme = {
   colors: {
@@ -205,7 +216,9 @@ const BrandLink = Styled.a
 
 export default props =>
   <ThemeProvider theme={theme}>
-    <BrandLink href="#">Hello</BrandLink>
+    <BrandLink href="#">
+      Hello
+    </BrandLink>
   </ThemeProvider>
 ```
 
@@ -227,7 +240,8 @@ Anyway, here is the same example of a `BrandLink`:
 Note, that for CSS variables you don't need a `ThemeProvider`, the theme can be scoped using HTML/CSS scoping mechanisms.
 
 ```js
-import styled from 'styled-components'
+import styled 
+  from 'styled-components'
 
 const BrandLink = styled.a`
   color: var(--primary-color);

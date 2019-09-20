@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const TabBarLink = styled(Link)`
-  width: 64px;
+  max-width: 64px;
+  display: flex;
+  flex-direction: column;
   font-size: 0.7rem;
   letter-spacing: -0.022em;
   text-decoration: none;

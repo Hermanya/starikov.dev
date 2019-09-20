@@ -3,6 +3,11 @@ code {
     monospace;
 }
 
+pre code {
+  font-size: 14px;
+  line-height: 1;
+}
+
 p {
   line-height: 2;
 }

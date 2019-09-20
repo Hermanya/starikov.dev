@@ -30,7 +30,9 @@ export default () => {
           <ReactMarkdown
             source={(index === 0 ? `# ${meta.title}\n` : "#") + part}
           />
-        ).replace(/\{|\}/g, match => `{'${match}'}`)}
+        )
+          .replace(/\{|\}/g, match => `{'${match}'}`)
+          .replace(/\n/g, "<br/>")}
     </Container>)
 }
     `,
