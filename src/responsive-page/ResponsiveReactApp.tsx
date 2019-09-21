@@ -34,6 +34,9 @@ const Mobile = styled.div`
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 5}px) {
     width: 20vw;
   }
+  @media screen and (min-width: ${props => props.theme.minimumTabSize * 6}px) {
+    width: calc(100vw / 6);
+  }
   /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
     env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px); */
 `;

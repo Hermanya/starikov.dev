@@ -17,7 +17,7 @@ p {
   overflow-x: auto;
   padding: 0.5em;
   color: var(--text);
-  background: var(--gray5);
+  background: var(--gray6);
   border-radius: 6px;
 }
 
@@ -30,7 +30,7 @@ p {
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: var(--text);
+  color: var(--gray);
   font-weight: bold;
 }
 
@@ -44,7 +44,7 @@ p {
 
 .hljs-string,
 .hljs-doctag {
-  color: var(--yellow);
+  color: var(--orange);
 }
 
 .hljs-title,

@@ -10,9 +10,13 @@ const BlogPage: React.FC<{
     <ResponsiveReactApp
       tabs={
         <>
-          {postComponents.map((Part: any, index: number) => (
+          {postComponents.map((part: any, index: number, all: any[]) => (
             <TabBarLink to={`${postPath}/part-${index}`} key={index}>
-              Part {index + 1}
+              {index === 0
+                ? "Intro"
+                : index === all.length - 1
+                ? "Summary"
+                : `Part ${index}`}
             </TabBarLink>
           ))}
           <TabBarLink to={postPath + "/other-posts"}>More</TabBarLink>

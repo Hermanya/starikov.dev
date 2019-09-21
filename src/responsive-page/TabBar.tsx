@@ -45,6 +45,9 @@ export const TabBarContainer = styled.div`
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 4}px) {
     width: 25vw;
   }
+  @media screen and (min-width: ${props => props.theme.minimumTabSize * 5}px) {
+    width: 20vw;
+  }
 `;
 
 export const Active = styled.div`
