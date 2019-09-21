@@ -48,7 +48,6 @@ const ResponsiveReactApp: React.FC<{
   const size = useWindowSize();
   const componentsPerScreen = (size.width / minimumTabSize) | 0;
   const childSize = size.width / componentsPerScreen;
-  console.log(size, childSize);
   return (
     <ThemeProvider
       theme={{
@@ -62,8 +61,6 @@ const ResponsiveReactApp: React.FC<{
               exact
               path={`${paths[index] || index || ""}`}
               render={({ location }) => {
-                console.log(index, componentsPerScreen, children.flat().length);
-
                 return (
                   <>
                     <Board

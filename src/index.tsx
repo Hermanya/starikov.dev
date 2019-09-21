@@ -1,7 +1,7 @@
 import React from "react";
 import { hydrate, render } from "react-dom";
 
-import * as _ from "styled-components/cssprop";
+import * as _ from "styled-components/cssprop"; // eslint-disable-line
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";

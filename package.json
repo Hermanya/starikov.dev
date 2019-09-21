@@ -5,6 +5,9 @@
   "homepage": "https://www.starikov.dev",
   "dependencies": {
     "@loadable/component": "^5.10.2",
+    "highlight.js": "^9.15.10",
+    "marked": "^0.7.0",
+    "preval.macro": "^3.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-feather": "^2.0.3",
@@ -21,7 +24,6 @@
     "@types/react-dom": "16.9.0",
     "@types/react-router-dom": "^4.3.4",
     "@types/styled-components": "^4.1.18",
-    "react-markdown": "^4.1.0",
     "react-scripts": "3.1.1",
     "typescript": "3.5.3"
   },

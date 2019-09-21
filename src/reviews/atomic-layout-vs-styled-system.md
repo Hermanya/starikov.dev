@@ -69,6 +69,7 @@ If you are not familiar with `styled-system`, what we have here is a bunch of "m
 -       emoji description
 -       emoji links
 -`;
++ 
 ```
 
 The new `Grid` requires templates in a slightly different format: the double quotes are required. But on the flip side, the template is no longer space sensitive and can be inlined into props. 

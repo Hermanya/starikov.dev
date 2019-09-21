@@ -33,9 +33,7 @@ This is a `BrandLink` React component which renders an `<a>` tag with pale viole
 If I want to have another component that has the underline removed I can do this:
 
 ```js
-const NavLink = styled(
-  BrandLink
-)`
+const NavLink = styled(BrandLink)`
   text-decoration: none;
 `
 ```
@@ -54,11 +52,12 @@ const theme = {
   primary: "mediumseagreen" 
 }
 
-<ThemeProvider theme={theme}>
-  <BrandLink href="#">
-    Themed
-  </BrandLink>
-</ThemeProvider>
+export default () =>
+  <ThemeProvider theme={theme}>
+    <BrandLink href="#">
+      Themed
+    </BrandLink>
+  </ThemeProvider>
 ```
 
 Now you can get `mediumseagreen` by accessing `props.theme.primary` like so:
@@ -70,26 +69,6 @@ const BrandLink = styled.a`
     props.theme.primary};
 `;
 ```
-
-<!-- However, you probably want to style all states of the anchor tag, and in this case, styling may be a bit repetitive:
-
-```js
-const BrandLink = styled.a`
-  color: ${props => props.theme.primary};
-  :link {
-    color: ${props => props.theme.primary2}
-  }
-  :visited {
-    color: ${props => props.theme.primary3}
-  }
-  :hover {
-    color: ${props => props.theme.primary4}
-  }
-  :active {
-    color: ${props => props.theme.primary5}
-  }
-`;
-``` -->
 
 If you want your component to work without a `ThemeProvider`, you need to provide a default theme in React's `defaultProps`:
 
@@ -118,7 +97,7 @@ This is easier to write because it's shorter and the chances are that autocomple
 [Styled System] solves 3 problems I faced in styled-components.
 
 1. Writing `${props => props.theme.primary}` all the time is kind of a drag
-2. Lack of conventions around theme object struction (take a look at [System UI])
+2. Lack of conventions around theme object struction (take a look at [System UI][])
 3. Exposing styling-related props
 
 
@@ -156,12 +135,13 @@ const theme = {
   }
 }
 
-<ThemeProvider theme={theme}>
-  <BrandLink>Themed</BrandLink>
-  <BrandLink color="external">
-    Link of another color
-  </BrandLink>
-</ThemeProvider>
+export default () =>
+  <ThemeProvider theme={theme}>
+    <BrandLink>Themed</BrandLink>
+    <BrandLink color="external">
+      Link of another color
+    </BrandLink>
+  </ThemeProvider>
 ```
 
 Truth be told, after using styled-system for awhile, I no longer like to mix style-related props with other props. But this does speed up development significantly.
@@ -214,7 +194,7 @@ const theme = {
 
 const BrandLink = Styled.a
 
-export default props =>
+export default () =>
   <ThemeProvider theme={theme}>
     <BrandLink href="#">
       Hello
@@ -248,7 +228,7 @@ const BrandLink = styled.a`
 `;
 ```
 
-I would love to see an initiative similar to [System UI] but based on CSS variables. How amazing would it be, if there was [Stylish] but based on CSS variables? Super amazing 🤔
+I would love to see an initiative similar to [System UI][] but based on CSS variables. How amazing would it be, if there was [Stylish] but based on CSS variables? Super amazing 🤔
 
 ## Summary
 

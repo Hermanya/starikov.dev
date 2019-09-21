@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Title, Description } from "../typography";
+import { Title } from "../typography";
 import Container from "../Container";
 
 const Link = styled.a`

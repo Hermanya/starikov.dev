@@ -1,9 +1,24 @@
-const React = require("react");
-const ReactDOMServer = require("react-dom/server");
-const ReactMarkdown = require("react-markdown");
 const fs = require("fs");
 const { getMeta } = require("./util");
 const files = fs.readdirSync(__dirname + "/../reviews");
+
+const marked = require("marked");
+
+// Set options
+// `highlight` example uses `highlight.js`
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  highlight: function(code) {
+    return require("highlight.js").highlightAuto(code).value;
+  },
+  gfm: true,
+  // breaks: true,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false,
+  langPrefix: "hljs language-",
+  xhtml: true
+});
 
 const posts = files.map(file =>
   fs.readFileSync(`${__dirname}/../reviews/${file}`, "utf8")
@@ -26,11 +41,7 @@ import React from 'react';
 import Container from '../Container';
 export default () => {
     return (<Container>
-        ${ReactDOMServer.renderToString(
-          <ReactMarkdown
-            source={(index === 0 ? `# ${meta.title}\n` : "#") + part}
-          />
-        )
+        ${marked((index === 0 ? `# ${meta.title}\n` : "#") + part)
           .replace(/\{|\}/g, match => `{'${match}'}`)
           .replace(/\n/g, "<br/>")}
     </Container>)

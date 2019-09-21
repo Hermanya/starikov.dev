@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Title, Description, PageTitle } from "../typography";
+import { PageTitle } from "../typography";
 import me from "../../images/me-looking-right.png";
 import Container from "../Container";
 
@@ -15,24 +15,8 @@ const Intro = styled.p`
   letter-spacing: 0.016em;
 `;
 
-const ReactHighlight = styled.span`
-  background: var(--cyan);
-  border-radius: 2px;
-`;
-
 const CanadaHighlight = styled.em`
   /* color: var(--red); */
-`;
-
-const JavascriptHighlight = styled.span`
-  background: var(--yellow);
-  border-radius: 2px;
-`;
-
-const TypescriptHighlight = styled.span`
-  background: var(--blue);
-  color: var(--background);
-  border-radius: 2px;
 `;
 
 const Me = styled.div`
