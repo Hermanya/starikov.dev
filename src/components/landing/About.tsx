@@ -53,7 +53,7 @@ const About = () => {
       <Me>
         <img
           src={mePreview}
-          alt=""
+          alt="me"
           style={{
             width: 250,
             height: 218,
@@ -71,6 +71,7 @@ const About = () => {
             position: "relative",
             filter: "drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2))"
           }}
+          alt="me"
         ></img>
       </Me>
       <PageTitle as="h1">Herman Starikov</PageTitle>

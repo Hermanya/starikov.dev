@@ -50,7 +50,6 @@ const ResponsiveReactApp: React.FC<{
 }> = ({ children, tabs, minimumTabSize = 350, paths }) => {
   const size = useWindowSize();
   const componentsPerScreen = (size.width / minimumTabSize) | 0;
-  const childSize = size.width / componentsPerScreen;
   return (
     <ThemeProvider
       theme={{
