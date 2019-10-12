@@ -11,7 +11,6 @@ const Intro = styled.p`
   margin: 0;
   font-size: 22px;
   line-height: 1.45455;
-  font-weight: 300;
   letter-spacing: 0.016em;
 `;
 
@@ -29,7 +28,7 @@ const Me = styled.div`
   border-radius: 125px;
   overflow: hidden;
 
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   background-color: var(--gray);
   background-image: linear-gradient(62deg, var(--purple) 0%, var(--pink) 100%);
