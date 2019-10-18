@@ -1,10 +1,11 @@
 import React from "react";
 import { BookOpen, Link2, Trello, User } from "react-feather";
-import About from "../components/landing/About";
-import Blog from "../components/landing/Blog";
-import Links from "../components/landing/Links";
-import PetProjects from "../components/landing/PetProjects";
-import ResponsiveReactApp, { TabBarLink } from "../responsive-page";
+import About from "./About";
+import Blog from "./Blog";
+import Links from "./Links";
+import PetProjects from "./PetProjects";
+import ResponsiveReactApp, { TabBarLink } from "../../responsive-page";
+
 const LandingPage = ({ match }: { match: any }) => {
   return (
     <ResponsiveReactApp

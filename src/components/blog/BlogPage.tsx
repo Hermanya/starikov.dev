@@ -1,6 +1,6 @@
 import React from "react";
-import MoreFromTheBlog from "../components/blog/MoreFromTheBlog";
-import ResponsiveReactApp, { TabBarLink } from "../responsive-page";
+import MoreFromTheBlog from "./MoreFromTheBlog";
+import ResponsiveReactApp, { TabBarLink } from "../../responsive-page";
 
 const BlogPage: React.FC<{
   postComponents: any;

@@ -22,6 +22,7 @@ const Project = styled.div`
 
 const Screenshot = styled.img`
   max-width: 100%;
+  background: var(--gray);
   grid-area: pic;
 `;
 

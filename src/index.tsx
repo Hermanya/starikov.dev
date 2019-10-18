@@ -1,12 +1,16 @@
 import React from "react";
-import { hydrate, render } from "react-dom";
 
+import { hydrate, render } from "react-dom";
 import * as _ from "styled-components/cssprop"; // eslint-disable-line
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import blogRoutes from "./__generated__/blogRoutes";
-import LandingPage from "./pages/LandingPage";
+import blogRoutes from "./components/blog/blogRoutes";
+import { prerenderedLoadable } from "./prerenderedLoadable";
+
+const LandingPage = prerenderedLoadable(() =>
+  import("./components/landing/LandingPage")
+);
 
 const App = () => {
   return (

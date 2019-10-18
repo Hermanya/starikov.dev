@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components/macro";
+import preval from "preval.macro";
 import { Title, Heading, Description } from "../typography";
 import { Link } from "react-router-dom";
-import blogPosts from "../../__generated__/blogPosts";
 import Container from "../Container";
+
 const Post = styled.div`
   display: grid;
   grid-template: "heading heading heading" "description description description" "read . created" / auto 1fr auto;
@@ -33,7 +34,7 @@ const Blog = () => {
   return (
     <Container>
       <Title>Blog</Title>
-      {blogPosts
+      {(preval`module.exports = require('../blog/node.js').getPostMetaDatas()` as any[])
         .sort((a, b) => {
           // @ts-ignore
           return new Date(b.created) - new Date(a.created);

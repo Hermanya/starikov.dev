@@ -11,7 +11,7 @@ discuss_on_github: "https://github.com/kettanaito/atomic-layout/issues/144"
 
 ## Atomic-layout
 
-I have recently refactored [my website](my-website) from Rebass `Flex`-based layouts to `atomic-layout` and then to `styled-system`. Why did I do it? I'm new to CSS grid, but I have heard [good things](css-grid-changes-everything) about it. And I've been following [Kettanaito](kettanaito) for a while now, he is working on `atomic-layout` for about a year. I always wanted to try building something with `atomic-layout`, but the opportunity did not present itself until I decided to rebuild my website.
+I have recently refactored [my website][my-website] from Rebass `Flex`-based layouts to `atomic-layout` and then to `styled-system`. Why did I do it? I'm new to CSS grid, but I have heard [good things][css-grid-changes-everything] about it. And I've been following [Kettanaito][kettanaito] for a while now, he is working on `atomic-layout` for about a year. I always wanted to try building something with `atomic-layout`, but the opportunity did not present itself until I decided to rebuild my website.
 
 Overall, I'm glad I started my CSS grid journey from `atomic-layout`. This library has great docs powered by Gitbook, another project I admire and have actually contributed to. The docs start with the motivation section, where Kettanaito outlines the core principals of composition and responsiveness in `atomic-layout`. And that makes sense, but in retrospective, I think the #1 motivation was different for me. 
 
@@ -25,7 +25,7 @@ Another thing that could be better about `atomic-layout` is the API. It seems to
 
 ## Styled-system
 
-When I was integrating `atomic-layout` onto my website I browsed the GitHub page of the project quite a lot. And found [this issue](styled-system-issue), which I found curious. I'm a big fan of `styled-system`. My website is built with it. And funny enough at first I was upset that `atomic-layout` does not automatically integrate with my breakpoints from `styled-system`. I never thought of `styled-system` as a competitor for `atomic-layout`. Mainly because I use `Rebass` and it does not have a grid component, so I assumed that the grid is out of `styled-systems`'s domain, but turns out it's not. It turns out I can implement my own grid component, very similar to `atomic-layout`, in just about 30 lines of code:
+When I was integrating `atomic-layout` onto my website I browsed the GitHub page of the project quite a lot. And found [this issue][styled-system-issue], which I found curious. I'm a big fan of `styled-system`. My website is built with it. And funny enough at first I was upset that `atomic-layout` does not automatically integrate with my breakpoints from `styled-system`. I never thought of `styled-system` as a competitor for `atomic-layout`. Mainly because I use `Rebass` and it does not have a grid component, so I assumed that the grid is out of `styled-systems`'s domain, but turns out it's not. It turns out I can implement my own grid component, very similar to `atomic-layout`, in just about 30 lines of code:
 
 ``` js
 import styled from 'styled-components';
@@ -101,7 +101,7 @@ As you can see here, that API is a little different, but not too much. The `temp
 +    ${gridArea}
 ```
 
-And to give you another example, here is a dynamic grid of repos you can see on [my website](my-website-repos).
+And to give you another example, here is a dynamic grid of repos you can see on [my website][my-website-repos].
 
 ``` diff
 - {({Repos, More, TotalStars, Bio}) => (
@@ -137,12 +137,10 @@ This concludes my comparison. I think both approaches are very worthy, and the m
 Overall I'm very happy with the CSS grid, and I hope to use it more in the future.
 
 
-[my-website](https://starikov.dev) 
+---
 
-[my-website-repos](https://starikov.dev/github/)
-
-[css-grid-changes-everything](https://www.youtube.com/watch?v=txZq7Laz7_4)
-
-[kettanaito](https://github.com/kettanaito)
-
-[styled-system-issue](https://github.com/kettanaito/atomic-layout/issues/144)
+[my-website]: https://starikov.dev
+[my-website-repos]: https://starikov.dev/github/
+[css-grid-changes-everything]: https://www.youtube.com/watch?v=txZq7Laz7_4
+[kettanaito]: https://github.com/kettanaito
+[styled-system-issue]: https://github.com/kettanaito/atomic-layout/issues/144

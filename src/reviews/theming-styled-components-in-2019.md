@@ -232,6 +232,7 @@ I would love to see an initiative similar to [System UI][] but based on CSS vari
 
 I hope you found this review useful and maybe even learned a thing or two. Let me know if there is a theming approach for styled components that escaped my radar. I'm very excited about the future of frontend, and I'm looking forward to CSS-in-JS taking over the world and whatever comes next.
 
+---
 
 [npm-trends]: https://www.npmtrends.com/styled-components-vs-emotion-vs-radium-vs-glamorous-vs-jss
 [Styled Components]: https://www.styled-components.com

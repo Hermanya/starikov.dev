@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import preval from "preval.macro";
 import { Title, Heading, Description } from "../typography";
 import { Link } from "react-router-dom";
-import blogPosts from "../../__generated__/blogPosts";
 import Container from "../Container";
+
 const Post = styled.div`
   line-height: 1.5;
   display: flex;
@@ -18,7 +19,7 @@ const MoreFromTheBlog: React.FC<{
   return (
     <Container>
       <Title>More from the Blog</Title>
-      {blogPosts
+      {(preval`module.exports = require('./node.js').getPostMetaDatas()` as any[])
         .filter(post => post.path !== props.exceptForPath)
         .map(post => (
           <Post>
