@@ -9,11 +9,20 @@ export const TabBarLink = styled(Link)`
   letter-spacing: -0.022em;
   text-decoration: none;
   text-align: center;
+  font-size: 1.25rem;
+  letter-spacing: -2px;
+
+  line-height: 0.9;
   svg {
     display: block;
     height: 32px;
     margin: 0 auto;
   }
+`;
+
+export const TabBarLinkWithAnIcon = styled(TabBarLink)`
+  font-size: 0.7rem;
+  letter-spacing: 0;
 `;
 
 export const TabBarContainer = styled.div`
@@ -30,17 +39,13 @@ export const TabBarContainer = styled.div`
   backdrop-filter: saturate(180%) blur(6px);
   background-color: rgba(255, 255, 255, 0.1);
   @media (prefers-color-scheme: dark) {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.1);
   }
   border-radius: 0;
   width: 100vw;
-  font-size: 0.7rem;
-  letter-spacing: -2px;
-  line-height: 0.9;
 
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 2}px) {
     width: calc(50vw * 2);
-    font-size: 1.25em;
   }
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 3}px) {
     width: calc(33.333333vw * 2);

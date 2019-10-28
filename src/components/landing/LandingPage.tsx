@@ -4,29 +4,31 @@ import About from "./About";
 import Blog from "./Blog";
 import Links from "./Links";
 import PetProjects from "./PetProjects";
-import ResponsiveReactApp, { TabBarLink } from "../../responsive-page";
+import ResponsiveReactApp, {
+  TabBarLinkWithAnIcon
+} from "../../responsive-page";
 
 const LandingPage = ({ match }: { match: any }) => {
   return (
     <ResponsiveReactApp
       tabs={
         <>
-          <TabBarLink to={`${match.path}/me`}>
+          <TabBarLinkWithAnIcon to={`${match.path}/me`}>
             <User />
             About
-          </TabBarLink>
-          <TabBarLink to={`${match.path}/projects`}>
+          </TabBarLinkWithAnIcon>
+          <TabBarLinkWithAnIcon to={`${match.path}/projects`}>
             <Trello />
             Projects
-          </TabBarLink>
-          <TabBarLink to={`${match.path}/blog`}>
+          </TabBarLinkWithAnIcon>
+          <TabBarLinkWithAnIcon to={`${match.path}/blog`}>
             <BookOpen />
             Blog
-          </TabBarLink>
-          <TabBarLink to={`${match.path}/links`}>
+          </TabBarLinkWithAnIcon>
+          <TabBarLinkWithAnIcon to={`${match.path}/links`}>
             <Link2 />
             Links
-          </TabBarLink>
+          </TabBarLinkWithAnIcon>
         </>
       }
       paths={[

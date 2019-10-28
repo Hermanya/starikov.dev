@@ -1,5 +1,5 @@
-import ResponsiveReactApp from './ResponsiveReactApp';
-import TabBar, { TabBarLink } from './TabBar';
+import ResponsiveReactApp from "./ResponsiveReactApp";
+import TabBar, { TabBarLink, TabBarLinkWithAnIcon } from "./TabBar";
 
 export default ResponsiveReactApp;
-export { TabBar, TabBarLink };
+export { TabBar, TabBarLink, TabBarLinkWithAnIcon };
