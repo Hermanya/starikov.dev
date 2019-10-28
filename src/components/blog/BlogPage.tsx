@@ -4,19 +4,16 @@ import ResponsiveReactApp, { TabBarLink } from "../../responsive-page";
 
 const BlogPage: React.FC<{
   postComponents: any;
+  postSubTitles: any;
   postPath: any;
-}> = ({ postComponents, postPath }) => {
+}> = ({ postComponents, postPath, postSubTitles }) => {
   return (
     <ResponsiveReactApp
       tabs={
         <>
           {postComponents.map((part: any, index: number, all: any[]) => (
             <TabBarLink to={`${postPath}/part-${index}`} key={index}>
-              {index === 0
-                ? "Intro"
-                : index === all.length - 1
-                ? "Summary"
-                : `Part ${index}`}
+              {`${postSubTitles[index]}`}
             </TabBarLink>
           ))}
           <TabBarLink to={postPath + "/other-posts"}>More</TabBarLink>

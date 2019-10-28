@@ -21,6 +21,10 @@ const MoreFromTheBlog: React.FC<{
       <Title>More from the Blog</Title>
       {(preval`module.exports = require('./node.js').getPostMetaDatas()` as any[])
         .filter(post => post.path !== props.exceptForPath)
+        .sort((a, b) => {
+          // @ts-ignore
+          return new Date(b.created) - new Date(a.created);
+        })
         .map(post => (
           <Post>
             <Link to={post.path}>

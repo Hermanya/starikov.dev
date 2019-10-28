@@ -6,7 +6,6 @@ export const TabBarLink = styled(Link)`
   max-width: 64px;
   display: flex;
   flex-direction: column;
-  font-size: 0.7rem;
   letter-spacing: -0.022em;
   text-decoration: none;
   text-align: center;
@@ -28,28 +27,33 @@ export const TabBarContainer = styled.div`
   z-index: 3;
   min-height: 3.5rem;
   padding-bottom: env(safe-area-inset-bottom);
-  backdrop-filter: saturate(180%) blur(3px);
+  backdrop-filter: saturate(180%) blur(6px);
   background-color: rgba(255, 255, 255, 0.1);
   @media (prefers-color-scheme: dark) {
     background: rgba(0, 0, 0, 0.7);
   }
   border-radius: 0;
   width: 100vw;
+  font-size: 0.7rem;
+  letter-spacing: -2px;
+  line-height: 0.9;
+
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 2}px) {
-    border-radius: 6px 6px 0 0;
-    width: 50vw;
+    width: calc(50vw * 2);
+    font-size: 1.25em;
   }
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 3}px) {
-    width: 33.333333vw;
+    width: calc(33.333333vw * 2);
+    border-radius: 6px 6px 0 0;
   }
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 4}px) {
-    width: 25vw;
+    width: calc(25vw * 2);
   }
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 5}px) {
-    width: 20vw;
+    width: calc(20vw * 2);
   }
   @media screen and (min-width: ${props => props.theme.minimumTabSize * 6}px) {
-    width: calc(100vw / 6);
+    width: calc(100vw / 6 * 2);
   }
 `;
 

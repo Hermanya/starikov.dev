@@ -40,6 +40,13 @@ const code = getPosts()
                                         .join(",\\n")
                                 }
                             ]}
+                            postSubTitles={[
+                                \${
+                                    sections
+                                        .map((section) => "'" + (section.split('\\n')[0].slice(2) || "Intro") + "'")
+                                        .join(",\\n")
+                                }
+                            ]}
                             postPath={"\${metadata.path}"}
                         />
                     }

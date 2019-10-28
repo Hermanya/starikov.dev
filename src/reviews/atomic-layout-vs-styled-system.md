@@ -9,7 +9,7 @@ discuss_on_github: "https://github.com/kettanaito/atomic-layout/issues/144"
 
 *This post was originally published [on GitHub](https://github.com/kettanaito/atomic-layout/issues/144).*
 
-## Atomic-layout
+## Atomic layout
 
 I have recently refactored [my website][my-website] from Rebass `Flex`-based layouts to `atomic-layout` and then to `styled-system`. Why did I do it? I'm new to CSS grid, but I have heard [good things][css-grid-changes-everything] about it. And I've been following [Kettanaito][kettanaito] for a while now, he is working on `atomic-layout` for about a year. I always wanted to try building something with `atomic-layout`, but the opportunity did not present itself until I decided to rebuild my website.
 
@@ -23,7 +23,7 @@ Now, regarding things that I don't quite like about `atomic-layout`. The number 
 
 Another thing that could be better about `atomic-layout` is the API. It seems too new for me. And I don't like that it does not map to the actual CSS property names. I'm sure every frontend developer who has worked with Bootstrap-type grids can figure out what a `gutter` is, but the CSS grid term for that is `grid-gap` and I think the CSS Working Group would like us to adopt the new terminology moving forward.
 
-## Styled-system
+## Styled system
 
 When I was integrating `atomic-layout` onto my website I browsed the GitHub page of the project quite a lot. And found [this issue][styled-system-issue], which I found curious. I'm a big fan of `styled-system`. My website is built with it. And funny enough at first I was upset that `atomic-layout` does not automatically integrate with my breakpoints from `styled-system`. I never thought of `styled-system` as a competitor for `atomic-layout`. Mainly because I use `Rebass` and it does not have a grid component, so I assumed that the grid is out of `styled-systems`'s domain, but turns out it's not. It turns out I can implement my own grid component, very similar to `atomic-layout`, in just about 30 lines of code:
 

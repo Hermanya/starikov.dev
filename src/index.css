@@ -17,8 +17,8 @@ p {
   overflow-x: auto;
   padding: 0.5em;
   color: var(--text);
-  background: var(--gray6);
-  border-radius: 6px;
+  border: double 4px var(--gray);
+  border-radius: 1em;
 }
 
 .hljs-comment,

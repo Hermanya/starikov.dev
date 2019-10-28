@@ -22,7 +22,7 @@ To make my code snippets a little nicer I set up [gatsby-remark-prettier](https:
 
 And I'm using a couple more pretty standard markdown plugins. [gatsby-remark-autolink-headers](https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/) for that link icon that shows up when you hover over a subheading. And [gatsby-remark-smartypants](https://www.gatsbyjs.org/packages/gatsby-remark-smartypants/) to get fancier typographic characters.
 
-## Other handy plugins
+## Other plugins
 
 Other markdown plugins I use [gatsby-transformer-sharp](https://www.gatsbyjs.org/packages/gatsby-transformer-sharp/) and [gatsby-plugin-sharp](https://www.gatsbyjs.org/packages/gatsby-plugin-sharp/) to generate cool previews for static images. Basically, it takes my jpegs, makes SVG tracings of them and injects the tracings into my build-time rendered HTML, so that you can see the silhouette of an image before it's even downloaded.
 
