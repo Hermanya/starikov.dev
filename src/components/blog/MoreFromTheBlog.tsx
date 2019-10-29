@@ -4,6 +4,7 @@ import preval from "preval.macro";
 import { Title, Heading, Description } from "../typography";
 import { Link } from "react-router-dom";
 import Container from "../Container";
+import { formatDate } from "../../util";
 
 const Post = styled.div`
   line-height: 1.5;
@@ -30,7 +31,7 @@ const MoreFromTheBlog: React.FC<{
             <Link to={post.path}>
               <Heading>{post.title}</Heading>
             </Link>
-            <div>{post.created}</div>
+            <div>{formatDate(post.created)}</div>
             <Description>{post.description}</Description>
           </Post>
         ))}

@@ -1,6 +1,13 @@
 const fs = require("fs");
 const marked = require("marked");
 
+const formatDate = date =>
+  new Date(date).toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: function(code) {
@@ -15,10 +22,37 @@ marked.setOptions({
   xhtml: true
 });
 
-const blogPostCode = (content, footerLinks) => `import React from 'react';
+const blogPostCode = (
+  content,
+  metadata,
+  index,
+  footerLinks
+) => `import React from 'react';
 import Container from '../../Container';
+${
+  index === 0
+    ? `
+      import Author from '../../Author';
+      import {PageTitle, Description} from '../../typography';
+    `
+    : ``
+}
 export default () => {
     return (<Container>
+        ${
+          index === 0
+            ? `
+              <Author/>
+              <PageTitle>${metadata.title}</PageTitle>
+              <Description>${`Published on ${formatDate(metadata.created)}${
+                metadata.updated
+                  ? `.<br/><br/>Edited on ${formatDate(metadata.updated)}.`
+                  : ``
+              }`}</Description>
+              <br/>
+            `
+            : ``
+        }
         ${marked(content + "\n" + footerLinks)
           .replace(/\{|\}/g, match => `{'${match}'}`)
           .replace(/\n/g, "<br/>")
@@ -38,7 +72,9 @@ module.exports.generateComponents = (path = `${__dirname}/__generated__`) => {
       fs.writeFileSync(
         `${path}/${componentName}Part${index}.tsx`,
         blogPostCode(
-          (index === 0 ? `# ${metadata.title}\n` : "#") + section,
+          index === 0 ? section : "#" + section,
+          metadata,
+          index,
           footerLinks
         ),
         "utf8"

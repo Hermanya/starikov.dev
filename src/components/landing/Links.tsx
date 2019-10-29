@@ -22,10 +22,8 @@ const SubSection = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 12px;
   line-height: 2;
   font-weight: 400;
-  text-transform: uppercase;
   color: var(--gray);
 `;
 

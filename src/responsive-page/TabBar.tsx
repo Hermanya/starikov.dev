@@ -9,10 +9,11 @@ export const TabBarLink = styled(Link)`
   letter-spacing: -0.022em;
   text-decoration: none;
   text-align: center;
-  font-size: 1.25rem;
-  letter-spacing: -2px;
+  line-height: 1;
 
-  line-height: 0.9;
+  @media screen and (min-width: ${props => props.theme.minimumTabSize * 2}px) {
+    font-size: 1rem;
+  }
   svg {
     display: block;
     height: 32px;

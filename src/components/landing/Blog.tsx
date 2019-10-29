@@ -4,6 +4,7 @@ import preval from "preval.macro";
 import { Title, Heading, Description } from "../typography";
 import { Link } from "react-router-dom";
 import Container from "../Container";
+import { formatDate } from "../../util";
 
 const Post = styled.div`
   display: grid;
@@ -48,11 +49,7 @@ const Blog = () => {
               {post.description}
             </Description>
             <Created css="grid-area: created;">
-              {new Date(post.created).toLocaleDateString("en-CA", {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })}
+              {formatDate(post.created)}
             </Created>
             <Read to={post.path} css="grid-area: read;">
               Read
