@@ -28,19 +28,12 @@ const About = () => {
       </Heading>
       <hr />
       <Description>
-        I was bord and raised in Moscow, Russia. Then I moved to Canada to
+        I was born and raised in Moscow, Russia. Then I moved to Canada to
         study. And now I live and work in Toronto. After work I watch a lot of
         Netflix with my girlfriend and I read (and retweet) a lot about React,
         JavaScript, TypeScript, Web, or Programming in general. In my spare time
         I make stuff, check it out.
       </Description>
-      {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
-        <path
-          fill="var(--green)"
-          fill-opacity="1"
-          d="M 0,0   C 0,0, 1,2, 2,0   L 2,2   C 2,2, 1,0, 0,2    L0,0 Z"
-        ></path>
-      </svg> */}
     </AboutContainer>
   );
 };
