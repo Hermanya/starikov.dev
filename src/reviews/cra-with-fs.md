@@ -93,6 +93,8 @@ For my personal website (the one you're on right now) I'm doing something simila
 
 You probably already knew that `create-react-app` is awesome. But I bet you did not know how much more awesome it really is thanks to [babel-plugin-macros][babel-plugin-macros] and all these build time super powers you have with macros such as `preval`. I hope this new knowledge comes in handy on your next React project!
 
+Do you have any questions or comments? [Talk to me on Twitter](https://twitter.com/Hermanhasawish/status/1189562475143929857).
+
 ---
 
 [create-react-app]: https://create-react-app.dev/
