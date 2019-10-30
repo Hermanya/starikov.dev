@@ -59,13 +59,13 @@ const CommaSeparatedValuesExample = () => {
 };
 ```
 
-I tried putting it together on Codesandbox, but file system API does not work there. Anyway, you get the idea. We read a file, parse it, inline data into our App source file, and render it in a basic HTML table.
+Here is a [Codesandbox of this](https://codesandbox.io/s/preval-macro-codesandbox-jefzk). I read the file, parse it, inline data into our App source file, and render it in a basic HTML table.
 
 > NOTE: If you change the CSV file, you need to re-run `yarn start`!
 
 ## Markdown
 
-Or image you want to start a blog. You've heard of Gatsby, but you are not impressed. You think displaying rendered markdown is simple enough to use `create-react-app` for that. Consider the following example.
+Or imagine you want to start a blog. You've heard of Gatsby, but you are not impressed. You think displaying rendered markdown is simple enough to use `create-react-app` for that. Consider the following example.
 
 ```jsx
 import React from "react";
@@ -95,6 +95,7 @@ You probably already knew that `create-react-app` is awesome. But I bet you did 
 
 ---
 
+[create-react-app]: https://create-react-app.dev/
 [kent]: https://kentcdodds.com
 [babel-plugin-macros]: https://github.com/kentcdodds/babel-plugin-macros
 [preval]: https://github.com/kentcdodds/preval.macro
