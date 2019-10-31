@@ -33,12 +33,17 @@ import preval from "preval.macro";
 
 
 const myData = preval`
-  module.exports = require('fs').readFileSync(
-    __dirname + '/my-file.csv', 'utf8'
-  ).split('\\n').map(line => line.split(','))
-`;
+module.exports = (
+  require('fs')
+	.readFileSync(
+      __dirname + '/my-file.csv', 
+	  'utf8'
+    )
+    .split('\\n')
+    .map(line => line.split(','))
+)`;
 
-const CommaSeparatedValuesExample = () => {
+const CsvExample = () => {
   const [labels, ...rows] = myData;
   return (
     <table>
@@ -57,6 +62,7 @@ const CommaSeparatedValuesExample = () => {
     </table>
   );
 };
+
 ```
 
 Here is a [Codesandbox of this](https://codesandbox.io/s/preval-macro-codesandbox-jefzk). I read the file, parse it, inline data into our App source file, and render it in a basic HTML table.
@@ -71,17 +77,21 @@ Or imagine you want to start a blog. You've heard of Gatsby, but you are not imp
 import React from "react";
 import preval from "preval.macro";
 
-const myBlogPostJSX = preval`
-  module.exports = require('marked')(require('fs').readFileSync(
-    __dirname + '/my-blog-post.md', 'utf8'
-  ))
-`;
+const myBlogPostJsx = preval`
+module.exports = (
+  require('marked')(
+    require('fs').readFileSync(
+      __dirname + '/blog-post.md',
+      'utf8'
+    )
+  )
+)`;
 
-const MarkdownExample = () => {
-  return (
-    <article dangerouslySetInnerHTML={{__html: myBlogPostJSX}}/>
-  );
-};
+const MarkdownExample = () => (
+  <article dangerouslySetInnerHTML={{
+      __html: myBlogPostJsx
+  }}/>
+)
 
 ```
 
