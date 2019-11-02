@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap; node scripts/screenshots.js",
+    "postbuild": "react-snap; mkdir build/screenshots; node scripts/screenshots.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "installchrome": "curl https://intoli.com/install-google-chrome.sh | bash"
