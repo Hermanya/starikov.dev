@@ -39,8 +39,8 @@ const Meta = (data: any) => {
           content={image}
         />
       ) : null}
-
-      <meta property="og:site_name" content="..." />
+      {/* <!-- Open Graph / Facebook --> */}
+      {/* <meta property="og:site_name" content="..." /> */}
       <meta property="og:title" content={title} />
       {description ? (
         <meta property="og:description" content={description} />
@@ -51,7 +51,7 @@ const Meta = (data: any) => {
       {image ? <meta property="og:image" content={image} /> : null}
       {width ? <meta property="og:image:width" content={width} /> : null}
       {height ? <meta property="og:image:height" content={height} /> : null}
-      <meta property="fb:pages" content="..." />
+      {/* <meta property="fb:pages" content="..." /> */}
 
       {/* change type of twitter if there is no image? */}
       <meta name="twitter:card" content="summary_large_image" />
