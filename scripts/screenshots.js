@@ -4,7 +4,7 @@ run({
   destination: "build/screenshots",
   saveAs: "png",
   viewport: {
-    width: 512,
-    height: 512
+    width: 400,
+    height: 400
   }
 });
