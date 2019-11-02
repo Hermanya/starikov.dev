@@ -22,11 +22,12 @@ const About = () => {
   return (
     <AboutContainer>
       <Avatar width={250} css="margin-bottom: 1rem;" />
-      <PageTitle as="h1">Herman Starikov</PageTitle>
-      <Heading>
+      <PageTitle as="h1" css="margin-bottom: 1rem;">
+        Herman Starikov
+      </PageTitle>
+      <Heading css="margin-bottom: 1rem;">
         Software Developer @&nbsp;<a href="https://coursera.org">Coursera</a>
       </Heading>
-      <hr />
       <Description>
         I was born and raised in Moscow, Russia. Then I moved to Canada to
         study. And now I live and work in Toronto. After work I watch a lot of

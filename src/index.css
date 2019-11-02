@@ -16,10 +16,12 @@ p {
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1em 0;
+  padding-left: 10%;
   color: var(--text);
-  border: double 4px var(--gray);
-  border-radius: 1em;
+  border: dashed 2px var(--gray);
+  border-width: 2px 0;
+  margin: 0 -10%;
 }
 
 .hljs-comment,

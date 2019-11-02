@@ -5,6 +5,7 @@ export const PageTitle = styled.h1`
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: 0em;
+  margin: 0;
 `;
 
 export const Title = styled.h2`

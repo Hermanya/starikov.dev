@@ -2,7 +2,7 @@
 path: "/reviews/create-react-app-with-file-system-api"
 created: "2019-10-29"
 title: "Read a File in Create React App"
-description: "How to use preval.macro to use File System in CRA"
+description: "How to use preval.macro to read any file in CRA"
 ---
 
 Imagine you have a text file on your computer. It could be JSON, CSV, markdown or any other format. And now you want to create a React app to make the information in that file more presentable and maybe somewhat interactive. Right? So, you run [create-react-app], you drag and drop your file into the project, and now you need to figure out how to hook it up. If it's JSON, you're in luck.

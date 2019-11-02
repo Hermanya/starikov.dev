@@ -33,6 +33,8 @@ const code = getPosts()
                     key="\${metadata.path}"
                     render={() => 
                         <BlogPage
+                            title="\${metadata.title}"
+                            description="\${metadata.description}"
                             postComponents={[
                                 \${
                                     sections

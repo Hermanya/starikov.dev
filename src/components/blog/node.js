@@ -28,6 +28,7 @@ const blogPostCode = (
   index,
   footerLinks
 ) => `import React from 'react';
+import 'styled-components/macro';
 import Container from '../../Container';
 ${
   index === 0
@@ -43,7 +44,7 @@ export default () => {
           index === 0
             ? `
               <Author/>
-              <PageTitle>${metadata.title}</PageTitle>
+              <PageTitle css="margin: 1rem 0;">${metadata.title}</PageTitle>
               <Description>${`Published on ${formatDate(metadata.created)}${
                 metadata.updated
                   ? `.<br/><br/>Edited on ${formatDate(metadata.updated)}.`
