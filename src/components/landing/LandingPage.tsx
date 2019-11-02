@@ -15,6 +15,7 @@ const LandingPage = ({ match }: { match: any }) => {
       <Meta
         title={"Herman Starikov"}
         description={"Software Developer specializing in React @ Coursera"}
+        image={`/screenshots/about/me.png`}
       />
       <ResponsiveReactApp
         tabs={
