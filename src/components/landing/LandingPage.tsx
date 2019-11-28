@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen, Link2, Trello, User } from "react-feather";
+import { Link2, Trello, User, Rss } from "react-feather";
 import About from "./About";
 import Blog from "./Blog";
 import Links from "./Links";
@@ -21,19 +21,19 @@ const LandingPage = ({ match }: { match: any }) => {
         tabs={
           <>
             <TabBarLinkWithAnIcon to={`${match.path}/me`}>
-              <User />
+              <User strokeWidth="1" />
               About
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/projects`}>
-              <Trello />
+              <Trello strokeWidth="1" />
               Projects
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/blog`}>
-              <BookOpen />
+              <Rss strokeWidth="1" />
               Blog
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/links`}>
-              <Link2 />
+              <Link2 strokeWidth="1" />
               Links
             </TabBarLinkWithAnIcon>
           </>

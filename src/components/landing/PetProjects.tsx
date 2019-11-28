@@ -51,7 +51,7 @@ const PetProjects = () => {
         />
         <a href="https://leananalytics.io">
           <Heading>
-            LeanAnalytics.io <Icon />
+            LeanAnalytics.io <Icon strokeWidth="1" />
           </Heading>
         </a>
         <Description>A/B testing React apps made easy</Description>
@@ -67,7 +67,7 @@ const PetProjects = () => {
         />
         <a href="https://ui1.io">
           <Heading>
-            UI1.io <Icon />
+            UI1.io <Icon strokeWidth="1" />
           </Heading>
         </a>
         <Description>UI Kit Generator (Bootstrap + Sketch export)</Description>
