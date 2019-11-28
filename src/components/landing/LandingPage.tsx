@@ -21,19 +21,19 @@ const LandingPage = ({ match }: { match: any }) => {
         tabs={
           <>
             <TabBarLinkWithAnIcon to={`${match.path}/me`}>
-              <User strokeWidth="1" />
+              <User strokeWidth="1.5" />
               About
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/projects`}>
-              <Trello strokeWidth="1" />
+              <Trello strokeWidth="1.5" />
               Projects
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/blog`}>
-              <Rss strokeWidth="1" />
+              <Rss strokeWidth="1.5" />
               Blog
             </TabBarLinkWithAnIcon>
             <TabBarLinkWithAnIcon to={`${match.path}/links`}>
-              <Link2 strokeWidth="1" />
+              <Link2 strokeWidth="1.5" />
               Links
             </TabBarLinkWithAnIcon>
           </>
