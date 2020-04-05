@@ -12,13 +12,19 @@ const LandingPage = prerenderedLoadable(() =>
   import("./components/landing/LandingPage")
 );
 
+const LegalPage = prerenderedLoadable(() =>
+  import("./components/legal/LegalPage")
+);
+
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
         {blogRoutes}
         <Route path="/about" component={LandingPage} />
+        <Route path="/legal" component={LegalPage} />
         <Redirect exact from="/" to="/about/me" />
+        <Redirect exact from="/legal" to="/legal/privacy-policy" />
       </Switch>
     </BrowserRouter>
   );

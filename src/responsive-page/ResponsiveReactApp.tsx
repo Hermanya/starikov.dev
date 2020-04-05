@@ -22,19 +22,24 @@ const Mobile = styled.div`
   height: 100vh;
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
-  @media screen and (min-width: ${props => props.theme.minimumTabSize * 2}px) {
+  @media screen and (min-width: ${(props) =>
+      props.theme.minimumTabSize * 2}px) {
     width: 50vw;
   }
-  @media screen and (min-width: ${props => props.theme.minimumTabSize * 3}px) {
+  @media screen and (min-width: ${(props) =>
+      props.theme.minimumTabSize * 3}px) {
     width: 33.333333vw;
   }
-  @media screen and (min-width: ${props => props.theme.minimumTabSize * 4}px) {
+  @media screen and (min-width: ${(props) =>
+      props.theme.minimumTabSize * 4}px) {
     width: 25vw;
   }
-  @media screen and (min-width: ${props => props.theme.minimumTabSize * 5}px) {
+  @media screen and (min-width: ${(props) =>
+      props.theme.minimumTabSize * 5}px) {
     width: 20vw;
   }
-  @media screen and (min-width: ${props => props.theme.minimumTabSize * 6}px) {
+  @media screen and (min-width: ${(props) =>
+      props.theme.minimumTabSize * 6}px) {
     width: calc(100vw / 6);
   }
   /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
@@ -53,7 +58,7 @@ const ResponsiveReactApp: React.FC<{
   return (
     <ThemeProvider
       theme={{
-        minimumTabSize
+        minimumTabSize,
       }}
     >
       <ViewPort>
@@ -61,17 +66,20 @@ const ResponsiveReactApp: React.FC<{
           {children.flat().map((_, index) => (
             <Route
               exact
+              key={`${paths[index] || index || ""}`}
               path={`${paths[index] || index || ""}`}
               render={({ location }) => {
                 return (
                   <>
                     <Board
                       style={{
-                        transform: `translateX(-${(100 / componentsPerScreen) *
+                        transform: `translateX(-${
+                          (100 / componentsPerScreen) *
                           Math.min(
                             index,
                             children.flat().length - componentsPerScreen
-                          )}vw)`
+                          )
+                        }vw)`,
                       }}
                     >
                       {children.flat().map((child, index) => {
@@ -100,7 +108,7 @@ const ResponsiveReactApp: React.FC<{
 
 ResponsiveReactApp.defaultProps = {
   children: [],
-  paths: []
+  paths: [],
 };
 
 export default ResponsiveReactApp;
