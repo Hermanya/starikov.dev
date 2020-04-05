@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Title } from "../typography";
 import Container from "../Container";
+import { Link as RouterLink } from "react-router-dom";
 
 const Link = styled.a`
+  display: block;
+  text-align: left;
+`;
+
+const StyledRouterLink = styled(RouterLink)`
   display: block;
   text-align: left;
 `;
@@ -51,6 +57,15 @@ const Links = () => {
           <Label>For Hire</Label>
           <Link href="https://linkedin.com/in/hermanstarikov">LinkedIn</Link>
           <Link href="https://starikov.dev/resume">Resume</Link>
+        </SubSection>
+        <SubSection>
+          <Label>Legal</Label>
+          <StyledRouterLink to="/legal/privacy-policy">
+            Privacy Policy
+          </StyledRouterLink>
+          <StyledRouterLink to="/legal/terms-of-service">
+            Terms of Service
+          </StyledRouterLink>
         </SubSection>
         <SubSection>
           <Label>Other</Label>
