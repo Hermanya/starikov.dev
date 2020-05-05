@@ -1,6 +1,6 @@
 {
   "name": "starikov.dev",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "./output/index.js",
   "types": "./output/src/exports.d.ts",
   "homepage": "https://www.starikov.dev",
