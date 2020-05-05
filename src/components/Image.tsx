@@ -1,7 +1,7 @@
 import React from "react";
-// @ts-ignore
-import IdealImage from "react-ideal-image";
+
 import { Download, AlertOctagon, WifiOff, Loader } from "react-feather";
+const IdealImage = require("react-ideal-image").default;
 
 const defaultProps = {
   icons: {
@@ -10,19 +10,19 @@ const defaultProps = {
     loaded: null,
     error: () => <AlertOctagon />,
     noicon: null,
-    offline: () => <WifiOff />
+    offline: () => <WifiOff />,
   },
   theme: {
     placeholder: {
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      position: "relative"
+      position: "relative",
     },
     img: {
       width: "100%",
       height: "auto",
       maxWidth: "100%",
-      display: "block"
+      display: "block",
     },
     icon: {
       position: "absolute",
@@ -30,17 +30,17 @@ const defaultProps = {
       left: "50%",
       transform: "translate(-50%, -50%)",
       filter: "drop-shadow(2px 4px 6px black)",
-      textAlign: "center"
+      textAlign: "center",
     },
     noscript: {
       position: "absolute",
       top: 0,
-      left: 0
-    }
-  }
+      left: 0,
+    },
+  },
 };
 
-const Image: React.FC<any> = props => (
+const Image: React.FC<any> = (props) => (
   <IdealImage {...defaultProps} {...props} />
 );
 

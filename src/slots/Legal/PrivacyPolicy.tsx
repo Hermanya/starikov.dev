@@ -1,11 +1,10 @@
 import React from "react";
-import Container from "../Container";
-import { Title } from "../typography";
+import { NavigationLinkListItem } from "navigation";
 
 export default () => {
   return (
-    <Container>
-      <Title>Privacy Policy</Title>
+    <>
+      <h2>Privacy Policy</h2>
       <p>
         Your privacy is important to me. It is my policy to respect your privacy
         regarding any information I may collect from you across my website,{" "}
@@ -55,6 +54,15 @@ export default () => {
           Privacy Policy created with GetTerms.
         </a>
       </p>
-    </Container>
+      <div style={{ margin: "auto 0 16px" }}>
+        <NavigationLinkListItem
+          renderIfActive
+          to={"Herman"}
+          from={"PrivacyPolicy"}
+        >
+          starikov.dev
+        </NavigationLinkListItem>
+      </div>
+    </>
   );
 };

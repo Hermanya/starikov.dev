@@ -2,32 +2,13 @@ import React from "react";
 
 import { hydrate, render } from "react-dom";
 import * as _ from "styled-components/cssprop"; // eslint-disable-line
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
+import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
-import blogRoutes from "./components/blog/blogRoutes";
-import { prerenderedLoadable } from "./prerenderedLoadable";
-
-const LandingPage = prerenderedLoadable(() =>
-  import("./components/landing/LandingPage")
-);
-
-const LegalPage = prerenderedLoadable(() =>
-  import("./components/legal/LegalPage")
-);
+import { Root } from "navigation";
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        {blogRoutes}
-        <Route path="/about" component={LandingPage} />
-        <Route path="/legal" component={LegalPage} />
-        <Redirect exact from="/" to="/about/me" />
-        <Redirect exact from="/legal" to="/legal/privacy-policy" />
-      </Switch>
-    </BrowserRouter>
-  );
+  return <Root />;
 };
 
 const rootElement = document.getElementById("root");

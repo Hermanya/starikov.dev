@@ -1,22 +1,21 @@
 import styled from "styled-components";
-
 export const PageTitle = styled.h1`
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1.1;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0em;
   margin: 0;
 `;
 
 export const Title = styled.h2`
-  font-size: 30px;
+  font-size: 24px;
   line-height: 1.125;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.004em;
 `;
 
 export const Heading = styled.h3`
-  font-weight: normal;
+  font-weight: 500;
   margin: 0;
   display: flex;
   align-items: center;
@@ -24,9 +23,12 @@ export const Heading = styled.h3`
   line-height: 1.2;
 `;
 
-export const Description = styled.p`
+export const Paragraph = styled.p`
   margin: 0;
   line-height: 1.25;
   text-align: left;
+`;
+
+export const Description = styled(Paragraph)`
   color: var(--gray);
 `;

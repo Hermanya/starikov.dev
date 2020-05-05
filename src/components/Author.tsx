@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components/macro";
 import Avatar from "./Avatar";
 import { Heading, Description } from "./typography";
-import { NavLink } from "react-router-dom";
 
-const Container = styled(NavLink)`
+const Container = styled.a`
   display: grid;
   grid-column-gap: 16px;
   grid-template:
@@ -15,7 +14,7 @@ const Container = styled(NavLink)`
 
 const Author = () => {
   return (
-    <Container to={"/"}>
+    <Container href="/">
       <Avatar width={44} css="grid-area: pic;" />
       <Heading css="grid-area: name;">Herman Starikov</Heading>
       <Description css="grid-area: desc;">Web Developer @ Coursera</Description>

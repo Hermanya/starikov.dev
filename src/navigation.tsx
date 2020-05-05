@@ -4,38 +4,38 @@ import {
   Link as NavigationLink,
   useNextAvailableSpaceFor as _useNextAvailableSpaceFor,
   useNavigationState,
+  __websiteSlots as reactSlotNavigationWebsiteSlots,
 } from "react-slot-navigation";
-import "./navigation.css";
 
 const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
-
-  //   ReactSlotNavigation: React.lazy(() =>
-  //     import("./slots/Projects/ReactSlotNavigation")
-  //   ),
+  Links: React.lazy(() => import("./slots/Links")),
+  PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
+  TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
+  ...reactSlotNavigationWebsiteSlots,
 };
 
-type AllPages = typeof allSlots;
-export type PageName = keyof AllPages;
+export type SlotName = keyof typeof allSlots;
 type LinkProps = {
-  to: PageName;
-  from: PageName;
+  to: SlotName;
+  from: SlotName;
   renderIfActive?: boolean;
 };
 
 export const Root = () => (
   <NavigationProvider
-    startWith={"ReactSlotNavigation"}
+    startWith={"Herman"}
     allSlots={allSlots}
     suspenseFallback={() => <div>Loading</div>}
     slotWidth={Math.min(400, window.innerWidth - 24)}
+    // slotComponent={NavigationSlot}
   />
 );
 
 export const useNextAvailableSpaceFor = (
-  Component: PageName,
+  Component: SlotName,
   options: {
-    from: PageName;
+    from: SlotName;
   }
 ): void => _useNextAvailableSpaceFor(Component, options);
 

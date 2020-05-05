@@ -1,11 +1,10 @@
 import React from "react";
-import Container from "../Container";
-import { Title } from "../typography";
+import { NavigationLinkListItem } from "navigation";
 
 export default () => {
   return (
-    <Container>
-      <Title>Terms of Service</Title>
+    <>
+      <h2>Terms of Service</h2>
       <h3>1. Terms</h3>
       <p>
         By accessing the website at{" "}
@@ -117,6 +116,15 @@ export default () => {
           Terms of Use created with GetTerms.
         </a>
       </p>
-    </Container>
+      <div style={{ margin: "auto 0 16px" }}>
+        <NavigationLinkListItem
+          renderIfActive
+          to={"Herman"}
+          from={"TermsOfService"}
+        >
+          starikov.dev
+        </NavigationLinkListItem>
+      </div>
+    </>
   );
 };
