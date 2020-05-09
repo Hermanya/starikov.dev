@@ -2,7 +2,16 @@ import React from "react";
 import Avatar from "components/Avatar";
 import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
-import { PageTitle, Heading, Paragraph } from "components/typography";
+import { Heading, Paragraph } from "components/typography";
+import styled from "styled-components";
+
+const PageTitle = styled.h1`
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0em;
+  margin: 0;
+`;
 
 const Herman = () => {
   return (

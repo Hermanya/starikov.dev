@@ -10527,7 +10527,7 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postcss@^7, postcss@^7.0.16, postcss@^7.0.23:
+postcss@^7, postcss@^7.0.16, postcss@^7.0.23, postcss@^7.0.27:
   version "7.0.29"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.29.tgz#d3a903872bd52280b83bce38cdc83ce55c06129e"
   integrity sha512-ba0ApvR3LxGvRMMiUa9n0WR4HjzcYm7tS+ht4/2Nd0NLtHpPIH77fuB9Xh1/yJVz9O/E/95Y/dn8ygWsyffXtw==
@@ -10540,15 +10540,6 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2
   version "7.0.17"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
   integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
-  dependencies:
-    chalk "^2.4.2"
-    source-map "^0.6.1"
-    supports-color "^6.1.0"
-
-postcss@^7.0.27:
-  version "7.0.28"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.28.tgz#d349ced7743475717ba91f6810efb58c51fb5dbb"
-  integrity sha512-YU6nVhyWIsVtlNlnAj1fHTsUKW5qxm3KEgzq2Jj6KTEFOTK8QWR12eIDvrlWhiSTK8WIBFTBhOJV4DY6dUuEbw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
@@ -11022,6 +11013,13 @@ react-slot-navigation@^0.3.3:
     react "^16.13.1"
     react-dom "^16.13.1"
     rollup-plugin-postcss "^3.1.1"
+
+react-slot-navigation@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-slot-navigation/-/react-slot-navigation-0.4.1.tgz#0146340b41c0a9e044d8b1219f3c6111b448ab4a"
+  integrity sha512-Q/mizd9jeTQBSliPoJIW/BuVv9i9aJcsknG9+RrzGmkRXVQ0yRkwz8Af6Pa9FohokljZSwlvB4Ho7NOs5mz2fA==
+  dependencies:
+    starikov.dev "0.4.2"
 
 react-snap@^1.23.0:
   version "1.23.0"
@@ -12132,6 +12130,35 @@ stack-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
+
+starikov.dev@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/starikov.dev/-/starikov.dev-0.4.2.tgz#cd0ada59fde9062d61892ec4f45bf28b5c88c0e6"
+  integrity sha512-CORLTVIPlhNCj2oxpBpUvgQGDvXGOn/x2d7J9F0k7TRKce2S7w17EFZxp7qB9Bd9xAW+IdC3tH94N6aiS+BaUg==
+  dependencies:
+    "@loadable/component" "^5.10.3"
+    "@rollup/plugin-image" "^2.0.4"
+    "@rollup/plugin-typescript" "^4.1.1"
+    "@types/codegen.macro" "^3.0.0"
+    "@types/loadable__component" "^5.10.0"
+    "@types/preval.macro" "^3.0.0"
+    "@types/react-helmet" "^5.0.13"
+    codegen.macro "^3.0.0"
+    highlight.js "^9.15.10"
+    lqip.macro "^0.1.5"
+    marked "^0.7.0"
+    preval.macro "^3.0.0"
+    react "^16.13.1"
+    react-dom "^16.13.1"
+    react-feather "^2.0.3"
+    react-helmet "^5.2.1"
+    react-ideal-image "^0.0.5"
+    react-prerendered-component "^1.2.2"
+    react-slot-navigation "^0.3.3"
+    react-snap "^1.23.0"
+    react-waypoint "^8"
+    rollup "^2.7.6"
+    styled-components "^4.3.2"
 
 static-extend@^0.1.1:
   version "0.1.2"

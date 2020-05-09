@@ -1,17 +1,11 @@
 import styled from "styled-components";
-export const PageTitle = styled.h1`
-  font-size: 32px;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: 0em;
-  margin: 0;
-`;
 
 export const Title = styled.h2`
   font-size: 24px;
   line-height: 1.125;
   font-weight: 700;
   letter-spacing: 0.004em;
+  margin: 0;
 `;
 
 export const Heading = styled.h3`

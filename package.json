@@ -1,8 +1,12 @@
 {
   "name": "starikov.dev",
-  "version": "0.3.0",
-  "main": "./output/index.js",
+  "version": "0.4.2",
+  "main": "./output/exports.js",
   "types": "./output/src/exports.d.ts",
+  "files": [
+    "output",
+    "src"
+  ],
   "homepage": "https://www.starikov.dev",
   "dependencies": {
     "@loadable/component": "^5.10.3",
@@ -23,7 +27,7 @@
     "react-helmet": "^5.2.1",
     "react-ideal-image": "^0.0.5",
     "react-prerendered-component": "^1.2.2",
-    "react-slot-navigation": "^0.3.3",
+    "react-slot-navigation": "^0.4.1",
     "react-snap": "^1.23.0",
     "react-waypoint": "^8",
     "rollup": "^2.7.6",
