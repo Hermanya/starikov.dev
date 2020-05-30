@@ -31,7 +31,7 @@ const Label = styled.div`
 const Links = () => {
   return (
     <>
-      <Title>Links</Title>
+      <Title style={{ margin: "16px 0" }}>Links</Title>
       <SubSections>
         <SubSection>
           <Label>Programming</Label>
@@ -65,7 +65,7 @@ const Links = () => {
         </SubSection>
       </SubSections>
       <div style={{ margin: "auto 0 16px" }}>
-        <NavigationLinkListItem renderIfActive to={"Herman"} from={"Links"}>
+        <NavigationLinkListItem to={"Herman"} from={"Links"}>
           starikov.dev
         </NavigationLinkListItem>
       </div>

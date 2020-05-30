@@ -1,7 +1,7 @@
 import React from "react";
 import {
   NavigationProvider,
-  Link as NavigationLink,
+  Link,
   useNextAvailableSpaceFor as _useNextAvailableSpaceFor,
   __websiteSlots as reactSlotNavigationWebsiteSlots,
 } from "react-slot-navigation";
@@ -41,7 +41,5 @@ export const useNextAvailableSpaceFor = (
 ): void => _useNextAvailableSpaceFor(Component, options);
 
 export const NavigationLinkListItem: React.FC<LinkProps> = (props) => {
-  return (
-    <NavigationLink as={NavigationLinkListItemStyledComponent} {...props} />
-  );
+  return <Link as={NavigationLinkListItemStyledComponent} {...props} />;
 };

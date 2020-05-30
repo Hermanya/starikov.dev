@@ -29,7 +29,7 @@ const Herman = () => {
       >
         Herman Starikov
       </PageTitle>
-      <div className="Card" style={{ padding: "16px" }}>
+      <div className="Card" style={{ padding: "16px", marginBottom: 16 }}>
         <Heading style={{ margin: "0 0 8px" }}>
           Software Developer at&nbsp;
           <ExternalLink href="https://coursera.org">Coursera</ExternalLink>

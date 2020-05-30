@@ -12,5 +12,5 @@ export default {
       tsconfig: "./tsconfig.json",
     }),
   ],
-  external: ["react", "styled-components"],
+  external: ["react", "styled-components", "react-slot-navigation"],
 };
