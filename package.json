@@ -1,6 +1,6 @@
 {
   "name": "starikov.dev",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "./output/exports.js",
   "types": "./output/src/exports.d.ts",
   "files": [
