@@ -7,6 +7,7 @@ import {
 } from "react-slot-navigation";
 import NavigationLinkListItemStyledComponent from "./components/NavigationLinkListItem";
 import NavigationSlot from "components/NavigationSlot";
+import Loading from "components/Loading";
 
 const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
@@ -27,7 +28,7 @@ export const Root = () => (
   <NavigationProvider
     startWith={"Herman"}
     allSlots={allSlots}
-    suspenseFallback={() => <div>Loading</div>}
+    suspenseFallback={Loading}
     slotWidth={Math.min(400, window.innerWidth - 24)}
     slotComponent={NavigationSlot}
   />
