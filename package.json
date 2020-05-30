@@ -48,7 +48,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "_postbuild": "react-snap; mkdir build/screenshots; node scripts/screenshots.js",
+    "postbuild": "react-snap",
+    "_": "mkdir build/screenshots; node scripts/screenshots.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "installchrome": "curl https://intoli.com/install-google-chrome.sh | bash",
@@ -72,7 +73,8 @@
   "reactSnap": {
     "puppeteerArgs": [
       "--no-sandbox",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
+      "--window-size=500,800"
     ],
     "puppeteerExecutablePath": "/opt/google/chrome/google-chrome"
   }
