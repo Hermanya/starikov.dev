@@ -2,7 +2,6 @@ import React from "react";
 
 import { hydrate, render } from "react-dom";
 import * as _ from "styled-components/cssprop"; // eslint-disable-line
-import "./index.css";
 import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
 import { Root } from "navigation";
