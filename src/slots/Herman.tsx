@@ -4,6 +4,7 @@ import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
 import { Heading, Paragraph } from "components/typography";
 import styled from "styled-components";
+import Card from "components/Card";
 
 const PageTitle = styled.h1`
   font-size: 32px;
@@ -29,7 +30,7 @@ const Herman = () => {
       >
         Herman Starikov
       </PageTitle>
-      <div className="Card" style={{ padding: "16px", marginBottom: 16 }}>
+      <Card style={{ padding: "16px", marginBottom: 16 }}>
         <Heading style={{ margin: "0 0 8px" }}>
           Software Developer at&nbsp;
           <ExternalLink href="https://coursera.org">Coursera</ExternalLink>
@@ -41,7 +42,7 @@ const Herman = () => {
           JavaScript, TypeScript, Web, or Programming in general. In my spare
           time I make stuff, check it out.
         </Paragraph>
-      </div>
+      </Card>
 
       <div style={{ margin: "auto 0 16px" }}>
         <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>

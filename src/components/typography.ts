@@ -19,7 +19,7 @@ export const Heading = styled.h3`
 
 export const Paragraph = styled.p`
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.5;
   text-align: left;
 `;
 
