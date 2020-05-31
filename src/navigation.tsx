@@ -14,6 +14,7 @@ const allSlots = {
   Links: React.lazy(() => import("./slots/Links")),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
+
   ...reactSlotNavigationWebsiteSlots,
 };
 
