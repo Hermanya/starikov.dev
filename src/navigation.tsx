@@ -12,6 +12,7 @@ import Loading from "components/Loading";
 const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
   Links: React.lazy(() => import("./slots/Links")),
+  Counter: React.lazy(() => import("./slots/Counter")),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
 
@@ -30,7 +31,7 @@ export const Root = () => (
     startWith={"Herman"}
     allSlots={allSlots}
     suspenseFallback={Loading}
-    slotWidth={Math.min(400, window.innerWidth - 24)}
+    slotWidth={Math.min(420, window.innerWidth - 24)}
     slotComponent={NavigationSlot}
   />
 );

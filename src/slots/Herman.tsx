@@ -70,6 +70,9 @@ const Herman = () => {
         >
           Terms of Service
         </NavigationLinkListItem>
+        <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
+          Counter
+        </NavigationLinkListItem>
       </div>
     </>
   );
