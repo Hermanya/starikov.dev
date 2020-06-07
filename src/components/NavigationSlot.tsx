@@ -6,10 +6,14 @@ const NavigationSlot = styled.div`
   overflow: auto;
   position: absolute;
   background: var(--background);
-  padding: 0 12px;
+  padding: 24px 12px;
   display: flex;
   flex-direction: column;
   transition: transform 0.5s ease-in;
+
+  @media screen and (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
+    flex-direction: row;
+  }
 `;
 
 export default NavigationSlot;

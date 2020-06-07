@@ -1,15 +1,18 @@
 import React from "react";
 import { NavigationLinkListItem } from "navigation";
+import ExternalLink from "components/ExternalLink";
 
 export default () => {
   return (
-    <>
+    <div>
       <h2>Privacy Policy</h2>
       <p>
         Your privacy is important to me. It is my policy to respect your privacy
         regarding any information I may collect from you across my website,{" "}
-        <a href="http://starikov.dev">http://starikov.dev</a>, and other sites I
-        own and operate.
+        <ExternalLink href="http://starikov.dev">
+          http://starikov.dev
+        </ExternalLink>
+        , and other sites I own and operate.
       </p>
       <p>
         I only ask for personal information when I truly need it to provide a
@@ -46,23 +49,15 @@ export default () => {
       </p>
       <p>This policy is effective as of 5 April 2020.</p>
       <p>
-        <a
-          href="https://getterms.io"
-          rel="nofollow"
-          title="Generate a free privacy policy"
-        >
+        <ExternalLink href="https://getterms.io" rel="nofollow">
           Privacy Policy created with GetTerms.
-        </a>
+        </ExternalLink>
       </p>
       <div style={{ margin: "auto 0 16px" }}>
-        <NavigationLinkListItem
-          renderIfActive
-          to={"Herman"}
-          from={"PrivacyPolicy"}
-        >
+        <NavigationLinkListItem to={"Herman"} from={"PrivacyPolicy"}>
           starikov.dev
         </NavigationLinkListItem>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   NavigationProvider,
   Link,
@@ -12,7 +12,8 @@ import Loading from "components/Loading";
 const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
   Links: React.lazy(() => import("./slots/Links")),
-  Counter: React.lazy(() => import("./slots/Counter")),
+  Counter: React.lazy(() => import("./slots/Counter/Counter")),
+  CounterChart: React.lazy(() => import("./slots/Counter/CounterChart")),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
 
@@ -26,16 +27,34 @@ type LinkProps = {
   renderIfActive?: boolean;
 };
 
-export const Root = () => (
-  <NavigationProvider
-    startWith={"Herman"}
-    allSlots={allSlots}
-    suspenseFallback={Loading}
-    slotWidth={Math.min(420, window.innerWidth - 24)}
-    slotComponent={NavigationSlot}
-  />
-);
+const getSlotWidth = () =>
+  document.documentElement.clientWidth > 600 &&
+  document.documentElement.clientWidth < 1000
+    ? document.documentElement.clientWidth - 24
+    : Math.min(420, document.documentElement.clientWidth - 24);
 
+export const Root = () => {
+  const [slotWidth, setSlotWidth] = useState(getSlotWidth());
+
+  useEffect(() => {
+    const handler = () => {
+      setSlotWidth(getSlotWidth());
+    };
+    window.addEventListener("resize", handler);
+
+    return () => window.removeEventListener("resize", handler);
+  });
+
+  return (
+    <NavigationProvider
+      startWith={"Herman"}
+      allSlots={allSlots}
+      suspenseFallback={Loading}
+      slotWidth={slotWidth}
+      slotComponent={NavigationSlot}
+    />
+  );
+};
 export const useNextAvailableSpaceFor = (
   Component: SlotName,
   options: {

@@ -1,10 +1,11 @@
 import React from "react";
 import Avatar from "components/Avatar";
-import { NavigationLinkListItem } from "navigation";
-import ExternalLink from "components/ExternalLink";
-import { Heading, Paragraph } from "components/typography";
+import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
+import { Heading, Paragraph, InteractiveText } from "components/typography";
 import styled from "styled-components";
 import Card from "components/Card";
+import Space from "components/Space";
+import ExternalLink from "components/ExternalLink";
 
 const PageTitle = styled.h1`
   font-size: 32px;
@@ -15,38 +16,44 @@ const PageTitle = styled.h1`
 `;
 
 const Herman = () => {
+  useNextAvailableSpaceFor("Links", { from: "Herman" });
   return (
     <>
-      <Avatar
-        width={250}
+      <Space />
+      <section
         style={{
-          margin: "16px auto 0",
-        }}
-      />
-      <PageTitle
-        style={{
-          margin: "16px auto 24px",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Herman Starikov
-      </PageTitle>
-      <Card style={{ padding: "16px", marginBottom: 16 }}>
-        <Heading style={{ margin: "0 0 8px" }}>
-          Software Developer at&nbsp;
-          <ExternalLink href="https://coursera.org">Coursera</ExternalLink>
-        </Heading>
+        <Avatar width={250} />
+        <Space />
+        <PageTitle>Herman Starikov</PageTitle>
+      </section>
+      <Space />
+      <Card style={{ flex: 1 }}>
+        <Space />
+        <Heading>Software Developer at Coursera</Heading>
+        <Space />
         <Paragraph>
-          I was born and raised in Moscow, Russia. Immigrated to Canada to
-          study. And now I live and work in Toronto. After work I watch a lot of
-          Netflix with my girlfriend and I read (and retweet) a lot about React,
-          JavaScript, TypeScript, Web, or Programming in general. In my spare
-          time I make stuff, check it out.
+          Born and raised in Moscow, Russia. Immigrated to Canada to study
+          software development. And now I live and work in Toronto. In my spare
+          time I make web stuff, check it out.
         </Paragraph>
-      </Card>
+        <Space />
 
-      <div style={{ margin: "auto 0 16px" }}>
+        <ExternalLink href="mailto:hermanstarikov@gmail.com">
+          <InteractiveText>Contact</InteractiveText>
+        </ExternalLink>
+
+        <Space />
+      </Card>
+      <Space />
+      <div style={{ flex: 1 }}>
         <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
-          Find me on the web
+          Links
         </NavigationLinkListItem>
 
         <NavigationLinkListItem
@@ -56,24 +63,12 @@ const Herman = () => {
         >
           React Slot Navigation
         </NavigationLinkListItem>
-        <NavigationLinkListItem
-          renderIfActive
-          to={"PrivacyPolicy"}
-          from={"Herman"}
-        >
-          Privacy Policy
-        </NavigationLinkListItem>
-        <NavigationLinkListItem
-          renderIfActive
-          to={"TermsOfService"}
-          from={"Herman"}
-        >
-          Terms of Service
-        </NavigationLinkListItem>
+
         <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
           Counter
         </NavigationLinkListItem>
       </div>
+      <Space />
     </>
   );
 };

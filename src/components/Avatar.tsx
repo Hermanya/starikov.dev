@@ -12,14 +12,13 @@ const Me = styled.div<{ width: number }>`
   position: relative;
   display: flex;
   align-items: flex-end;
-  border-radius: 125px 125px 4px 4px;
+  border-radius: 125px 125px 12px 12px;
   overflow: hidden;
   background-color: var(--gray);
   background-image: linear-gradient(62deg, var(--blue) 0%, var(--cyan) 100%);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 
   @media (prefers-color-scheme: dark) {
-    filter: brightness(0.65);
+    filter: brightness(0.85);
     background-image: linear-gradient(0deg, var(--purple) 0%, var(--blue) 100%);
   }
 `;
