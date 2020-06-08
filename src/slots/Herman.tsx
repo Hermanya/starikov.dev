@@ -10,6 +10,7 @@ import ExternalLink from "components/ExternalLink";
 const PageTitle = styled.h1`
   font-size: 32px;
   line-height: 1.1;
+  text-align: center;
   font-weight: 700;
   letter-spacing: 0em;
   margin: 0;
@@ -28,19 +29,18 @@ const Herman = () => {
           alignItems: "center",
         }}
       >
-        <Avatar width={250} />
+        <Avatar width={128} />
         <Space />
         <PageTitle>Herman Starikov</PageTitle>
       </section>
       <Space />
-      <Card style={{ flex: 1 }}>
+      <Card style={{ flex: 1, alignSelf: "flex-start" }}>
         <Space />
-        <Heading>Software Developer at Coursera</Heading>
+        <Heading>Developer at Coursera</Heading>
         <Space />
         <Paragraph>
-          Born and raised in Moscow, Russia. Immigrated to Canada to study
-          software development. And now I live and work in Toronto. In my spare
-          time I make web stuff, check it out.
+          Born and raised in Moscow. Immigrated to Toronto to study software
+          development. In my spare time I make web stuff, check it out.
         </Paragraph>
         <Space />
 
@@ -61,7 +61,7 @@ const Herman = () => {
           to={"ReactSlotNavigation"}
           from={"Herman"}
         >
-          React Slot Navigation
+          Slot Navigation
         </NavigationLinkListItem>
 
         <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>

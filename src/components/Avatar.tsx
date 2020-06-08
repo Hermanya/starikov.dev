@@ -13,7 +13,6 @@ const Me = styled.div<{ width: number }>`
   display: flex;
   align-items: flex-end;
   border-radius: 125px 125px 12px 12px;
-  overflow: hidden;
   background-color: var(--gray);
   background-image: linear-gradient(62deg, var(--blue) 0%, var(--cyan) 100%);
 
