@@ -34,22 +34,24 @@ const Herman = () => {
         <PageTitle>Herman Starikov</PageTitle>
       </section>
       <Space />
-      <Card style={{ flex: 1, alignSelf: "flex-start" }}>
-        <Space />
-        <Heading>Developer at Coursera</Heading>
-        <Space />
-        <Paragraph>
-          Born and raised in Moscow. Immigrated to Toronto to study software
-          development. In my spare time I make web stuff, check it out.
-        </Paragraph>
-        <Space />
+      <section style={{ flex: 1 }}>
+        <Card>
+          <Space />
+          <Heading>Developer at Coursera</Heading>
+          <Space />
+          <Paragraph>
+            Born and raised in Moscow. Immigrated to Toronto to study software
+            development. In my spare time I make web stuff, check it out.
+          </Paragraph>
+          <Space />
 
-        <ExternalLink href="mailto:hermanstarikov@gmail.com">
-          <InteractiveText>Contact</InteractiveText>
-        </ExternalLink>
+          <ExternalLink href="mailto:hermanstarikov@gmail.com">
+            <InteractiveText>Contact</InteractiveText>
+          </ExternalLink>
 
-        <Space />
-      </Card>
+          <Space />
+        </Card>
+      </section>
       <Space />
       <div style={{ flex: 1 }}>
         <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
