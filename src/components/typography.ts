@@ -27,8 +27,12 @@ export const Description = styled(Paragraph)`
   color: var(--gray);
 `;
 
-export const InteractiveText = styled.div`
+export const InteractiveText = styled.button`
   color: var(--blue);
   font-weight: 400;
   font-size: 18px;
+  user-select: none;
+  border: none;
+  background: none;
+  padding: 0;
 `;
