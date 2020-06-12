@@ -35,4 +35,5 @@ export const InteractiveText = styled.button`
   border: none;
   background: none;
   padding: 0;
+  user-select: none;
 `;

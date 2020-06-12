@@ -15,6 +15,7 @@ const NavigationLinkListItemContainer = styled.a`
   position: relative;
   background: var(--card-background);
   font-weight: 400;
+  user-select: none;
 
   &:focus {
     outline: none;
