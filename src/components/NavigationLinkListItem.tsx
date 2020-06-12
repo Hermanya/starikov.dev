@@ -15,7 +15,6 @@ const NavigationLinkListItemContainer = styled.a`
   position: relative;
   background: var(--card-background);
   font-weight: 400;
-  font-size: 18px;
 
   &:focus {
     outline: none;
@@ -29,7 +28,7 @@ const NavigationLinkListItemContainer = styled.a`
     content: " ";
     width: calc(100% - 16px);
     height: 1px;
-    background-color: var(--gray5);
+    background-color: var(--divider);
     position: absolute;
     top: 0px;
   }
@@ -41,13 +40,13 @@ const NavigationLinkListItemContainer = styled.a`
   }
 
   &:first-child {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: var(--card-border-radius);
+    border-top-right-radius: var(--card-border-radius);
   }
 
   &:last-child {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: var(--card-border-radius);
+    border-bottom-right-radius: var(--card-border-radius);
   }
 `;
 

@@ -2,24 +2,25 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Space from "components/Space";
 import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
-import Card from "components/Card";
-import { InteractiveText } from "components/typography";
 
 const Count = styled.div`
   font-size: 128px;
-  opacity: 0.1;
+  opacity: 0.4;
+  font-variant-numeric: tabular-nums;
 `;
 
-const CountCard = styled(Card)`
+const CountCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  cursor: pointer;
 `;
 
 const Counter = () => {
   useNextAvailableSpaceFor("CounterChart", { from: "Counter" });
   const [count, setCount] = useState(0);
+  const [isGreen, setIsGreen] = useState(false);
 
   useEffect(() => {
     const doTheThing = () => {
@@ -46,17 +47,18 @@ const Counter = () => {
       <CountCard
         onPointerDown={() => {
           setCount(count + 1);
+          setIsGreen(true);
+          window.setTimeout(() => {
+            setIsGreen(false);
+          }, 250);
         }}
         style={{
           flex: 3,
+          transition: "0.25s",
+          color: isGreen ? "var(--green)" : "var(--blue)",
         }}
       >
-        <Space />
-        <Count>{count}</Count>
-        <InteractiveText>
-          Tap Here
-          <Space />
-        </InteractiveText>
+        <Count>{count.toString().padStart(2, "0")}</Count>
       </CountCard>
       <Space />
       <div

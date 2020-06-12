@@ -12,7 +12,7 @@ const Me = styled.div<{ width: number }>`
   position: relative;
   display: flex;
   align-items: flex-end;
-  border-radius: 125px 125px 12px 12px;
+  border-radius: 125px 125px var(--card-border-radius) var(--card-border-radius);
   background-color: var(--gray);
   background-image: linear-gradient(62deg, var(--blue) 0%, var(--cyan) 100%);
 

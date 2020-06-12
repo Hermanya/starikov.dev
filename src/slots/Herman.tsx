@@ -27,8 +27,33 @@ const Herman = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "flex-end",
+          position: "relative",
         }}
       >
+        {/* <span
+          style={{
+            position: "absolute",
+            top: 80,
+            fontSize: 100,
+            opacity: 0.1,
+            textAlign: "center",
+          }}
+        >
+          Герман
+        </span>
+        <span
+          style={{
+            position: "absolute",
+            top: -20,
+            fontSize: 80,
+            opacity: 0.1,
+            textAlign: "center",
+          }}
+        >
+          Стариков
+        </span> */}
+
         <Avatar width={128} />
         <Space />
         <PageTitle>Herman Starikov</PageTitle>

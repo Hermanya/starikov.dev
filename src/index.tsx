@@ -5,9 +5,15 @@ import * as _ from "styled-components/cssprop"; // eslint-disable-line
 import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
 import { Root } from "navigation";
+import NativeLookingStyle from "./native-look/chrome";
 
 const App = () => {
-  return <Root />;
+  return (
+    <>
+      <NativeLookingStyle />
+      <Root />
+    </>
+  );
 };
 
 const rootElement = document.getElementById("root");
