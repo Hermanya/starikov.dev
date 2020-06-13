@@ -26,14 +26,60 @@
         box-sizing: border-box;
       }
 
+      :root {
+        --blue: #0a84ff;
+        --gray: #9e9e9e;
+        --gray2: #bdbdbd;
+        --gray3: #e0e0e0;
+        --gray4: #eeeeee;
+        --gray5: #f5f5f5;
+        --gray6: #fafafa;
+        --green: #4caf50;
+        --indigo: #3f51b5;
+        --orange: #ff9800;
+        --pink: #e91e63;
+        --purple: #9c27b0;
+        --red: #f44336;
+        --cyan: #00bcd4;
+        --yellow: #ffeb3b;
+        --text: #212121;
+        --background: #f2f2f7;
+        --card-background: #fff;
+        --react: #61dafb;
+        --card-border-radius: 4px;
+        /* --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
+        --divider: transparent;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --blue: #45a1ff;
+          --gray: #9e9e9e;
+          --gray2: #757575;
+          --gray3: #616161;
+          --gray4: #424242;
+          --gray5: #212121;
+          --gray6: #111111;
+          --green: #66bb6a;
+          --indigo: #5c6bc0;
+          --orange: #ffa726;
+          --pink: #ec407a;
+          --purple: #ab47bc;
+          --red: #ef5350;
+          --cyan: #26c6da;
+          --yellow: #ffee58;
+          --text: rgb(204, 204, 204);
+          --background: #000;
+          --card-background: #313236;
+          --react: #61dafb;
+        }
+      }
+
       body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        /* font-family: "SF Pro Text", "SegoeUI", "Roboto", monospace; */
-        /* font-family: "Roboto", monospace; */
-        /* font-family: "SegoeUI", monospace; */
-        /* font-family: "SF Pro Text", monospace; */
+
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
 
@@ -55,22 +101,6 @@
 
       * {
         box-sizing: border-box;
-      }
-
-      @font-face {
-        font-family: "SegoeUI";
-        font-display: swap;
-
-        src: local("Segoe UI"),
-          url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2")
-            format("woff2"),
-          url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff")
-            format("woff"),
-          url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf")
-            format("truetype"),
-          url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.svg#web")
-            format("svg");
-        font-weight: 400;
       }
     </style>
 

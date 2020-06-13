@@ -5,14 +5,22 @@ import * as _ from "styled-components/cssprop"; // eslint-disable-line
 import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
 import { Root } from "navigation";
-import NativeLookingStyle from "./native-look/chrome";
+import Loading from "components/Loading";
+
+const NativeLookingStyle = navigator.userAgent.match(/Edg/)
+  ? React.lazy(() => import("./native-look/edge"))
+  : navigator.userAgent.match(/Chrome/)
+  ? React.lazy(() => import("./native-look/chrome"))
+  : navigator.userAgent.match(/Safari/)
+  ? React.lazy(() => import("./native-look/safari"))
+  : React.lazy(() => import("./native-look/firefox"));
 
 const App = () => {
   return (
-    <>
+    <React.Suspense fallback={Loading}>
       <NativeLookingStyle />
       <Root />
-    </>
+    </React.Suspense>
   );
 };
 

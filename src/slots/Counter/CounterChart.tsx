@@ -56,6 +56,7 @@ const CounterChart = () => {
 
         <GraphCard>
           <div>
+            {perDay.length === 0 && <div>No Entries</div>}
             {perDay.reverse().map((_, index) => (
               <div key={_.date}>
                 {index !== 0 && <Space />}

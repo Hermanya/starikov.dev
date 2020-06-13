@@ -64,12 +64,25 @@ export default createGlobalStyle`
 @font-face {
     font-family: "SF Pro Display";
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: local("☺︎"),
+        url("https://rawcdn.githack.com/sahibjotsaggu/San-Francisco-Pro-Fonts/4b9fd6ab5ccc694790757de0fbf6344c294a91f7/SF-Pro-Display-Bold.otf")
+        format("otf");
+}
+
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 500;
     font-display: swap;
     src: local("☺︎"),
         url("https://rawcdn.githack.com/dreadlocked/dreadlocked.github.io/71ced0ad7e61ff44fef50c5189972935bd6ca4c6/assets/sf-pro-display_semibold.woff2")
         format("woff2");
 }
+
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "SF Pro Display", monospace;

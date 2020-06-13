@@ -27,7 +27,7 @@ const Herman = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           position: "relative",
         }}
       >
@@ -56,7 +56,19 @@ const Herman = () => {
 
         <Avatar width={128} />
         <Space />
+
         <PageTitle>Herman Starikov</PageTitle>
+        <PageTitle
+          as="div"
+          style={{
+            opacity: 0.25,
+            fontSize: "1rem",
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+          }}
+        >
+          Стариков Герман Владимирович
+        </PageTitle>
       </section>
       <Space />
       <section style={{ flex: 1 }}>
@@ -71,29 +83,35 @@ const Herman = () => {
           <Space />
 
           <ExternalLink href="mailto:hermanstarikov@gmail.com">
-            <InteractiveText>Contact</InteractiveText>
+            <InteractiveText className="CardAction">Email</InteractiveText>
           </ExternalLink>
 
           <Space />
         </Card>
       </section>
       <Space />
-      <div style={{ flex: 1 }}>
-        <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
-          Links
-        </NavigationLinkListItem>
+      <div
+        style={{
+          flex: 1,
+        }}
+      >
+        <Card noPadding>
+          <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
+            Links
+          </NavigationLinkListItem>
 
-        <NavigationLinkListItem
-          renderIfActive
-          to={"ReactSlotNavigation"}
-          from={"Herman"}
-        >
-          Slot Navigation
-        </NavigationLinkListItem>
+          {/* <NavigationLinkListItem
+            renderIfActive
+            to={"ReactSlotNavigation"}
+            from={"Herman"}
+          >
+            Slot Navigation
+          </NavigationLinkListItem> */}
 
-        <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
-          Counter
-        </NavigationLinkListItem>
+          <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
+            Counter
+          </NavigationLinkListItem>
+        </Card>
       </div>
       <Space />
     </>

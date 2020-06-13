@@ -14,11 +14,11 @@ const Me = styled.div<{ width: number }>`
   align-items: flex-end;
   border-radius: 125px 125px var(--card-border-radius) var(--card-border-radius);
   background-color: var(--gray);
-  background-image: linear-gradient(62deg, var(--blue) 0%, var(--cyan) 100%);
+  background-image: linear-gradient(62deg, var(--green) 0%, var(--yellow) 100%);
 
   @media (prefers-color-scheme: dark) {
     filter: brightness(0.85);
-    background-image: linear-gradient(0deg, var(--purple) 0%, var(--blue) 100%);
+    background-image: linear-gradient(0deg, var(--red) 0%, var(--purple) 100%);
   }
 `;
 
