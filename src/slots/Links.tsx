@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Title, Heading } from "../components/typography";
 import ExternalLink from "components/ExternalLink";
 import { NavigationLinkListItem } from "navigation";
-import Space from "components/Space";
+import Gap from "components/Gap";
 import { Card } from "exports";
 
 const Link = styled(ExternalLink)`
@@ -27,7 +27,7 @@ const SubSection = styled.div`
 const Links = () => {
   return (
     <>
-      <Space />
+      <Gap />
       <section
         style={{
           flex: 1,
@@ -37,28 +37,28 @@ const Links = () => {
         }}
       >
         <Title>Links</Title>
-        <Space />
+        <Gap />
         <Card withPadding>
           <Heading>Contact</Heading>
-          <Space />
+          <Gap />
           <Flex>
             <Link href="mailto:hermanstarikov@gmail.com">Email</Link>
-            <Space />
+            <Gap />
             <Link href="https://linkedin.com/in/hermanstarikov">LinkedIn</Link>
-            <Space />
+            <Gap />
             <Link href="https://m.me/hermanhasawish">Messenger</Link>
-            <Space />
+            <Gap />
             <Link href="http://t.me/hermanya">Telegram</Link>
           </Flex>
         </Card>
       </section>
-      <Space />
+      <Gap />
       <section style={{ flex: 1 }}>
         <Card withPadding>
           <Flex>
             <SubSection>
               <Heading>Coding</Heading>
-              <Space />
+              <Gap />
               <Link href="https://github.com/hermanya">GitHub</Link>
               <Link href="https://stackoverflow.com/users/7228427/herman-starikov">
                 StackOverflow
@@ -68,7 +68,7 @@ const Links = () => {
             </SubSection>
             <SubSection>
               <Heading>Other</Heading>
-              <Space />
+              <Gap />
               <Link href="https://instagram.com/hermanya">Instagram</Link>
               <Link href="https://facebook.com/hermanhasawish">Facebook</Link>
               <Link href="https://www.producthunt.com/@hermanhasawish/made">
@@ -79,7 +79,7 @@ const Links = () => {
           </Flex>
         </Card>
       </section>
-      <Space />
+      <Gap />
       <div style={{ flex: 1, justifySelf: "flex-end" }}>
         <Card withPadding={false}>
           <NavigationLinkListItem to={"Herman"} from={"Links"}>
@@ -101,7 +101,7 @@ const Links = () => {
           </NavigationLinkListItem>
         </Card>
       </div>
-      <Space />
+      <Gap />
     </>
   );
 };

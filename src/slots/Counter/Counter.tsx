@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Space from "components/Space";
+import Gap from "components/Gap";
 import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
@@ -45,7 +45,7 @@ const Counter = () => {
           flex: 3,
         }}
       >
-        <Space />
+        <Gap />
         <Count
           style={{
             transition: "0.25s",
@@ -114,10 +114,10 @@ const Counter = () => {
           ) : (
             <InteractiveText>Start tapping</InteractiveText>
           )}
-          <Space />
+          <Gap />
         </div>
       </CountCard>
-      <Space />
+      <Gap />
       <section
         style={{
           flex: 1,

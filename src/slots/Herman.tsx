@@ -4,7 +4,7 @@ import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
 import { Heading, Paragraph, InteractiveText } from "components/typography";
 import styled from "styled-components";
 import Card from "components/Card";
-import Space from "components/Space";
+import Gap from "components/Gap";
 import ExternalLink from "components/ExternalLink";
 
 const PageTitle = styled.h1`
@@ -20,7 +20,7 @@ const Herman = () => {
   useNextAvailableSpaceFor("Links", { from: "Herman" });
   return (
     <>
-      <Space />
+      <Gap />
       <section
         style={{
           flex: 1,
@@ -55,7 +55,7 @@ const Herman = () => {
         </span> */}
 
         <Avatar width={128} />
-        <Space />
+        <Gap />
 
         <PageTitle>Herman Starikov</PageTitle>
         <PageTitle
@@ -70,23 +70,23 @@ const Herman = () => {
           Стариков Герман Владимирович
         </PageTitle>
       </section>
-      <Space />
+      <Gap />
       <section style={{ flex: 1 }}>
         <Card withPadding>
           <Heading>Developer at Coursera</Heading>
-          <Space />
+          <Gap />
           <Paragraph>
             Born and raised in Moscow. Immigrated to Toronto to study software
             development. In my spare time I make web stuff, check it out.
           </Paragraph>
-          <Space />
+          <Gap />
 
           <ExternalLink href="mailto:hermanstarikov@gmail.com">
             <InteractiveText>Email</InteractiveText>
           </ExternalLink>
         </Card>
       </section>
-      <Space />
+      <Gap />
       <div
         style={{
           flex: 1,
@@ -110,7 +110,7 @@ const Herman = () => {
           </NavigationLinkListItem>
         </Card>
       </div>
-      <Space />
+      <Gap />
     </>
   );
 };

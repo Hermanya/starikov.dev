@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Space from "components/Space";
+import Gap from "components/Gap";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
 import { Title, Heading } from "components/typography";
@@ -70,11 +70,11 @@ const CounterDashboard = () => {
     <>
       <section style={{ flex: 1 }}>
         <Title>Dashboard</Title>
-        <Space />
+        <Gap />
         {perDay.length > 2 && (
           <Card withPadding>
             <Heading>All time trend</Heading>
-            <Space />
+            <Gap />
 
             <Trend
               smooth
@@ -90,7 +90,7 @@ const CounterDashboard = () => {
           </Card>
         )}
       </section>
-      <Space />
+      <Gap />
 
       <section style={{ flex: 1 }}>
         <GraphCard withPadding>
@@ -98,19 +98,19 @@ const CounterDashboard = () => {
             {perDay.length === 0 && <div>No Records</div>}
             {perDay.length > 0 && (
               <>
-                <Heading>Records</Heading> <Space />
+                <Heading>Records</Heading> <Gap />
               </>
             )}
             {perDay.reverse().map((day, index) => (
               <div key={day.date}>
-                {index !== 0 && <Space />}
+                {index !== 0 && <Gap />}
 
                 <Flex>
                   <Day>{day.date}</Day>
-                  <Space />
+                  <Gap />
                   {`${day.total} total`}
                 </Flex>
-                <Space />
+                <Gap />
                 <Flex>
                   {day.counts.map((count, index) => (
                     <Flex key={index}>
@@ -135,7 +135,7 @@ const CounterDashboard = () => {
                       >
                         {count.toString().padStart(2, "0")}
                       </Count>
-                      <Space />
+                      <Gap />
                     </Flex>
                   ))}
                 </Flex>
@@ -145,7 +145,7 @@ const CounterDashboard = () => {
         </GraphCard>
       </section>
 
-      <Space />
+      <Gap />
       <div
         style={{
           flex: 1,
