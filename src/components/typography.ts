@@ -36,4 +36,5 @@ export const InteractiveText = styled.button`
   background: none;
   padding: 0;
   user-select: none;
+  cursor: pointer;
 `;

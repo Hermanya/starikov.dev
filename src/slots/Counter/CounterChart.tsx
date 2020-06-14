@@ -80,6 +80,7 @@ const CounterChart = () => {
             <>
               <svg
                 height="100px"
+                width="100%"
                 viewBox={`0 0 ${perDay.length * 100} ${maxTotal * 10}`}
                 className="chart"
               >
@@ -87,9 +88,12 @@ const CounterChart = () => {
                   fill="none"
                   strokeLinecap="round"
                   stroke="var(--blue)"
-                  strokeWidth="4"
+                  strokeWidth={maxTotal / 2}
                   points={perDay
-                    .map((day, index) => `${index * 100}, ${day.total * 10}`)
+                    .map(
+                      (day, index) =>
+                        `${index * 100}, ${(maxTotal - day.total) * 10}`
+                    )
                     .join("\n")}
                 />
               </svg>
@@ -111,7 +115,7 @@ const CounterChart = () => {
                 <Flex>
                   <Day>{day.date}</Day>
                   <Space />
-                  {`${day.total} total`}
+                  {`${day.total} push-ups`}
                 </Flex>
                 <Space />
                 <Flex>
@@ -153,12 +157,14 @@ const CounterChart = () => {
           flex: 1,
         }}
       >
-        <NavigationLinkListItem to={"Counter"} from={"CounterChart"}>
-          Counter
-        </NavigationLinkListItem>
-        <NavigationLinkListItem to={"Herman"} from={"CounterChart"}>
-          starikov.dev
-        </NavigationLinkListItem>
+        <Card noPadding>
+          <NavigationLinkListItem to={"Counter"} from={"CounterChart"}>
+            Counter
+          </NavigationLinkListItem>
+          <NavigationLinkListItem to={"Herman"} from={"CounterChart"}>
+            starikov.dev
+          </NavigationLinkListItem>
+        </Card>
       </div>
     </>
   );
