@@ -4,6 +4,7 @@ import Space from "components/Space";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
 import { Title } from "components/typography";
+import { useCountRecords, CountRecord } from "./useCountRecords";
 
 const GraphCard = styled(Card)`
   display: flex;
@@ -21,6 +22,7 @@ const Count = styled.div`
   border-radius: var(--card-border-radius);
   background: var(--background);
   padding: 8px;
+  cursor: pointer;
 `;
 
 const Day = styled.div`
@@ -29,47 +31,108 @@ const Day = styled.div`
 `;
 
 const CounterChart = () => {
-  const counts: { timestamp: number; count: number }[] = JSON.parse(
-    localStorage.getItem("counter") ?? "[]"
-  );
+  const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
 
-  const average = counts.reduce((sum, x) => sum + x.count, 0) / counts.length;
+  const average =
+    countRecords.reduce((sum, x) => sum + x.count, 0) / countRecords.length;
 
-  type CountsPerDay = { date: string; counts: number[] };
-  const perDay: CountsPerDay[] = counts.reduce((acc, item) => {
-    const date = new Date(item.timestamp).toLocaleDateString();
+  type CountsPerDay = {
+    date: string;
+    counts: number[];
+    timestamps: number[];
+    total: number;
+  };
+  const perDay: CountsPerDay[] = countRecords
+    .reduce((days, item) => {
+      const date = new Date(item.timestamp).toLocaleDateString();
 
-    const dd = acc.find((_) => _.date === date);
+      const day = days.find((_) => _.date === date);
 
-    if (dd) {
-      dd.counts.push(item.count);
-      return acc;
-    } else {
-      return [...acc, { date, counts: [item.count] }];
-    }
-  }, [] as CountsPerDay[]);
+      if (day) {
+        day.counts.push(item.count);
+        day.timestamps.push(item.timestamp);
+        day.total += item.count;
+        return days;
+      } else {
+        return [
+          ...days,
+          {
+            date,
+            counts: [item.count],
+            timestamps: [item.timestamp],
+            total: item.count,
+          },
+        ];
+      }
+    }, [] as CountsPerDay[])
+    .reverse();
+  const maxTotal = Math.max(...perDay.map((_) => _.total));
   return (
     <>
       <section style={{ flex: 1 }}>
         <Title>Counter Chart</Title>
         <Space />
+        <Card>
+          <Space />
+          Average {average}
+          <Space />
+          {perDay.length > 3 && (
+            <>
+              <svg
+                height="100px"
+                viewBox={`0 0 ${perDay.length * 100} ${maxTotal * 10}`}
+                className="chart"
+              >
+                <polyline
+                  fill="none"
+                  strokeLinecap="round"
+                  stroke="var(--blue)"
+                  strokeWidth="4"
+                  points={perDay
+                    .map((day, index) => `${index * 100}, ${day.total * 10}`)
+                    .join("\n")}
+                />
+              </svg>
+              <Space />
+            </>
+          )}
+        </Card>
+      </section>
+      <Space />
 
+      <section style={{ flex: 1 }}>
         <GraphCard>
           <div>
             {perDay.length === 0 && <div>No Entries</div>}
-            {perDay.reverse().map((_, index) => (
-              <div key={_.date}>
+            {perDay.map((day, index) => (
+              <div key={day.date}>
                 {index !== 0 && <Space />}
 
                 <Flex>
-                  <Day>{_.date}</Day>
+                  <Day>{day.date}</Day>
                   <Space />
-                  {_.counts.map((count) => (
-                    <Flex>
+                  {`${day.total} total`}
+                </Flex>
+                <Space />
+                <Flex>
+                  {day.counts.map((count, index) => (
+                    <Flex key={index}>
                       <Count
                         style={{
                           color:
                             count > average ? "var(--green)" : "var(--gray)",
+                        }}
+                        onClick={() => {
+                          if (
+                            window.confirm("Do you want to delete this record?")
+                          ) {
+                            setCountRecords(
+                              countRecords.filter(
+                                ({ timestamp }) =>
+                                  timestamp !== day.timestamps[index]
+                              )
+                            );
+                          }
                         }}
                       >
                         {count.toString().padStart(2, "0")}
@@ -82,13 +145,8 @@ const CounterChart = () => {
             ))}
           </div>
         </GraphCard>
-        <Space />
-        <Card>
-          <Space />
-          Average {average}
-          <Space />
-        </Card>
       </section>
+
       <Space />
       <div
         style={{

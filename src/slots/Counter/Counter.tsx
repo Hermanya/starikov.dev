@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Space from "components/Space";
 import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
 import { InteractiveText } from "components/typography";
+import Card from "components/Card";
+import { useCountRecords, CountRecord } from "./useCountRecords";
 
 const Count = styled.div`
   font-size: 128px;
@@ -20,27 +22,11 @@ const CountCard = styled.div`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const doTheThing = (count: number) => {
-  try {
-    localStorage.setItem(
-      "counter",
-      JSON.stringify([
-        ...JSON.parse(localStorage.getItem("counter") ?? "[]").filter(
-          (_: any) => _.count > 0
-        ),
-        {
-          timestamp: Date.now(),
-          count,
-        },
-      ])
-    );
-  } catch (e) {}
-};
-
 const Counter = () => {
   useNextAvailableSpaceFor("CounterChart", { from: "Counter" });
   const [count, setCount] = useState(0);
   const [isGreen, setIsGreen] = useState(false);
+  const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
 
   return (
     <>
@@ -54,38 +40,54 @@ const Counter = () => {
         }}
         style={{
           flex: 3,
-          transition: "0.25s",
-          color: isGreen ? "var(--green)" : "var(--blue)",
         }}
       >
         <Space />
-        <Count>{count.toString().padStart(2, "0")}</Count>
-        {count ? (
-          <InteractiveText
-            onClick={() => {
-              doTheThing(count);
-              setCount(0);
-            }}
-          >
-            Save
-          </InteractiveText>
-        ) : (
+        <Count
+          style={{
+            transition: "0.25s",
+            color: isGreen ? "var(--green)" : "var(--blue)",
+          }}
+        >
+          {count.toString().padStart(2, "0")}
+        </Count>
+        <div>
+          {count ? (
+            <InteractiveText
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                const countRecord: CountRecord = {
+                  timestamp: Date.now(),
+                  count: count - 1,
+                };
+                setCountRecords([...countRecords, countRecord]);
+                setCount(0);
+              }}
+            >
+              Save
+            </InteractiveText>
+          ) : (
+            <InteractiveText>Start tapping</InteractiveText>
+          )}
           <Space />
-        )}
+        </div>
       </CountCard>
       <Space />
-      <div
+      <section
         style={{
           flex: 1,
         }}
       >
-        <NavigationLinkListItem to={"CounterChart"} from={"Counter"}>
-          Counter chart
-        </NavigationLinkListItem>
-        <NavigationLinkListItem to={"Herman"} from={"Counter"}>
-          starikov.dev
-        </NavigationLinkListItem>
-      </div>
+        <Card noPadding>
+          <NavigationLinkListItem to={"CounterChart"} from={"Counter"}>
+            Counter chart
+          </NavigationLinkListItem>
+          <NavigationLinkListItem to={"Herman"} from={"Counter"}>
+            starikov.dev
+          </NavigationLinkListItem>
+        </Card>
+      </section>
     </>
   );
 };
