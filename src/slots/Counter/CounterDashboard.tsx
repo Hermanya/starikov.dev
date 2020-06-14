@@ -3,8 +3,10 @@ import styled from "styled-components";
 import Space from "components/Space";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
-import { Title } from "components/typography";
+import { Title, Heading } from "components/typography";
 import { useCountRecords, CountRecord } from "./useCountRecords";
+// @ts-ignore
+import Trend from "react-trend";
 
 const GraphCard = styled(Card)`
   display: flex;
@@ -30,7 +32,7 @@ const Day = styled.div`
   opacity: 0.5;
 `;
 
-const CounterChart = () => {
+const CounterDashboard = () => {
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
 
   const average =
@@ -66,48 +68,41 @@ const CounterChart = () => {
       }
     }, [] as CountsPerDay[])
     .reverse();
-  const maxTotal = Math.max(...perDay.map((_) => _.total));
+  // const maxTotal = Math.max(...perDay.map((_) => _.total));
   return (
     <>
       <section style={{ flex: 1 }}>
-        <Title>Counter Chart</Title>
+        <Title>Counter Dashboard</Title>
         <Space />
-        <Card>
-          <Space />
-          Average {average}
-          <Space />
-          {perDay.length > 3 && (
+        {perDay.length > 3 && (
+          <Card>
             <>
-              <svg
-                height="100px"
-                width="100%"
-                viewBox={`0 0 ${perDay.length * 100} ${maxTotal * 10}`}
-                className="chart"
-              >
-                <polyline
-                  fill="none"
-                  strokeLinecap="round"
-                  stroke="var(--blue)"
-                  strokeWidth={maxTotal / 2}
-                  points={perDay
-                    .map(
-                      (day, index) =>
-                        `${index * 100}, ${(maxTotal - day.total) * 10}`
-                    )
-                    .join("\n")}
-                />
-              </svg>
-              <Space />
+              <Trend
+                smooth
+                autoDraw
+                autoDrawDuration={500}
+                autoDrawEasing="ease-out"
+                data={perDay.map((_) => _.total)}
+                gradient={["var(--yellow)", "var(--green)"]}
+                radius={10}
+                strokeWidth={2}
+                strokeLinecap={"round"}
+              />
             </>
-          )}
-        </Card>
+          </Card>
+        )}
       </section>
       <Space />
 
       <section style={{ flex: 1 }}>
         <GraphCard>
           <div>
-            {perDay.length === 0 && <div>No Entries</div>}
+            {perDay.length === 0 && <div>No Records</div>}
+            {perDay.length > 0 && (
+              <>
+                <Heading>Records</Heading> <Space />
+              </>
+            )}
             {perDay.map((day, index) => (
               <div key={day.date}>
                 {index !== 0 && <Space />}
@@ -115,7 +110,7 @@ const CounterChart = () => {
                 <Flex>
                   <Day>{day.date}</Day>
                   <Space />
-                  {`${day.total} push-ups`}
+                  {`${day.total} total`}
                 </Flex>
                 <Space />
                 <Flex>
@@ -158,10 +153,10 @@ const CounterChart = () => {
         }}
       >
         <Card noPadding>
-          <NavigationLinkListItem to={"Counter"} from={"CounterChart"}>
+          <NavigationLinkListItem to={"Counter"} from={"CounterDashboard"}>
             Counter
           </NavigationLinkListItem>
-          <NavigationLinkListItem to={"Herman"} from={"CounterChart"}>
+          <NavigationLinkListItem to={"Herman"} from={"CounterDashboard"}>
             starikov.dev
           </NavigationLinkListItem>
         </Card>
@@ -170,4 +165,4 @@ const CounterChart = () => {
   );
 };
 
-export default CounterChart;
+export default CounterDashboard;

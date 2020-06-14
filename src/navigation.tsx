@@ -13,7 +13,9 @@ const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
   Links: React.lazy(() => import("./slots/Links")),
   Counter: React.lazy(() => import("./slots/Counter/Counter")),
-  CounterChart: React.lazy(() => import("./slots/Counter/CounterChart")),
+  CounterDashboard: React.lazy(() =>
+    import("./slots/Counter/CounterDashboard")
+  ),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
 

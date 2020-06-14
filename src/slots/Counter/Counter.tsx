@@ -23,7 +23,7 @@ const CountCard = styled.div`
 `;
 
 const Counter = () => {
-  useNextAvailableSpaceFor("CounterChart", { from: "Counter" });
+  useNextAvailableSpaceFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
   const [isGreen, setIsGreen] = useState(false);
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
@@ -80,8 +80,8 @@ const Counter = () => {
         }}
       >
         <Card noPadding>
-          <NavigationLinkListItem to={"CounterChart"} from={"Counter"}>
-            Counter chart
+          <NavigationLinkListItem to={"CounterDashboard"} from={"Counter"}>
+            Counter dashboard
           </NavigationLinkListItem>
           <NavigationLinkListItem to={"Herman"} from={"Counter"}>
             starikov.dev
