@@ -10,7 +10,6 @@ import Trend from "react-trend";
 
 const GraphCard = styled(Card)`
   display: flex;
-  padding: 16px;
   align-items: flex-end;
 `;
 
@@ -44,58 +43,57 @@ const CounterDashboard = () => {
     timestamps: number[];
     total: number;
   };
-  const perDay: CountsPerDay[] = countRecords
-    .reduce((days, item) => {
-      const date = new Date(item.timestamp).toLocaleDateString();
+  const perDay: CountsPerDay[] = countRecords.reduce((days, item) => {
+    const date = new Date(item.timestamp).toLocaleDateString();
 
-      const day = days.find((_) => _.date === date);
+    const day = days.find((_) => _.date === date);
 
-      if (day) {
-        day.counts.push(item.count);
-        day.timestamps.push(item.timestamp);
-        day.total += item.count;
-        return days;
-      } else {
-        return [
-          ...days,
-          {
-            date,
-            counts: [item.count],
-            timestamps: [item.timestamp],
-            total: item.count,
-          },
-        ];
-      }
-    }, [] as CountsPerDay[])
-    .reverse();
+    if (day) {
+      day.counts.push(item.count);
+      day.timestamps.push(item.timestamp);
+      day.total += item.count;
+      return days;
+    } else {
+      return [
+        ...days,
+        {
+          date,
+          counts: [item.count],
+          timestamps: [item.timestamp],
+          total: item.count,
+        },
+      ];
+    }
+  }, [] as CountsPerDay[]);
   // const maxTotal = Math.max(...perDay.map((_) => _.total));
   return (
     <>
       <section style={{ flex: 1 }}>
-        <Title>Counter Dashboard</Title>
+        <Title>Dashboard</Title>
         <Space />
-        {perDay.length > 3 && (
-          <Card>
-            <>
-              <Trend
-                smooth
-                autoDraw
-                autoDrawDuration={500}
-                autoDrawEasing="ease-out"
-                data={perDay.map((_) => _.total)}
-                gradient={["var(--yellow)", "var(--green)"]}
-                radius={10}
-                strokeWidth={2}
-                strokeLinecap={"round"}
-              />
-            </>
+        {perDay.length > 2 && (
+          <Card withPadding>
+            <Heading>All time trend</Heading>
+            <Space />
+
+            <Trend
+              smooth
+              autoDraw
+              autoDrawDuration={500}
+              autoDrawEasing="ease-out"
+              data={perDay.map((_) => _.total)}
+              gradient={["var(--cyan)", "var(--green)"]}
+              radius={10}
+              strokeWidth={2}
+              strokeLinecap={"round"}
+            />
           </Card>
         )}
       </section>
       <Space />
 
       <section style={{ flex: 1 }}>
-        <GraphCard>
+        <GraphCard withPadding>
           <div>
             {perDay.length === 0 && <div>No Records</div>}
             {perDay.length > 0 && (
@@ -103,7 +101,7 @@ const CounterDashboard = () => {
                 <Heading>Records</Heading> <Space />
               </>
             )}
-            {perDay.map((day, index) => (
+            {perDay.reverse().map((day, index) => (
               <div key={day.date}>
                 {index !== 0 && <Space />}
 
@@ -118,8 +116,9 @@ const CounterDashboard = () => {
                     <Flex key={index}>
                       <Count
                         style={{
-                          color:
+                          background:
                             count > average ? "var(--green)" : "var(--gray)",
+                          color: "var(--gray6)",
                         }}
                         onClick={() => {
                           if (
@@ -152,7 +151,7 @@ const CounterDashboard = () => {
           flex: 1,
         }}
       >
-        <Card noPadding>
+        <Card withPadding={false}>
           <NavigationLinkListItem to={"Counter"} from={"CounterDashboard"}>
             Counter
           </NavigationLinkListItem>

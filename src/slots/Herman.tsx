@@ -72,8 +72,7 @@ const Herman = () => {
       </section>
       <Space />
       <section style={{ flex: 1 }}>
-        <Card>
-          <Space />
+        <Card withPadding>
           <Heading>Developer at Coursera</Heading>
           <Space />
           <Paragraph>
@@ -83,10 +82,8 @@ const Herman = () => {
           <Space />
 
           <ExternalLink href="mailto:hermanstarikov@gmail.com">
-            <InteractiveText className="CardAction">Email</InteractiveText>
+            <InteractiveText>Email</InteractiveText>
           </ExternalLink>
-
-          <Space />
         </Card>
       </section>
       <Space />
@@ -95,7 +92,7 @@ const Herman = () => {
           flex: 1,
         }}
       >
-        <Card noPadding>
+        <Card withPadding={false}>
           <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
             Links
           </NavigationLinkListItem>

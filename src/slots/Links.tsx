@@ -38,8 +38,7 @@ const Links = () => {
       >
         <Title>Links</Title>
         <Space />
-        <Card>
-          <Space />
+        <Card withPadding>
           <Heading>Contact</Heading>
           <Space />
           <Flex>
@@ -51,14 +50,11 @@ const Links = () => {
             <Space />
             <Link href="http://t.me/hermanya">Telegram</Link>
           </Flex>
-          <Space />
         </Card>
       </section>
       <Space />
       <section style={{ flex: 1 }}>
-        <Card>
-          <Space />
-
+        <Card withPadding>
           <Flex>
             <SubSection>
               <Heading>Coding</Heading>
@@ -85,23 +81,25 @@ const Links = () => {
       </section>
       <Space />
       <div style={{ flex: 1, justifySelf: "flex-end" }}>
-        <NavigationLinkListItem to={"Herman"} from={"Links"}>
-          starikov.dev
-        </NavigationLinkListItem>
-        <NavigationLinkListItem
-          renderIfActive
-          to={"PrivacyPolicy"}
-          from={"Links"}
-        >
-          Privacy Policy
-        </NavigationLinkListItem>
-        <NavigationLinkListItem
-          renderIfActive
-          to={"TermsOfService"}
-          from={"Links"}
-        >
-          Terms of Service
-        </NavigationLinkListItem>
+        <Card withPadding={false}>
+          <NavigationLinkListItem to={"Herman"} from={"Links"}>
+            starikov.dev
+          </NavigationLinkListItem>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"PrivacyPolicy"}
+            from={"Links"}
+          >
+            Privacy Policy
+          </NavigationLinkListItem>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"TermsOfService"}
+            from={"Links"}
+          >
+            Terms of Service
+          </NavigationLinkListItem>
+        </Card>
       </div>
       <Space />
     </>

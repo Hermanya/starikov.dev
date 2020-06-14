@@ -13,6 +13,10 @@ const NavigationSlot = styled.div`
 
   @media screen and (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
     flex-direction: row;
+    overflow: visible;
+  }
+  @media screen and (max-width: 1000px) {
+    overflow: visible;
   }
 `;
 

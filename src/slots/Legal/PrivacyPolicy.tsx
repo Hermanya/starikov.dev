@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
+import Card from "components/Card";
 
 export default () => {
   return (
@@ -53,11 +54,11 @@ export default () => {
           Privacy Policy created with GetTerms.
         </ExternalLink>
       </p>
-      <div style={{ margin: "auto 0 16px" }}>
+      <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
         <NavigationLinkListItem to={"Herman"} from={"PrivacyPolicy"}>
           starikov.dev
         </NavigationLinkListItem>
-      </div>
+      </Card>
     </div>
   );
 };

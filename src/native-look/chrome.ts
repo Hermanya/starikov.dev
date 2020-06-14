@@ -18,12 +18,13 @@ export default createGlobalStyle`
     --cyan: #00BCD4;
     --yellow: #FFEB3B;
     --text: #212121;
-    --background: #f2f2f7;
+    --background: #fff;
     --card-background: #fff;
     --react: #61dafb;
     --card-border-radius: 4px;
-    --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    --card-border:  1px solid var(--gray3);
+    /* --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
     --divider: var(--gray4);
 
 
@@ -47,7 +48,8 @@ export default createGlobalStyle`
         --yellow: #FFEE58;
         --text: rgb(204, 204, 204);
         --background: #000;
-        --card-background: #35363a;
+        /* --card-background: #35363a; */
+        --card-background: #000;
         --react: #61dafb;
     }
 }
@@ -90,7 +92,4 @@ body {
     font-family: "Roboto", monospace;
 }
 
-.CardAction {
-    text-transform: uppercase;
-}
 `;

@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-const Card = styled.section<{ noPadding?: boolean }>`
+const Card = styled.section<{ withPadding: boolean }>`
   background: var(--card-background);
   border-radius: var(--card-border-radius);
   box-shadow: var(--card-shadow);
-  padding: ${(props) => (props.noPadding ? "0" : "1px 16px")};
+  border: var(--card-border);
+  &:empty {
+    border: none;
+    box-shadow: none;
+  }
+  padding: ${(props) => (props.withPadding ? "16px" : "0")};
 `;
 
 export default Card;
