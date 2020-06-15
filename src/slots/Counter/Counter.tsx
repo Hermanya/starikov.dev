@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
-import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
+import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
 import { useCountRecords, CountRecord } from "./useCountRecords";
 
 const Count = styled.div`
-  font-size: 128px;
+  font-size: 64px;
   font-variant-numeric: tabular-nums;
   user-select: none;
 `;
@@ -22,7 +22,7 @@ const CountCard = styled.div`
 `;
 
 const Counter = () => {
-  useNextAvailableSpaceFor("CounterDashboard", { from: "Counter" });
+  useNextSlotFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
 
@@ -56,8 +56,8 @@ const Counter = () => {
           {count.toString().padStart(2, "0")}
 
           <svg
-            width="256"
-            height="256"
+            width="128"
+            height="128"
             viewBox="0 0 100 100"
             style={{
               position: "absolute",

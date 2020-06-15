@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "components/Avatar";
-import { NavigationLinkListItem, useNextAvailableSpaceFor } from "navigation";
+import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { Heading, Paragraph, InteractiveText } from "components/typography";
 import styled from "styled-components";
 import Card from "components/Card";
@@ -17,7 +17,7 @@ const PageTitle = styled.h1`
 `;
 
 const Herman = () => {
-  useNextAvailableSpaceFor("Links", { from: "Herman" });
+  useNextSlotFor("Links", { from: "Herman" });
   return (
     <>
       <Gap />
@@ -97,13 +97,13 @@ const Herman = () => {
             Links
           </NavigationLinkListItem>
 
-          {/* <NavigationLinkListItem
+          <NavigationLinkListItem
             renderIfActive
             to={"ReactSlotNavigation"}
             from={"Herman"}
           >
             Slot Navigation
-          </NavigationLinkListItem> */}
+          </NavigationLinkListItem>
 
           <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
             Counter

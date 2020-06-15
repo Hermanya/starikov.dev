@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   NavigationProvider,
   Link,
-  useNextAvailableSpaceFor as _useNextAvailableSpaceFor,
+  useNextSlotFor as _useNextSlotFor,
   __websiteSlots as reactSlotNavigationWebsiteSlots,
 } from "react-slot-navigation";
 import NavigationLinkListItemStyledComponent from "./components/NavigationLinkListItem";
@@ -57,12 +57,12 @@ export const Root = () => {
     />
   );
 };
-export const useNextAvailableSpaceFor = (
+export const useNextSlotFor = (
   Component: SlotName,
   options: {
     from: SlotName;
   }
-): void => _useNextAvailableSpaceFor(Component, options);
+): void => _useNextSlotFor(Component, options);
 
 export const NavigationLinkListItem: React.FC<LinkProps> = (props) => {
   return <Link as={NavigationLinkListItemStyledComponent} {...props} />;
