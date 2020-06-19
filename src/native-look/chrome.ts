@@ -18,13 +18,13 @@ export default createGlobalStyle`
     --cyan: #00BCD4;
     --yellow: #FFEB3B;
     --text: #212121;
-    --background: #fff;
+    --background: var(--gray6);
     --card-background: #fff;
     --react: #61dafb;
     --card-border-radius: 4px;
-    --card-border:  1px solid var(--gray3);
-    /* --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
+    /* --card-border:  1px solid var(--gray3); */
+    --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     --divider: var(--gray4);
 
 
@@ -47,9 +47,8 @@ export default createGlobalStyle`
         --cyan: #26C6DA;
         --yellow: #FFEE58;
         --text: rgb(204, 204, 204);
-        --background: #000;
-        /* --card-background: #35363a; */
-        --card-background: #000;
+        --background: var(--gray6);
+        --card-background: var(--gray5);
         --react: #61dafb;
     }
 }

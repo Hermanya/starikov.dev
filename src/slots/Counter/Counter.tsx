@@ -25,16 +25,14 @@ const Counter = () => {
   useNextSlotFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
-
+  const average =
+    countRecords.reduce((sum, x) => sum + x.count, 0) / countRecords.length;
+  const defaultTarget = 10;
+  const target = countRecords.length ? Math.round(average + 1) : defaultTarget;
   const circleRef = React.useRef<SVGCircleElement>(null);
   const radius = circleRef?.current?.r?.baseVal?.value;
   const circumference = radius ? radius * 2 * Math.PI : 0;
 
-  const target = 10;
-  // countRecords
-  //   .filter((_) => _.timestamp > Date.now() - 1000 * 60 * 60 * 24 * 7)
-  //   .map((_) => _.count)
-  //   .reduce((a, b) => a + b);
   return (
     <>
       <CountCard
@@ -45,7 +43,7 @@ const Counter = () => {
           flex: 3,
         }}
       >
-        <Gap />
+        <div>{target && `Target ${target}`}</div>
         <Count
           style={{
             transition: "0.25s",

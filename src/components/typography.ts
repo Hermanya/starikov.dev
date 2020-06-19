@@ -30,11 +30,12 @@ export const Description = styled(Paragraph)`
 export const InteractiveText = styled.button`
   color: var(--blue);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1rem;
   user-select: none;
   border: none;
   background: none;
   padding: 0;
   user-select: none;
+  outline: none;
   cursor: pointer;
 `;
