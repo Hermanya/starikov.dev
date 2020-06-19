@@ -29,9 +29,16 @@ const Counter = () => {
     countRecords.reduce((sum, x) => sum + x.count, 0) / countRecords.length;
   const defaultTarget = 10;
   const target = countRecords.length ? Math.round(average + 1) : defaultTarget;
-  const circleRef = React.useRef<SVGCircleElement>(null);
-  const radius = circleRef?.current?.r?.baseVal?.value;
-  const circumference = radius ? radius * 2 * Math.PI : 0;
+  const setCircleRef = React.useRef<SVGCircleElement>(null);
+  const setCircleRadius = setCircleRef?.current?.r?.baseVal?.value;
+  const setCirlceCircumference = setCircleRadius
+    ? setCircleRadius * 2 * Math.PI
+    : 0;
+  const dayCircleRef = React.useRef<SVGCircleElement>(null);
+  const dayCircleRadius = dayCircleRef?.current?.r?.baseVal?.value;
+  const dayCirlceCircumference = dayCircleRadius
+    ? dayCircleRadius * 2 * Math.PI
+    : 0;
 
   return (
     <>
@@ -65,7 +72,34 @@ const Counter = () => {
             }}
           >
             <circle
-              stroke="var(--green)"
+              stroke="var(--pink)"
+              strokeWidth="8px"
+              fill="transparent"
+              r="36"
+              cx="50"
+              cy="50"
+              strokeLinecap="round"
+              opacity="0.25"
+            />
+            <circle
+              stroke="var(--pink)"
+              strokeWidth="8px"
+              strokeDasharray={`${setCirlceCircumference} ${setCirlceCircumference}`}
+              fill="transparent"
+              r="36"
+              cx="50"
+              cy="50"
+              strokeLinecap="round"
+              ref={setCircleRef}
+              style={{
+                transform: "rotate(-90deg)",
+                transformOrigin: "50% 50%",
+                strokeDashoffset: setCirlceCircumference * (1 - count / target),
+                transition: "stroke-dashoffset 0.250s",
+              }}
+            />
+            <circle
+              stroke="var(--purple)"
               strokeWidth="8px"
               fill="transparent"
               r="46"
@@ -75,19 +109,19 @@ const Counter = () => {
               opacity="0.25"
             />
             <circle
-              stroke="var(--green)"
+              stroke="var(--purple)"
               strokeWidth="8px"
-              strokeDasharray={`${circumference} ${circumference}`}
+              strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
               fill="transparent"
               r="46"
               cx="50"
               cy="50"
               strokeLinecap="round"
-              ref={circleRef}
+              ref={dayCircleRef}
               style={{
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
-                strokeDashoffset: circumference * (1 - count / target),
+                strokeDashoffset: dayCirlceCircumference * (1 - count / target),
                 transition: "stroke-dashoffset 0.250s",
               }}
             />
