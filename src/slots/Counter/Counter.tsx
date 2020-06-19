@@ -5,9 +5,10 @@ import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
 import { useCountRecords, CountRecord } from "./useCountRecords";
+import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 
 const Count = styled.div`
-  font-size: 64px;
+  font-size: 48px;
   font-variant-numeric: tabular-nums;
   user-select: none;
 `;
@@ -27,8 +28,10 @@ const Counter = () => {
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
   const average =
     countRecords.reduce((sum, x) => sum + x.count, 0) / countRecords.length;
-  const defaultTarget = 10;
-  const target = countRecords.length ? Math.round(average + 1) : defaultTarget;
+  const defaultSetTarget = 10;
+  const setTarget = countRecords.length
+    ? Math.round(average + 1)
+    : defaultSetTarget;
   const setCircleRef = React.useRef<SVGCircleElement>(null);
   const setCircleRadius = setCircleRef?.current?.r?.baseVal?.value;
   const setCirlceCircumference = setCircleRadius
@@ -40,6 +43,9 @@ const Counter = () => {
     ? dayCircleRadius * 2 * Math.PI
     : 0;
 
+  const dayTarget = maxRepsPerDay(countRecords);
+  const dayTotal = todaysTotal(countRecords);
+
   return (
     <>
       <CountCard
@@ -50,8 +56,14 @@ const Counter = () => {
           flex: 3,
         }}
       >
-        <div style={{ color: "var(--pink)" }}>
-          {target && `Let's do ${target} reps in this set`}
+        <div>
+          <div style={{ color: "var(--pink)", textAlign: "center" }}>
+            {setTarget && `Let's do ${setTarget} reps in this set`}
+          </div>
+          <Gap />
+          <div style={{ color: "var(--purple)", textAlign: "center" }}>
+            {dayTarget && `targetting ${dayTarget} by the end of day`}
+          </div>
         </div>
         <Count
           style={{
@@ -96,7 +108,8 @@ const Counter = () => {
               style={{
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
-                strokeDashoffset: setCirlceCircumference * (1 - count / target),
+                strokeDashoffset:
+                  setCirlceCircumference * (1 - count / setTarget),
                 transition: "stroke-dashoffset 0.250s",
               }}
             />
@@ -123,7 +136,8 @@ const Counter = () => {
               style={{
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
-                strokeDashoffset: dayCirlceCircumference * (1 - count / target),
+                strokeDashoffset:
+                  dayCirlceCircumference * (1 - (dayTotal + count) / dayTarget),
                 transition: "stroke-dashoffset 0.250s",
               }}
             />

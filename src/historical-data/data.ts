@@ -52,3 +52,9 @@ export const perDay = (records: Record[]): CountsPerDay[] =>
       ];
     }
   }, [] as CountsPerDay[]);
+
+export const maxRepsPerDay = (records: Record[]) =>
+  Math.max(...perDay(records).map((day) => day.total));
+
+export const todaysTotal = (records: Record[]) =>
+  todaysCounts(records).reduce((a, b) => a + b, 0);
