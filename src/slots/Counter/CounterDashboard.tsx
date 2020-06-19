@@ -14,8 +14,16 @@ import {
   perDay,
 } from "historical-data/data";
 
-const Flex = styled.div`
+const Row = styled.div`
   display: flex;
+`;
+
+const Column = styled.div`
+  flex: 1;
+`;
+
+const Label = styled.div`
+  color: var(--gray);
 `;
 
 const Set = styled.div`
@@ -26,10 +34,16 @@ const Set = styled.div`
   cursor: pointer;
 `;
 
-const Indicator = styled.div`
+const Value = styled.div`
   font-variant-numeric: tabular-nums;
   font-size: 32px;
   color: var(--purple);
+`;
+
+const SetValue = styled.div`
+  font-variant-numeric: tabular-nums;
+  font-size: 32px;
+  color: var(--pink);
 `;
 
 const CounterDashboard = () => {
@@ -48,7 +62,7 @@ const CounterDashboard = () => {
             <Card withPadding>
               <Heading>Sets</Heading>
               <Gap />
-              <Flex>
+              <Row>
                 <Sets
                   counts={todaysCounts(countRecords)}
                   average={average(countRecords)}
@@ -64,22 +78,22 @@ const CounterDashboard = () => {
                     }
                   }}
                 />
-              </Flex>
+              </Row>
             </Card>
             <Gap />
-            <Flex>
+            <Row>
               <Card withPadding style={{ flex: 1 }}>
                 <Heading>Total Reps</Heading>
                 <Gap />
-                <Indicator>
+                <Value>
                   {todaysCounts(countRecords).reduce((a, b) => a + b, 0)}
-                </Indicator>
+                </Value>
               </Card>
               <Gap />
               <Card withPadding style={{ flex: 1 }}>
                 <Heading>Reps to-do</Heading>
               </Card>
-            </Flex>
+            </Row>
           </>
         ) : (
           <>
@@ -92,11 +106,11 @@ const CounterDashboard = () => {
       <section style={{ flex: 1 }}>
         {countRecordsPerDay.length > 2 ? (
           <>
+            <Gap />
+
             <Heading>All time</Heading>
             <Gap />
             <Card withPadding>
-              <Gap />
-
               <Trend
                 smooth
                 autoDraw
@@ -108,31 +122,61 @@ const CounterDashboard = () => {
                 strokeWidth={2}
                 strokeLinecap={"round"}
               />
+              <Gap />
+              <Gap />
 
-              <div>
-                Rep Total:{" "}
-                {countRecords
-                  .reduce((total, record) => total + record.count, 0)
-                  .toLocaleString()}
-              </div>
-              <div>Set Total: {countRecords.length}</div>
-              <div>Day Total: {countRecordsPerDay.length}</div>
-              <div>
-                Average reps/day:{" "}
-                {Math.round(
-                  countRecordsPerDay
-                    .map((day) => day.total)
-                    .reduce((a, b) => a + b) / countRecordsPerDay.length
-                )}
-              </div>
-              <div>
-                Max reps/set:{" "}
-                {Math.max(...countRecords.map((set) => set.count))}
-              </div>
-              <div>
-                Max reps/day:{" "}
-                {Math.max(...countRecordsPerDay.map((day) => day.total))}
-              </div>
+              <Row>
+                <Column>
+                  <Label>Avg reps/day</Label>
+                  <Gap />
+                  <Value>
+                    {Math.round(
+                      countRecordsPerDay
+                        .map((day) => day.total)
+                        .reduce((a, b) => a + b) / countRecordsPerDay.length
+                    )}
+                  </Value>
+                </Column>
+                <Column>
+                  <Label>Max reps/set</Label>
+                  <Gap />
+                  <SetValue>
+                    {Math.max(...countRecords.map((set) => set.count))}
+                  </SetValue>
+                </Column>
+                <Column>
+                  <Label>Max reps/day</Label>
+                  <Gap />
+                  <Value>
+                    {Math.max(...countRecordsPerDay.map((day) => day.total))}
+                  </Value>
+                </Column>
+              </Row>
+
+              <Gap />
+              <Gap />
+
+              <Row>
+                <Column>
+                  <Label>Total Reps</Label>
+                  <Gap />
+                  <Value>
+                    {countRecords
+                      .reduce((total, record) => total + record.count, 0)
+                      .toLocaleString()}
+                  </Value>
+                </Column>
+                <Column>
+                  <Label>Total Sets</Label>
+                  <Gap />
+                  <SetValue>{countRecords.length}</SetValue>
+                </Column>
+                <Column>
+                  <Label>Total Days</Label>
+                  <Gap />
+                  <Value>{countRecordsPerDay.length}</Value>
+                </Column>
+              </Row>
             </Card>
           </>
         ) : (
@@ -166,9 +210,9 @@ const Sets: React.FC<{
   onCountClick: (index: number) => () => void;
   average: number;
 }> = ({ counts, average, onCountClick }) => (
-  <Flex>
+  <Row>
     {counts.map((count, index) => (
-      <Flex key={index}>
+      <Row key={index}>
         <Set
           style={{
             background: "var(--pink)",
@@ -179,9 +223,9 @@ const Sets: React.FC<{
           {count.toString().padStart(2, "0")}
         </Set>
         <Gap />
-      </Flex>
+      </Row>
     ))}
-  </Flex>
+  </Row>
 );
 
 export default CounterDashboard;

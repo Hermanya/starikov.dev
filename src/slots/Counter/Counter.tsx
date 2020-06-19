@@ -50,7 +50,9 @@ const Counter = () => {
           flex: 3,
         }}
       >
-        <div>{target && `Target ${target}`}</div>
+        <div style={{ color: "var(--pink)" }}>
+          {target && `Let's do ${target} reps in this set`}
+        </div>
         <Count
           style={{
             transition: "0.25s",
