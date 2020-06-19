@@ -102,7 +102,13 @@ const CounterDashboard = () => {
         {countRecordsPerDay.length > 2 ? (
           <>
             <Card withPadding>
-              <Heading>All time</Heading>
+              <Heading>
+                All time
+                <small style={{ opacity: 0.5, marginLeft: "auto" }}>
+                  since{" "}
+                  {new Date(countRecords[0].timestamp).toLocaleDateString()}
+                </small>
+              </Heading>
               <Gap />
               <Trend
                 smooth
@@ -168,16 +174,6 @@ const CounterDashboard = () => {
                   <Label>Total Days</Label>
                   <Gap />
                   <Value>{countRecordsPerDay.length}</Value>
-                </Column>
-              </Row>
-              <Gap />
-              <Row>
-                <Column>
-                  <Label>Starting Date</Label>
-                  <Gap />
-                  <Value>
-                    {new Date(countRecords[0].timestamp).toLocaleDateString()}
-                  </Value>
                 </Column>
               </Row>
             </Card>
