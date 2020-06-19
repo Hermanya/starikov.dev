@@ -6,6 +6,8 @@ import { InteractiveText } from "components/typography";
 import Card from "components/Card";
 import { useCountRecords, CountRecord } from "./useCountRecords";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
+import Confetti from "react-confetti";
+import { getSlotWidth } from "navigation";
 
 const Count = styled.div`
   font-size: 48px;
@@ -43,11 +45,18 @@ const Counter = () => {
     ? dayCircleRadius * 2 * Math.PI
     : 0;
 
-  const dayTarget = maxRepsPerDay(countRecords);
+  const dayTarget = maxRepsPerDay(countRecords) ?? 100;
   const dayTotal = todaysTotal(countRecords);
 
   return (
     <>
+      {count >= setTarget && (
+        <Confetti
+          width={getSlotWidth()}
+          height={window.innerHeight}
+          numberOfPieces={50}
+        />
+      )}
       <CountCard
         onPointerDown={() => {
           setCount(count + 1);

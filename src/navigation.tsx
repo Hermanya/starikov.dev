@@ -29,7 +29,7 @@ type LinkProps = {
   renderIfActive?: boolean;
 };
 
-const getSlotWidth = () =>
+export const getSlotWidth = () =>
   document.documentElement.clientWidth > 600 &&
   document.documentElement.clientWidth < 1000
     ? document.documentElement.clientWidth - 24

@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/use-persisted-state": "^0.3.0",
     "react": "^16.13.1",
+    "react-confetti": "^5.1.0",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",

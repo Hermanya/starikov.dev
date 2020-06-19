@@ -40,7 +40,7 @@ const HistoricalValue = styled(Value)`
 
 const Sign = styled(Value)`
   color: var(--gray);
-  margin: 0 4px;
+  margin: 0 2px;
 `;
 
 const SetValue = styled(Value)`
@@ -104,10 +104,10 @@ const CounterDashboard = () => {
             <Card withPadding>
               <Heading>
                 All time
-                <small style={{ opacity: 0.5, marginLeft: "auto" }}>
-                  since{" "}
+                <Label style={{ marginLeft: "auto" }}>
+                  Since{" "}
                   {new Date(countRecords[0].timestamp).toLocaleDateString()}
-                </small>
+                </Label>
               </Heading>
               <Gap />
               <Trend
