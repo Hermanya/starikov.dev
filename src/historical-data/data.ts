@@ -1,4 +1,4 @@
-//  const dayMs = 1000 * 60 * 60 * 24;
+const dayMs = 1000 * 60 * 60 * 24;
 // const daysSinceBeginning = new Array(
 //   Math.floor((Date.now() - countRecords[0].timestamp) / dayMs)
 // )
@@ -18,6 +18,13 @@ export const todaysRecords = (records: Record[]): Record[] =>
     (_) =>
       new Date(_.timestamp).toLocaleDateString() ===
       new Date(Date.now()).toLocaleDateString()
+  );
+
+export const yesterdaysRecords = (records: Record[]): Record[] =>
+  records.filter(
+    (_) =>
+      new Date(_.timestamp).toLocaleDateString() ===
+      new Date(Date.now() - dayMs).toLocaleDateString()
   );
 export const todaysCounts = (records: Record[]): number[] =>
   todaysRecords(records).map((_) => _.count);

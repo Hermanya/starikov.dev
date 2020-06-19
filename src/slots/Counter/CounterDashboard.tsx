@@ -8,16 +8,16 @@ import { useCountRecords, CountRecord } from "./useCountRecords";
 // @ts-ignore
 import Trend from "react-trend";
 import {
-  average,
   todaysRecords,
-  todaysTotal,
   todaysCounts,
   perDay,
   maxRepsPerDay,
+  yesterdaysRecords,
 } from "historical-data/data";
 
 const Row = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Column = styled.div`
@@ -26,23 +26,25 @@ const Column = styled.div`
 
 const Label = styled.div`
   color: var(--gray);
+  font-size: 0.875rem;
 `;
 
 const Value = styled.div`
   font-variant-numeric: tabular-nums;
-  font-size: 32px;
+  font-size: 24px;
+`;
+
+const HistoricalValue = styled(Value)`
   color: var(--purple);
 `;
 
-const SetValue = styled.div`
-  font-variant-numeric: tabular-nums;
-  font-size: 32px;
-  color: var(--pink);
+const Sign = styled(Value)`
+  color: var(--gray);
+  margin: 0 4px;
 `;
 
-const OtherValue = styled.div`
-  font-variant-numeric: tabular-nums;
-  font-size: 32px;
+const SetValue = styled(Value)`
+  color: var(--pink);
 `;
 
 const CounterDashboard = () => {
@@ -56,37 +58,37 @@ const CounterDashboard = () => {
 
         {todaysCounts(countRecords).length ? (
           <>
-            <Heading>Today</Heading>
+            <Day
+              text="Today"
+              records={todaysRecords(countRecords)}
+              onSetClick={(index) => () => {
+                if (window.confirm("Do you want to delete this record?")) {
+                  setCountRecords(
+                    countRecords.filter(
+                      ({ timestamp }) =>
+                        timestamp !==
+                        todaysRecords(countRecords)[index].timestamp
+                    )
+                  );
+                }
+              }}
+            />
             <Gap />
-            <Card withPadding>
-              <Heading>Sets of Reps</Heading>
-              <Gap />
-              <Row>
-                <Sets
-                  counts={todaysCounts(countRecords)}
-                  average={average(countRecords)}
-                  onCountClick={(index) => () => {
-                    if (window.confirm("Do you want to delete this record?")) {
-                      setCountRecords(
-                        countRecords.filter(
-                          ({ timestamp }) =>
-                            timestamp !==
-                            todaysRecords(countRecords)[index].timestamp
-                        )
-                      );
-                    }
-                  }}
-                />
-              </Row>
-            </Card>
-            <Gap />
-            <Row>
-              <Card withPadding style={{ flex: 1 }}>
-                <Heading>Total Reps</Heading>
-                <Gap />
-                <Value>{todaysTotal(countRecords)}</Value>
-              </Card>
-            </Row>
+            <Day
+              text="Yesterday"
+              records={yesterdaysRecords(countRecords)}
+              onSetClick={(index) => () => {
+                if (window.confirm("Do you want to delete this record?")) {
+                  setCountRecords(
+                    countRecords.filter(
+                      ({ timestamp }) =>
+                        timestamp !==
+                        yesterdaysRecords(countRecords)[index].timestamp
+                    )
+                  );
+                }
+              }}
+            />
           </>
         ) : (
           <>
@@ -99,11 +101,9 @@ const CounterDashboard = () => {
       <section style={{ flex: 1 }}>
         {countRecordsPerDay.length > 2 ? (
           <>
-            <Gap />
-
-            <Heading>All time</Heading>
-            <Gap />
             <Card withPadding>
+              <Heading>All time</Heading>
+              <Gap />
               <Trend
                 smooth
                 autoDraw
@@ -129,18 +129,20 @@ const CounterDashboard = () => {
                 <Column>
                   <Label>Max Reps/Day</Label>
                   <Gap />
-                  <Value>{maxRepsPerDay(countRecords)}</Value>
+                  <HistoricalValue>
+                    {maxRepsPerDay(countRecords)}
+                  </HistoricalValue>
                 </Column>
                 <Column>
                   <Label>Avg Reps/Day</Label>
                   <Gap />
-                  <Value>
+                  <HistoricalValue>
                     {Math.round(
                       countRecordsPerDay
                         .map((day) => day.total)
                         .reduce((a, b) => a + b) / countRecordsPerDay.length
                     )}
-                  </Value>
+                  </HistoricalValue>
                 </Column>
               </Row>
 
@@ -151,21 +153,31 @@ const CounterDashboard = () => {
                 <Column>
                   <Label>Total Reps</Label>
                   <Gap />
-                  <OtherValue>
+                  <Value>
                     {countRecords
                       .reduce((total, record) => total + record.count, 0)
                       .toLocaleString()}
-                  </OtherValue>
+                  </Value>
                 </Column>
                 <Column>
                   <Label>Total Sets</Label>
                   <Gap />
-                  <OtherValue>{countRecords.length}</OtherValue>
+                  <Value>{countRecords.length}</Value>
                 </Column>
                 <Column>
                   <Label>Total Days</Label>
                   <Gap />
-                  <OtherValue>{countRecordsPerDay.length}</OtherValue>
+                  <Value>{countRecordsPerDay.length}</Value>
+                </Column>
+              </Row>
+              <Gap />
+              <Row>
+                <Column>
+                  <Label>Starting Date</Label>
+                  <Gap />
+                  <Value>
+                    {new Date(countRecords[0].timestamp).toLocaleDateString()}
+                  </Value>
                 </Column>
               </Row>
             </Card>
@@ -196,21 +208,38 @@ const CounterDashboard = () => {
   );
 };
 
-const Sets: React.FC<{
-  counts: number[];
-  onCountClick: (index: number) => () => void;
-  average: number;
-}> = ({ counts, average, onCountClick }) => (
-  <Row>
-    {counts.map((count, index) => (
-      <Row key={index}>
-        <SetValue onClick={onCountClick(index)}>
-          {count.toString().padStart(2, "0")}
-        </SetValue>
-        <Gap />
+const Day: React.FC<{
+  text: string;
+  records: CountRecord[];
+  onSetClick: (index: number) => () => void;
+}> = ({ text, records, onSetClick }) =>
+  records.length === 0 ? (
+    <Card withPadding>
+      <Heading>Nothing for {text}</Heading>
+    </Card>
+  ) : (
+    <Card withPadding>
+      <Heading>{text}</Heading>
+      <Gap />
+      <Row>
+        {records
+          .map((_) => _.count)
+          .map((count, index) => (
+            <Row key={index}>
+              {index !== 0 && <Sign>+</Sign>}
+              <SetValue onClick={onSetClick(index)}>
+                {count.toString().padStart(2, "0")}
+              </SetValue>
+            </Row>
+          ))}
+
+        <Sign>=</Sign>
+
+        <HistoricalValue>
+          {records.map((_) => _.count).reduce((a, b) => a + b)}
+        </HistoricalValue>
       </Row>
-    ))}
-  </Row>
-);
+    </Card>
+  );
 
 export default CounterDashboard;

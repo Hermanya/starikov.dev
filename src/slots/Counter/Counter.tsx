@@ -60,7 +60,6 @@ const Counter = () => {
           <div style={{ color: "var(--pink)", textAlign: "center" }}>
             {setTarget && `Let's do ${setTarget} reps in this set`}
           </div>
-          <Gap />
           <div style={{ color: "var(--purple)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}
           </div>
