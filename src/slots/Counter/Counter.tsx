@@ -45,7 +45,9 @@ const Counter = () => {
     ? dayCircleRadius * 2 * Math.PI
     : 0;
 
-  const dayTarget = maxRepsPerDay(countRecords) ?? 100;
+  const dayTarget = Number.isFinite(maxRepsPerDay(countRecords))
+    ? maxRepsPerDay(countRecords)
+    : 100;
   const dayTotal = todaysTotal(countRecords);
 
   return (
