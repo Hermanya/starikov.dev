@@ -30,7 +30,8 @@ const Label = styled.div`
 
 const Value = styled.div`
   font-variant-numeric: tabular-nums;
-  font-size: 24px;
+  font-size: 1rem;
+  font-weight: bold;
 `;
 
 const HistoricalValue = styled(Value)`
@@ -203,7 +204,7 @@ const Day: React.FC<{
 }> = ({ text, records, onSetClick }) =>
   records.length === 0 ? (
     <Card withPadding>
-      <Heading>Nothing for {text}</Heading>
+      <>Nothing for {text}</>
     </Card>
   ) : (
     <Card withPadding>
