@@ -9,7 +9,6 @@ import { useCountRecords, CountRecord } from "./useCountRecords";
 import Trend from "react-trend";
 import {
   todaysRecords,
-  todaysCounts,
   perDay,
   maxRepsPerDay,
   yesterdaysRecords,
@@ -56,45 +55,38 @@ const CounterDashboard = () => {
         <Title>Dashboard</Title>
         <Gap />
 
-        {todaysCounts(countRecords).length ? (
-          <>
-            <Day
-              text="Today"
-              records={todaysRecords(countRecords)}
-              onSetClick={(index) => () => {
-                if (window.confirm("Do you want to delete this record?")) {
-                  setCountRecords(
-                    countRecords.filter(
-                      ({ timestamp }) =>
-                        timestamp !==
-                        todaysRecords(countRecords)[index].timestamp
-                    )
-                  );
-                }
-              }}
-            />
-            <Gap />
-            <Day
-              text="Yesterday"
-              records={yesterdaysRecords(countRecords)}
-              onSetClick={(index) => () => {
-                if (window.confirm("Do you want to delete this record?")) {
-                  setCountRecords(
-                    countRecords.filter(
-                      ({ timestamp }) =>
-                        timestamp !==
-                        yesterdaysRecords(countRecords)[index].timestamp
-                    )
-                  );
-                }
-              }}
-            />
-          </>
-        ) : (
-          <>
-            <Heading>No Records from Today</Heading>
-          </>
-        )}
+        <>
+          <Day
+            text="Today"
+            records={todaysRecords(countRecords)}
+            onSetClick={(index) => () => {
+              if (window.confirm("Do you want to delete this record?")) {
+                setCountRecords(
+                  countRecords.filter(
+                    ({ timestamp }) =>
+                      timestamp !== todaysRecords(countRecords)[index].timestamp
+                  )
+                );
+              }
+            }}
+          />
+          <Gap />
+          <Day
+            text="Yesterday"
+            records={yesterdaysRecords(countRecords)}
+            onSetClick={(index) => () => {
+              if (window.confirm("Do you want to delete this record?")) {
+                setCountRecords(
+                  countRecords.filter(
+                    ({ timestamp }) =>
+                      timestamp !==
+                      yesterdaysRecords(countRecords)[index].timestamp
+                  )
+                );
+              }
+            }}
+          />
+        </>
       </section>
       <Gap />
 
