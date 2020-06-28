@@ -29,9 +29,7 @@ const Counter = () => {
   const [count, setCount] = useState(0);
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
   const average =
-    countRecords
-      .filter((_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7)
-      .reduce((sum, x) => sum + x.count, 0) / countRecords.length;
+    countRecords.reduce((sum, x) => sum + x.count, 0) / countRecords.length;
   const defaultSetTarget = 10;
   const setTarget = countRecords.length
     ? Math.round(average + 1)
@@ -184,10 +182,13 @@ const Counter = () => {
         }}
       >
         <Card withPadding={false}>
-          <NavigationLinkListItem to={"CounterDashboard"} from={"Counter"}>
+          <NavigationLinkListItem
+            to={"LegRaiseCounterDashboard"}
+            from={"LegRaiseCounter"}
+          >
             Counter dashboard
           </NavigationLinkListItem>
-          <NavigationLinkListItem to={"Herman"} from={"Counter"}>
+          <NavigationLinkListItem to={"Herman"} from={"LegRaiseCounter"}>
             starikov.dev
           </NavigationLinkListItem>
         </Card>

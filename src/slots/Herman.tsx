@@ -106,7 +106,14 @@ const Herman = () => {
           </NavigationLinkListItem>
 
           <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
-            Counter
+            Push up Counter
+          </NavigationLinkListItem>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"LegRaiseCounter"}
+            from={"Herman"}
+          >
+            Leg raise Counter
           </NavigationLinkListItem>
         </Card>
       </div>

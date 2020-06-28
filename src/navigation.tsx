@@ -11,10 +11,15 @@ import Loading from "components/Loading";
 
 const allSlots = {
   Herman: React.lazy(() => import("./slots/Herman")),
+  Hannah: React.lazy(() => import("./slots/Hannah")),
   Links: React.lazy(() => import("./slots/Links")),
   Counter: React.lazy(() => import("./slots/Counter/Counter")),
   CounterDashboard: React.lazy(() =>
     import("./slots/Counter/CounterDashboard")
+  ),
+  LegRaiseCounter: React.lazy(() => import("./slots/LegRaiseCounter/Counter")),
+  LegRaiseCounterDashboard: React.lazy(() =>
+    import("./slots/LegRaiseCounter/CounterDashboard")
   ),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
