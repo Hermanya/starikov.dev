@@ -71,7 +71,7 @@ const Counter = () => {
       >
         <div>
           <div style={{ color: "var(--pink)", textAlign: "center" }}>
-            {setTarget && `Let's do ${setTarget} reps in this set`}
+            {setTarget && `Let's do ${setTarget} push ups in this set`}
           </div>
           <div style={{ color: "var(--purple)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}

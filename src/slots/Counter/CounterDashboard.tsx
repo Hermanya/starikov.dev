@@ -53,7 +53,7 @@ const CounterDashboard = () => {
   return (
     <>
       <section style={{ flex: 1 }}>
-        <Title>Dashboard</Title>
+        <Title>Push up Dashboard</Title>
         <Gap />
 
         <>
