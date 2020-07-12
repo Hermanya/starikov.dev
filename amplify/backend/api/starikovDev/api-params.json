@@ -1,0 +1,31 @@
+{
+  "paths": [
+    {
+      "name": "/userData",
+      "lambdaFunction": "starikovDev",
+      "privacy": {
+        "open": true
+      }
+    }
+  ],
+  "resourceName": "starikovDev",
+  "apiName": "starikovDev",
+  "functionArns": [
+    {
+      "lambdaFunction": "starikovDev"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "starikovdev-production-20190910220828-authRole",
+    "unAuthRoleName": "starikovdev-production-20190910220828-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "starikovDev",
+      "attributes": ["Name", "Arn"]
+    }
+  ]
+}
