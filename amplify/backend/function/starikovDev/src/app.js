@@ -3,6 +3,7 @@ const AWS = require("aws-sdk");
 var awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
 var bodyParser = require("body-parser");
 var express = require("express");
+var data = require("./data.json");
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -124,6 +125,7 @@ app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
   let getItemParams = {
     TableName: tableName,
     Key: params,
+    // ProjectionExpression: "PushUps",
   };
 
   dynamodb.get(getItemParams, (err, data) => {
@@ -152,7 +154,10 @@ app.put(path, function (req, res) {
 
   let putItemParams = {
     TableName: tableName,
-    Item: req.body,
+    Item: {
+      id: "0",
+      ...data,
+    }, //req.body,
   };
   dynamodb.put(putItemParams, (err, data) => {
     if (err) {

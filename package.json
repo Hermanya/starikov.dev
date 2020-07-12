@@ -10,6 +10,7 @@
   "homepage": "https://www.starikov.dev",
   "dependencies": {
     "@types/use-persisted-state": "^0.3.0",
+    "aws-amplify": "^3.0.20",
     "react": "^16.13.1",
     "react-confetti": "^5.1.0",
     "react-dom": "^16.13.1",

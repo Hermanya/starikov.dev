@@ -6,6 +6,10 @@ import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
 import { Root } from "navigation";
 import Loading from "components/Loading";
+import Amplify from "aws-amplify";
+import awsconfig from "./aws-exports";
+
+Amplify.configure(awsconfig);
 
 const NativeLookingStyle = navigator.userAgent.match(/Edg/)
   ? React.lazy(() => import("./native-look/edge"))

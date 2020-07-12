@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
 import { NavigationLinkListItem } from "navigation";
@@ -13,6 +13,7 @@ import {
   maxRepsPerDay,
   yesterdaysRecords,
 } from "historical-data/data";
+import { API } from "aws-amplify";
 
 const Row = styled.div`
   display: flex;
@@ -50,9 +51,24 @@ const SetValue = styled(Value)`
 const CounterDashboard = () => {
   const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
   const countRecordsPerDay = perDay(countRecords);
+
   return (
     <>
       <section style={{ flex: 1 }}>
+        <button
+          onClick={() => {
+            API.get("starikovDev", "/userData");
+          }}
+        >
+          Get
+        </button>
+        <button
+          onClick={() => {
+            API.put("starikovDev", "/userData", { body: {} });
+          }}
+        >
+          Put
+        </button>
         <Title>Push up Dashboard</Title>
         <Gap />
 
