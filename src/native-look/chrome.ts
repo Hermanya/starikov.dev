@@ -47,7 +47,7 @@ export default createGlobalStyle`
         --cyan: #26C6DA;
         --yellow: #FFEE58;
         --text: rgb(204, 204, 204);
-        --background: var(--gray6);
+        --background: #000;
         --card-background: var(--gray5);
         --react: #61dafb;
     }
