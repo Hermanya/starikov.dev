@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
 import { Title, Heading } from "components/typography";
-import { useCountRecords, CountRecord } from "./useCountRecords";
+import { CountRecord } from "./useCountRecords";
+import { useAmlifyApi } from "api/amplify";
+
 // @ts-ignore
 import Trend from "react-trend";
 import {
@@ -13,7 +15,6 @@ import {
   maxRepsPerDay,
   yesterdaysRecords,
 } from "historical-data/data";
-import { API } from "aws-amplify";
 
 const Row = styled.div`
   display: flex;
@@ -49,59 +50,45 @@ const SetValue = styled(Value)`
 `;
 
 const CounterDashboard = () => {
-  const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
-  const countRecordsPerDay = perDay(countRecords);
+  const countRecords = useAmlifyApi();
+  if (!countRecords) {
+    return null;
+  }
 
+  const countRecordsPerDay = perDay(countRecords);
   return (
     <>
       <section style={{ flex: 1 }}>
-        <button
+        {/* <button
           onClick={() => {
-            API.get("starikovDev", "/userData");
-          }}
-        >
-          Get
-        </button>
-        <button
-          onClick={() => {
-            API.put("starikovDev", "/userData", { body: {} });
+            API.put("starikovDev", "/userData", { body: { id: "Herman" } });
           }}
         >
           Put
-        </button>
+        </button> */}
         <Title>Push up Dashboard</Title>
         <Gap />
-
         <>
           <Day
             text="Today"
             records={todaysRecords(countRecords)}
-            onSetClick={(index) => () => {
-              if (window.confirm("Do you want to delete this record?")) {
-                setCountRecords(
-                  countRecords.filter(
-                    ({ timestamp }) =>
-                      timestamp !== todaysRecords(countRecords)[index].timestamp
-                  )
-                );
-              }
-            }}
+            onSetClick={(index) => () => {}}
+            // onSetClick={(index) => () => {
+            //   if (window.confirm("Do you want to delete this record?")) {
+            //     setCountRecords(
+            //       countRecords.filter(
+            //         ({ timestamp }) =>
+            //           timestamp !== todaysRecords(countRecords)[index].timestamp
+            //       )
+            //     );
+            //   }
+            // }}
           />
           <Gap />
           <Day
             text="Yesterday"
             records={yesterdaysRecords(countRecords)}
-            onSetClick={(index) => () => {
-              if (window.confirm("Do you want to delete this record?")) {
-                setCountRecords(
-                  countRecords.filter(
-                    ({ timestamp }) =>
-                      timestamp !==
-                      yesterdaysRecords(countRecords)[index].timestamp
-                  )
-                );
-              }
-            }}
+            onSetClick={(index) => () => {}}
           />
         </>
       </section>
@@ -138,7 +125,7 @@ const CounterDashboard = () => {
                   <Label>Max Reps/Set</Label>
                   <Gap />
                   <SetValue>
-                    {Math.max(...countRecords.map((set) => set.count))}
+                    {Math.max(...countRecords.map((set: any) => set.count))}
                   </SetValue>
                 </Column>
                 <Column>
@@ -170,7 +157,10 @@ const CounterDashboard = () => {
                   <Gap />
                   <Value>
                     {countRecords
-                      .reduce((total, record) => total + record.count, 0)
+                      .reduce(
+                        (total: any, record: any) => total + record.count,
+                        0
+                      )
                       .toLocaleString()}
                   </Value>
                 </Column>

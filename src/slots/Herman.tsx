@@ -105,15 +105,19 @@ const Herman = () => {
             Slot Navigation
           </NavigationLinkListItem>
 
-          <NavigationLinkListItem renderIfActive to={"Counter"} from={"Herman"}>
-            Push up Counter
+          <NavigationLinkListItem
+            renderIfActive
+            to={"CounterDashboard"}
+            from={"Herman"}
+          >
+            Push ups
           </NavigationLinkListItem>
           <NavigationLinkListItem
             renderIfActive
-            to={"LegRaiseCounter"}
+            to={"LegRaiseCounterDashboard"}
             from={"Herman"}
           >
-            Leg raise Counter
+            Leg raises
           </NavigationLinkListItem>
         </Card>
       </div>

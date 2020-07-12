@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
 import { NavigationLinkListItem, useNextSlotFor } from "navigation";
@@ -8,6 +8,7 @@ import { useCountRecords, CountRecord } from "./useCountRecords";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";
+import { API } from "aws-amplify";
 
 const Count = styled.div`
   font-size: 48px;
@@ -27,7 +28,14 @@ const CountCard = styled.div`
 const Counter = () => {
   useNextSlotFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
-  const [countRecords, setCountRecords] = useCountRecords<CountRecord[]>([]);
+  const [countRecords, setCountRecords] = useState<CountRecord[]>([]);
+
+  useEffect(() => {
+    API.get("starikovDev", "/userData/object/Herman", {}).then((response) => {
+      setCountRecords(JSON.parse(response.PushUps || "[]"));
+    });
+  }, []);
+
   const average =
     countRecords
       .filter((_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7)

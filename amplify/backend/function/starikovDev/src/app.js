@@ -3,7 +3,7 @@ const AWS = require("aws-sdk");
 var awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
 var bodyParser = require("body-parser");
 var express = require("express");
-var data = require("./data.json");
+var mockData = require("./data.json");
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -94,7 +94,7 @@ const convertUrlType = (param, type) => {
  *****************************************/
 
 app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
-  var params = {};
+  // var params = ;
   // if (userIdPresent && req.apiGateway) {
   //   params[partitionKeyName] =
   //     req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -122,24 +122,27 @@ app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
   //   }
   // }
 
-  let getItemParams = {
-    TableName: tableName,
-    Key: params,
-    // ProjectionExpression: "PushUps",
-  };
-
-  dynamodb.get(getItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.json({ error: "Could not load items: " + err.message });
-    } else {
-      if (data.Item) {
-        res.json(data.Item);
+  dynamodb.get(
+    {
+      TableName: tableName,
+      Key: {
+        id: req.params.id,
+      },
+      ProjectionExpression: req.params.ProjectionExpression,
+    },
+    (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.json({ error: "Could not load items: " + err.message });
       } else {
-        res.json(data);
+        if (data.Item) {
+          res.json(data.Item);
+        } else {
+          res.json(data);
+        }
       }
     }
-  });
+  );
 });
 
 /************************************
@@ -147,26 +150,44 @@ app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
  *************************************/
 
 app.put(path, function (req, res) {
-  if (userIdPresent) {
-    req.body["userId"] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: {
-      id: "0",
-      ...data,
-    }, //req.body,
-  };
-  dynamodb.put(putItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.json({ error: err, url: req.url, body: req.body });
-    } else {
-      res.json({ success: "put call succeed!", url: req.url, data: data });
+  dynamodb.get(
+    {
+      TableName: tableName,
+      Key: {
+        id: req.body.id,
+      },
+      ProjectionExpression: req.params.ProjectionExpression,
+    },
+    (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.json({ error: "Could not load items: " + err.message });
+      } else {
+        dynamodb.put(
+          {
+            TableName: tableName,
+            Item: {
+              ...data.Item,
+              ...mockData,
+              id: "Herman",
+            }, //req.body,
+          },
+          (err, data) => {
+            if (err) {
+              res.statusCode = 500;
+              res.json({ error: err, url: req.url, body: req.body });
+            } else {
+              res.json({
+                success: "put call succeed!",
+                url: req.url,
+                data: data,
+              });
+            }
+          }
+        );
+      }
     }
-  });
+  );
 });
 
 /************************************
