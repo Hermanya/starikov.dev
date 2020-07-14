@@ -49,8 +49,11 @@ const SetValue = styled(Value)`
   color: var(--pink);
 `;
 
-const CounterDashboard = () => {
-  const countRecords = useAmlifyApi();
+const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
+  slotArgs: [username = "Herman"],
+}) => {
+  const response = useAmlifyApi(username);
+  const countRecords: CountRecord[] = JSON.parse(response?.PushUps || "[]");
   if (!countRecords) {
     return null;
   }
@@ -191,10 +194,19 @@ const CounterDashboard = () => {
         }}
       >
         <Card withPadding={false}>
-          <NavigationLinkListItem to={"Counter"} from={"CounterDashboard"}>
+          <NavigationLinkListItem
+            to={"Counter"}
+            toArgs={[username]}
+            from={"CounterDashboard"}
+            fromArgs={[username]}
+          >
             Counter
           </NavigationLinkListItem>
-          <NavigationLinkListItem to={"Herman"} from={"CounterDashboard"}>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={["Herman"]}
+            from={"CounterDashboard"}
+          >
             starikov.dev
           </NavigationLinkListItem>
         </Card>

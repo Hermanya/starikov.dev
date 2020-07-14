@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
 import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
-import { useCountRecords, CountRecord } from "./useCountRecords";
+import { CountRecord } from "./useCountRecords";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";
 import { API } from "aws-amplify";
+import { useAmlifyApi } from "api/amplify";
 
 const Count = styled.div`
   font-size: 48px;
@@ -25,16 +26,14 @@ const CountCard = styled.div`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const Counter = () => {
+const Counter: React.FC<{ slotArgs: string[] }> = ({
+  slotArgs: [username = "Herman"],
+}) => {
   useNextSlotFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
-  const [countRecords, setCountRecords] = useState<CountRecord[]>([]);
 
-  useEffect(() => {
-    API.get("starikovDev", "/userData/object/Herman", {}).then((response) => {
-      setCountRecords(JSON.parse(response.PushUps || "[]"));
-    });
-  }, []);
+  const response = useAmlifyApi(username);
+  const countRecords: CountRecord[] = JSON.parse(response?.PushUps || "[]");
 
   const average =
     countRecords
@@ -173,7 +172,12 @@ const Counter = () => {
                   timestamp: Date.now(),
                   count: count - 1,
                 };
-                setCountRecords([...countRecords, countRecord]);
+                API.put("starikovDev", "/userData", {
+                  body: {
+                    id: username,
+                    PushUps: JSON.stringify([...countRecords, countRecord]),
+                  },
+                });
                 setCount(0);
               }}
             >
@@ -192,10 +196,19 @@ const Counter = () => {
         }}
       >
         <Card withPadding={false}>
-          <NavigationLinkListItem to={"CounterDashboard"} from={"Counter"}>
+          <NavigationLinkListItem
+            to={"CounterDashboard"}
+            toArgs={[username]}
+            from={"CounterDashboard"}
+            fromArgs={[username]}
+          >
             Counter dashboard
           </NavigationLinkListItem>
-          <NavigationLinkListItem to={"Herman"} from={"Counter"}>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={["Herman"]}
+            from={"Counter"}
+          >
             starikov.dev
           </NavigationLinkListItem>
         </Card>

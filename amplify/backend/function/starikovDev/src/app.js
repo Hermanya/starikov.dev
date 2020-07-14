@@ -168,9 +168,8 @@ app.put(path, function (req, res) {
             TableName: tableName,
             Item: {
               ...data.Item,
-              ...mockData,
-              id: "Herman",
-            }, //req.body,
+              ...req.body,
+            },
           },
           (err, data) => {
             if (err) {

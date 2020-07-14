@@ -121,7 +121,11 @@ export default () => {
         </ExternalLink>
       </p>
       <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
-        <NavigationLinkListItem to={"Herman"} from={"TermsOfService"}>
+        <NavigationLinkListItem
+          to={"Profile"}
+          toArgs={["Herman"]}
+          from={"TermsOfService"}
+        >
           starikov.dev
         </NavigationLinkListItem>
       </Card>

@@ -82,7 +82,11 @@ const Links = () => {
       <Gap />
       <div style={{ flex: 1, justifySelf: "flex-end" }}>
         <Card withPadding={false}>
-          <NavigationLinkListItem to={"Herman"} from={"Links"}>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={["Herman"]}
+            from={"Links"}
+          >
             starikov.dev
           </NavigationLinkListItem>
           <NavigationLinkListItem

@@ -16,8 +16,10 @@ const PageTitle = styled.h1`
   margin: 0;
 `;
 
-const Herman = () => {
-  useNextSlotFor("Links", { from: "Herman" });
+const Profile: React.FC<{ slotArgs: string[] }> = ({
+  slotArgs: [name = "Herman"],
+}) => {
+  useNextSlotFor("Links", { from: "Profile" });
   return (
     <>
       <Gap />
@@ -57,7 +59,7 @@ const Herman = () => {
         <Avatar width={128} />
         <Gap />
 
-        <PageTitle>Herman Starikov</PageTitle>
+        <PageTitle>{name} Starikov</PageTitle>
         <PageTitle
           as="div"
           style={{
@@ -93,14 +95,20 @@ const Herman = () => {
         }}
       >
         <Card withPadding={false}>
-          <NavigationLinkListItem renderIfActive to={"Links"} from={"Herman"}>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"Links"}
+            from={"Profile"}
+            fromArgs={["Herman"]}
+          >
             Links
           </NavigationLinkListItem>
 
           <NavigationLinkListItem
             renderIfActive
             to={"ReactSlotNavigation"}
-            from={"Herman"}
+            from={"Profile"}
+            fromArgs={[name]}
           >
             Slot Navigation
           </NavigationLinkListItem>
@@ -108,16 +116,11 @@ const Herman = () => {
           <NavigationLinkListItem
             renderIfActive
             to={"CounterDashboard"}
-            from={"Herman"}
+            toArgs={[name]}
+            from={"Profile"}
+            fromArgs={[name]}
           >
             Push ups
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"LegRaiseCounterDashboard"}
-            from={"Herman"}
-          >
-            Leg raises
           </NavigationLinkListItem>
         </Card>
       </div>
@@ -126,4 +129,4 @@ const Herman = () => {
   );
 };
 
-export default Herman;
+export default Profile;

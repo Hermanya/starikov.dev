@@ -10,16 +10,11 @@ import NavigationSlot from "components/NavigationSlot";
 import Loading from "components/Loading";
 
 const allSlots = {
-  Herman: React.lazy(() => import("./slots/Herman")),
-  Hannah: React.lazy(() => import("./slots/Hannah")),
+  Profile: React.lazy(() => import("./slots/Profile")),
   Links: React.lazy(() => import("./slots/Links")),
   Counter: React.lazy(() => import("./slots/Counter/Counter")),
   CounterDashboard: React.lazy(() =>
     import("./slots/Counter/CounterDashboard")
-  ),
-  LegRaiseCounter: React.lazy(() => import("./slots/LegRaiseCounter/Counter")),
-  LegRaiseCounterDashboard: React.lazy(() =>
-    import("./slots/LegRaiseCounter/CounterDashboard")
   ),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
@@ -30,7 +25,9 @@ const allSlots = {
 export type SlotName = keyof typeof allSlots;
 type LinkProps = {
   to: SlotName;
+  toArgs?: string[];
   from: SlotName;
+  fromArgs?: string[];
   renderIfActive?: boolean;
 };
 
@@ -54,7 +51,7 @@ export const Root = () => {
 
   return (
     <NavigationProvider
-      startWith={"Herman"}
+      startWith={"Profile"}
       allSlots={allSlots}
       suspenseFallback={Loading}
       slotWidth={slotWidth}
