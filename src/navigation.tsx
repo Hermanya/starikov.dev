@@ -51,7 +51,7 @@ export const Root = () => {
 
   return (
     <NavigationProvider
-      startWith={"Profile"}
+      startWith={"Herman_Profile"}
       allSlots={allSlots}
       suspenseFallback={Loading}
       slotWidth={slotWidth}
@@ -62,7 +62,9 @@ export const Root = () => {
 export const useNextSlotFor = (
   Component: SlotName,
   options: {
+    toArgs?: string[];
     from: SlotName;
+    fromArgs?: string[];
   }
 ): void => _useNextSlotFor(Component, options);
 

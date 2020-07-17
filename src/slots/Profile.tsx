@@ -16,10 +16,8 @@ const PageTitle = styled.h1`
   margin: 0;
 `;
 
-const Profile: React.FC<{ slotArgs: string[] }> = ({
-  slotArgs: [name = "Herman"],
-}) => {
-  useNextSlotFor("Links", { from: "Profile" });
+const Profile: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [name] }) => {
+  useNextSlotFor("Links", { from: "Profile", fromArgs: [name] });
   return (
     <>
       <Gap />
