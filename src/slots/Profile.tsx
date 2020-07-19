@@ -26,7 +26,6 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
   });
   return (
     <>
-      <Gap />
       <section
         style={{
           flex: 1,
@@ -105,7 +104,6 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
           </NavigationLinkListItem>
         </Card>
       </div>
-      <Gap />
     </>
   );
 };
