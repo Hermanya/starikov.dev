@@ -10,6 +10,7 @@ import NavigationSlot from "components/NavigationSlot";
 import Loading from "components/Loading";
 
 const allSlots = {
+  Login: React.lazy(() => import("./slots/Login")),
   Profile: React.lazy(() => import("./slots/Profile")),
   Links: React.lazy(() => import("./slots/Links")),
   Counter: React.lazy(() => import("./slots/Counter/Counter")),

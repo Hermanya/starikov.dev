@@ -16,8 +16,14 @@ const PageTitle = styled.h1`
   margin: 0;
 `;
 
-const Profile: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [name] }) => {
-  useNextSlotFor("Links", { from: "Profile", fromArgs: [name] });
+const Profile: React.FC<{ slotArgs: string[] }> = ({
+  slotArgs: [username],
+}) => {
+  useNextSlotFor("CounterDashboard", {
+    toArgs: [username],
+    from: "Profile",
+    fromArgs: [username],
+  });
   return (
     <>
       <Gap />
@@ -31,33 +37,10 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [name] }) => {
           position: "relative",
         }}
       >
-        {/* <span
-          style={{
-            position: "absolute",
-            top: 80,
-            fontSize: 100,
-            opacity: 0.1,
-            textAlign: "center",
-          }}
-        >
-          Герман
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            top: -20,
-            fontSize: 80,
-            opacity: 0.1,
-            textAlign: "center",
-          }}
-        >
-          Стариков
-        </span> */}
-
         <Avatar width={128} />
         <Gap />
 
-        <PageTitle>{name} Starikov</PageTitle>
+        <PageTitle>{username} Starikov</PageTitle>
         <PageTitle
           as="div"
           style={{
@@ -104,21 +87,21 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [name] }) => {
 
           <NavigationLinkListItem
             renderIfActive
-            to={"ReactSlotNavigation"}
+            to={"CounterDashboard"}
+            toArgs={[username]}
             from={"Profile"}
-            fromArgs={[name]}
+            fromArgs={[username]}
           >
-            Slot Navigation
+            Push ups
           </NavigationLinkListItem>
 
           <NavigationLinkListItem
             renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[name]}
+            to={"ReactSlotNavigation"}
             from={"Profile"}
-            fromArgs={[name]}
+            fromArgs={[username]}
           >
-            Push ups
+            Slot Navigation
           </NavigationLinkListItem>
         </Card>
       </div>

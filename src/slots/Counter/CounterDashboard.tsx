@@ -37,7 +37,7 @@ const Value = styled.div`
 `;
 
 const HistoricalValue = styled(Value)`
-  color: var(--purple);
+  color: var(--blue);
 `;
 
 const Sign = styled(Value)`
@@ -46,7 +46,7 @@ const Sign = styled(Value)`
 `;
 
 const SetValue = styled(Value)`
-  color: var(--pink);
+  color: var(--green);
 `;
 
 const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
@@ -115,7 +115,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
                 autoDrawDuration={500}
                 autoDrawEasing="ease-out"
                 data={countRecordsPerDay.map((_) => _.total)}
-                gradient={["var(--purple)"]}
+                gradient={["var(--blue)"]}
                 radius={10}
                 strokeWidth={2}
                 strokeLinecap={"round"}
@@ -194,14 +194,16 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
         }}
       >
         <Card withPadding={false}>
-          <NavigationLinkListItem
-            to={"Counter"}
-            toArgs={[username]}
-            from={"CounterDashboard"}
-            fromArgs={[username]}
-          >
-            Counter
-          </NavigationLinkListItem>
+          {sessionStorage.login === username && (
+            <NavigationLinkListItem
+              to={"Counter"}
+              toArgs={[username]}
+              from={"CounterDashboard"}
+              fromArgs={[username]}
+            >
+              Counter
+            </NavigationLinkListItem>
+          )}
           <NavigationLinkListItem
             to={"Profile"}
             toArgs={["Herman"]}

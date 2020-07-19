@@ -35,10 +35,11 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
   const response = useAmlifyApi(username);
   const countRecords: CountRecord[] = JSON.parse(response?.PushUps || "[]");
 
+  const last7Days = countRecords.filter(
+    (_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7
+  );
   const average =
-    countRecords
-      .filter((_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7)
-      .reduce((sum, x) => sum + x.count, 0) / countRecords.length;
+    last7Days.reduce((sum, x) => sum + x.count, 0) / last7Days.length;
   const defaultSetTarget = 10;
   const setTarget = countRecords.length
     ? Math.round(average + 1)
@@ -77,10 +78,10 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
         }}
       >
         <div>
-          <div style={{ color: "var(--pink)", textAlign: "center" }}>
+          <div style={{ color: "var(--green)", textAlign: "center" }}>
             {setTarget && `Let's do ${setTarget} push ups in this set`}
           </div>
-          <div style={{ color: "var(--purple)", textAlign: "center" }}>
+          <div style={{ color: "var(--blue)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}
           </div>
         </div>
@@ -105,7 +106,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             }}
           >
             <circle
-              stroke="var(--pink)"
+              stroke="var(--green)"
               strokeWidth="8px"
               fill="transparent"
               r="36"
@@ -115,7 +116,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               opacity="0.25"
             />
             <circle
-              stroke="var(--pink)"
+              stroke="var(--green)"
               strokeWidth="8px"
               strokeDasharray={`${setCirlceCircumference} ${setCirlceCircumference}`}
               fill="transparent"
@@ -133,7 +134,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               }}
             />
             <circle
-              stroke="var(--purple)"
+              stroke="var(--blue)"
               strokeWidth="8px"
               fill="transparent"
               r="46"
@@ -143,7 +144,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               opacity="0.25"
             />
             <circle
-              stroke="var(--purple)"
+              stroke="var(--blue)"
               strokeWidth="8px"
               strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
               fill="transparent"
@@ -208,6 +209,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             to={"Profile"}
             toArgs={["Herman"]}
             from={"Counter"}
+            fromArgs={[username]}
           >
             starikov.dev
           </NavigationLinkListItem>
