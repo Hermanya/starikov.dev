@@ -27,7 +27,6 @@ const SubSection = styled.div`
 const Links = () => {
   return (
     <>
-      <Gap />
       <section
         style={{
           flex: 1,
@@ -105,7 +104,6 @@ const Links = () => {
           </NavigationLinkListItem>
         </Card>
       </div>
-      <Gap />
     </>
   );
 };
