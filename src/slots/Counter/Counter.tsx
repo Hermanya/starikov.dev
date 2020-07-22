@@ -203,10 +203,19 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
           <NavigationLinkListItem
             to={"CounterDashboard"}
             toArgs={[username, countee]}
-            from={"CounterDashboard"}
+            from={"Counter"}
             fromArgs={[username, countee]}
           >
-            Counter dashboard
+            Historical Data
+          </NavigationLinkListItem>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"Counters"}
+            toArgs={[username]}
+            from={"Counter"}
+            fromArgs={[username, countee]}
+          >
+            Counters
           </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}

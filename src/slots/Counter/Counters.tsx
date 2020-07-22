@@ -81,6 +81,15 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
           >
             Squats
           </NavigationLinkListItem>
+          <NavigationLinkListItem
+            renderIfActive
+            to={"CounterDashboard"}
+            toArgs={[username, "LegRaises"]}
+            from={"Counters"}
+            fromArgs={[username]}
+          >
+            Leg Raises
+          </NavigationLinkListItem>
         </Card>
       </div>
       <Gap />
