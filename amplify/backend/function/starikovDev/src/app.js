@@ -13,10 +13,7 @@ if (process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + "-" + process.env.ENV;
 }
 
-const sortKeyName = "";
-const hasSortKey = sortKeyName !== "";
 const path = "/userData";
-const sortKeyPath = hasSortKey ? "/:" + sortKeyName : "";
 // declare a new express app
 var app = express();
 app.use(bodyParser.json());
@@ -36,7 +33,7 @@ app.use(function (req, res, next) {
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + "/object/:id" + sortKeyPath, function (req, res) {
+app.get(path + "/object/:id", function (req, res) {
   dynamodb.get(
     {
       TableName: tableName,
