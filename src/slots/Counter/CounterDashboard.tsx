@@ -92,7 +92,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
       <Gap />
 
       <section style={{ flex: 1 }}>
-        {countRecordsPerDay.length > 2 ? (
+        {countRecordsPerDay.length >= 2 ? (
           <>
             <Card withPadding>
               <Heading>
