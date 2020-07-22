@@ -4,7 +4,7 @@ import Gap from "components/Gap";
 import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
-import { CountRecord } from "./useCountRecords";
+import { CountRecord } from "./CountRecord";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";

@@ -4,7 +4,7 @@ import Gap from "components/Gap";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
 import { Title, Heading } from "components/typography";
-import { CountRecord } from "./useCountRecords";
+import { CountRecord } from "./CountRecord";
 import { useAmlifyApi } from "api/amplify";
 
 // @ts-ignore
