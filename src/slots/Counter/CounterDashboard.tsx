@@ -62,14 +62,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   return (
     <>
       <section style={{ flex: 1 }}>
-        {/* <button
-          onClick={() => {
-            API.put("starikovDev", "/userData", { body: { id: "Herman" } });
-          }}
-        >
-          Put
-        </button> */}
-        <Title>Push up Dashboard</Title>
+        <Title>Push ups</Title>
         <Gap />
         <>
           <Day
@@ -194,7 +187,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
         }}
       >
         <Card withPadding={false}>
-          {sessionStorage.login === username && (
+          {localStorage.login === username && (
             <NavigationLinkListItem
               to={"Counter"}
               toArgs={[username]}

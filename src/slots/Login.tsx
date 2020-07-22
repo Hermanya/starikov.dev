@@ -23,7 +23,7 @@ const Login = () => {
         <Card withPadding>
           <button
             onClick={() => {
-              sessionStorage.login = "Herman";
+              localStorage.login = "Herman";
               alert("hi Herman");
               window.location.href = "/";
             }}
