@@ -40,17 +40,16 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
         <Gap />
 
         <PageTitle>{username} Starikov</PageTitle>
-        <PageTitle
-          as="div"
+        <div
           style={{
-            opacity: 0.25,
-            fontSize: "1rem",
+            color: "var(--gray4)",
+            fontStyle: "italic",
             fontFamily:
               '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
           }}
         >
           Стариков Герман Владимирович
-        </PageTitle>
+        </div>
       </section>
       <Gap />
       <section style={{ flex: 1 }}>

@@ -21,6 +21,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
       >
         <Title>Counters</Title>
         <Gap />
+        <Gap />
         <Heading>Push ups</Heading>
         <Gap />
         <Card withPadding={false}>
