@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Gap from "components/Gap";
-import { NavigationLinkListItem, useNextSlotFor } from "navigation";
+import { NavigationLinkListItem } from "navigation";
 import { InteractiveText } from "components/typography";
 import Card from "components/Card";
-import { CountRecord } from "./CountRecord";
+import { CountRecord } from "./types";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";
 import { API } from "aws-amplify";
 import { useAmlifyApi } from "api/amplify";
+import { camelCaseToTitleCase } from "./utils";
 
 const Count = styled.div`
   font-size: 48px;
@@ -27,13 +28,12 @@ const CountCard = styled.div`
 `;
 
 const Counter: React.FC<{ slotArgs: string[] }> = ({
-  slotArgs: [username = "Herman"],
+  slotArgs: [username, countee],
 }) => {
-  useNextSlotFor("CounterDashboard", { from: "Counter" });
   const [count, setCount] = useState(0);
 
-  const response = useAmlifyApi(username);
-  const countRecords: CountRecord[] = JSON.parse(response?.PushUps || "[]");
+  const response = useAmlifyApi(username, countee);
+  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
 
   const last7Days = countRecords.filter(
     (_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7
@@ -79,7 +79,10 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
       >
         <div>
           <div style={{ color: "var(--green)", textAlign: "center" }}>
-            {setTarget && `Let's do ${setTarget} push ups in this set`}
+            {setTarget &&
+              `Let's do ${setTarget} ${camelCaseToTitleCase(
+                countee
+              )} in this set`}
           </div>
           <div style={{ color: "var(--blue)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}
@@ -176,7 +179,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                 API.put("starikovDev", "/userData", {
                   body: {
                     id: username,
-                    PushUps: JSON.stringify([...countRecords, countRecord]),
+                    [countee]: JSON.stringify([...countRecords, countRecord]),
                   },
                 });
                 setCount(0);
@@ -199,9 +202,9 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"CounterDashboard"}
-            toArgs={[username]}
+            toArgs={[username, countee]}
             from={"CounterDashboard"}
-            fromArgs={[username]}
+            fromArgs={[username, countee]}
           >
             Counter dashboard
           </NavigationLinkListItem>
@@ -209,7 +212,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             to={"Profile"}
             toArgs={["Herman"]}
             from={"Counter"}
-            fromArgs={[username]}
+            fromArgs={[username, countee]}
           >
             starikov.dev
           </NavigationLinkListItem>

@@ -19,7 +19,7 @@ const PageTitle = styled.h1`
 const Profile: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
 }) => {
-  useNextSlotFor("CounterDashboard", {
+  useNextSlotFor("Counters", {
     toArgs: [username],
     from: "Profile",
     fromArgs: [username],
@@ -77,21 +77,21 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
         <Card withPadding={false}>
           <NavigationLinkListItem
             renderIfActive
+            to={"Counters"}
+            toArgs={[username]}
+            from={"Profile"}
+            fromArgs={[username]}
+          >
+            Counters
+          </NavigationLinkListItem>
+
+          <NavigationLinkListItem
+            renderIfActive
             to={"Links"}
             from={"Profile"}
             fromArgs={["Herman"]}
           >
             Links
-          </NavigationLinkListItem>
-
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username]}
-            from={"Profile"}
-            fromArgs={[username]}
-          >
-            Push ups
           </NavigationLinkListItem>
 
           <NavigationLinkListItem

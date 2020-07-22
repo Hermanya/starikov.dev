@@ -4,7 +4,8 @@ import Gap from "components/Gap";
 import { NavigationLinkListItem } from "navigation";
 import Card from "components/Card";
 import { Title, Heading } from "components/typography";
-import { CountRecord } from "./CountRecord";
+import { CountRecord } from "./types";
+import { camelCaseToTitleCase } from "./utils";
 import { useAmlifyApi } from "api/amplify";
 
 // @ts-ignore
@@ -50,10 +51,10 @@ const SetValue = styled(Value)`
 `;
 
 const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
-  slotArgs: [username = "Herman"],
+  slotArgs: [username, countee],
 }) => {
-  const response = useAmlifyApi(username);
-  const countRecords: CountRecord[] = JSON.parse(response?.PushUps || "[]");
+  const response = useAmlifyApi(username, countee);
+  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
   if (!countRecords) {
     return null;
   }
@@ -62,7 +63,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   return (
     <>
       <section style={{ flex: 1 }}>
-        <Title>Push ups</Title>
+        <Title>{camelCaseToTitleCase(countee)}</Title>
         <Gap />
         <>
           <Day
@@ -190,9 +191,9 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
           {localStorage.login === username && (
             <NavigationLinkListItem
               to={"Counter"}
-              toArgs={[username]}
+              toArgs={[username, countee]}
               from={"CounterDashboard"}
-              fromArgs={[username]}
+              fromArgs={[username, countee]}
             >
               Counter
             </NavigationLinkListItem>
@@ -201,6 +202,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
             to={"Profile"}
             toArgs={["Herman"]}
             from={"CounterDashboard"}
+            fromArgs={[username, countee]}
           >
             starikov.dev
           </NavigationLinkListItem>

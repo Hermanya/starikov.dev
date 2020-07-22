@@ -2,7 +2,7 @@ import { useSuspense } from "use-suspense-today";
 import { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 
-export const useAmlifyApi = (login: string) => {
+export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
   const [suspended, setSuspended] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
   useEffect(() => {
