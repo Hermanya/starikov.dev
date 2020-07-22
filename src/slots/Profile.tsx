@@ -42,7 +42,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
         <PageTitle>{username} Starikov</PageTitle>
         <div
           style={{
-            color: "var(--gray4)",
+            color: "var(--gray2)",
             fontStyle: "italic",
             fontFamily:
               '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',

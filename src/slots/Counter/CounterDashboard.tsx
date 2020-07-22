@@ -204,7 +204,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
             from={"CounterDashboard"}
             fromArgs={[username, countee]}
           >
-            Counters
+            Other Counters
           </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}
