@@ -42,7 +42,7 @@ const Links = () => {
           <Heading>Contact</Heading>
           <Gap />
           <Flex>
-            <Link href="mailto:hermanstarikov@gmail.com">Email</Link>
+            <Link href="mailto:herman@starikov.dev">Email</Link>
             <Gap />
             <Link href="https://linkedin.com/in/hermanstarikov">LinkedIn</Link>
             <Gap />

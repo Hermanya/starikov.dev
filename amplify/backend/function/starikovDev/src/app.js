@@ -34,13 +34,17 @@ app.use(function (req, res, next) {
  *****************************************/
 
 app.get(path + "/object/:id", function (req, res) {
+  const { ProjectionExpression } = req.query;
   dynamodb.get(
     {
       TableName: tableName,
       Key: {
         id: req.params.id,
       },
-      ProjectionExpression: req.params.ProjectionExpression,
+      ProjectionExpression:
+        typeof ProjectionExpression === "string"
+          ? ProjectionExpression
+          : undefined,
     },
     (err, data) => {
       if (err) {

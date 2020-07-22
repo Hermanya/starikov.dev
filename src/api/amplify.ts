@@ -6,14 +6,16 @@ export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
   const [suspended, setSuspended] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
   useEffect(() => {
-    const promise = API.get("starikovDev", `/userData/object/${login}`, {});
+    const promise = API.get("starikovDev", `/userData/object/${login}`, {
+      queryStringParameters: { ProjectionExpression },
+    });
 
     promise.then((response) => {
       setData(response);
       setSuspended(false);
     });
     setSuspended(true);
-  }, [login]);
+  }, [ProjectionExpression, login]);
 
   useSuspense(suspended);
 

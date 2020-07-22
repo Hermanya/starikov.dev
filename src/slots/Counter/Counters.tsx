@@ -59,7 +59,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
           flex: 1,
         }}
       >
-        <Heading>Other</Heading>
+        <Heading>Other exercises</Heading>
         <Gap />
 
         <Card withPadding={false}>

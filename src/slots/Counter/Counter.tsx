@@ -84,7 +84,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                 countee
               )} in this set`}
           </div>
-          <div style={{ color: "var(--blue)", textAlign: "center" }}>
+          <div style={{ color: "var(--indigo)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}
           </div>
         </div>
@@ -137,7 +137,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               }}
             />
             <circle
-              stroke="var(--blue)"
+              stroke="var(--indigo)"
               strokeWidth="8px"
               fill="transparent"
               r="46"
@@ -147,7 +147,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               opacity="0.25"
             />
             <circle
-              stroke="var(--blue)"
+              stroke="var(--indigo)"
               strokeWidth="8px"
               strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
               fill="transparent"

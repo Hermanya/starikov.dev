@@ -38,7 +38,7 @@ const Value = styled.div`
 `;
 
 const HistoricalValue = styled(Value)`
-  color: var(--blue);
+  color: var(--indigo);
 `;
 
 const Sign = styled(Value)`
@@ -109,7 +109,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
                 autoDrawDuration={500}
                 autoDrawEasing="ease-out"
                 data={countRecordsPerDay.map((_) => _.total)}
-                gradient={["var(--blue)"]}
+                gradient={["var(--indigo)"]}
                 radius={10}
                 strokeWidth={2}
                 strokeLinecap={"round"}
@@ -198,6 +198,14 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
               Counter
             </NavigationLinkListItem>
           )}
+          <NavigationLinkListItem
+            to={"Counters"}
+            toArgs={[username]}
+            from={"CounterDashboard"}
+            fromArgs={[username, countee]}
+          >
+            Counters
+          </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}
             toArgs={["Herman"]}
