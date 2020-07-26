@@ -106,7 +106,7 @@ app.put(path, function (req, res) {
   );
 });
 
-app.put("/login", function (req, res) {
+app.put(path + "/login", function (req, res) {
   const { username, password } = req.body;
   dynamodb.get(
     {

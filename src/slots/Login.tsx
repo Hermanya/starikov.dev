@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Title } from "../components/typography";
 import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
 import { Card } from "exports";
+import { API } from "aws-amplify";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const onSubmit = useCallback(() => {
+    API.put("starikovDev", "/userData/login", {
+      body: {
+        username,
+        password,
+      },
+    });
+  }, [password, username]);
   return (
     <>
       <Gap />
@@ -33,15 +42,7 @@ const Login = () => {
             onChange={(event) => setPassword(event.target.value)}
             value={password}
           />
-          <button
-            onClick={() => {
-              localStorage.login = "Herman";
-              alert("hi Herman");
-              window.location.href = "/";
-            }}
-          >
-            Let's go
-          </button>
+          <button onClick={onSubmit}>Let's go</button>
         </Card>
       </section>
       <Gap />
