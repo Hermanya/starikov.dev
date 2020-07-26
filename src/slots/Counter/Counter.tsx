@@ -8,7 +8,6 @@ import { CountRecord } from "./types";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";
-import { API } from "aws-amplify";
 import { useAmlifyApi } from "api/amplify";
 import { camelCaseToTitleCase } from "./utils";
 
@@ -32,7 +31,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
 }) => {
   const [count, setCount] = useState(0);
 
-  const response = useAmlifyApi(username, countee);
+  const [response, updateData] = useAmlifyApi(username, countee);
   const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
 
   const last7Days = countRecords.filter(
@@ -176,11 +175,8 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                   timestamp: Date.now(),
                   count: count - 1,
                 };
-                API.put("starikovDev", "/userData", {
-                  body: {
-                    id: username,
-                    [countee]: JSON.stringify([...countRecords, countRecord]),
-                  },
+                updateData({
+                  [countee]: JSON.stringify([...countRecords, countRecord]),
                 });
                 setCount(0);
               }}
@@ -209,7 +205,6 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             Historical Data
           </NavigationLinkListItem>
           <NavigationLinkListItem
-            renderIfActive
             to={"Counters"}
             toArgs={[username]}
             from={"Counter"}

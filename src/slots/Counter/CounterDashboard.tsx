@@ -53,12 +53,11 @@ const SetValue = styled(Value)`
 const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username, countee],
 }) => {
-  const response = useAmlifyApi(username, countee);
-  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
-  if (!countRecords) {
+  const [response] = useAmlifyApi(username, countee);
+  if (!response) {
     return null;
   }
-
+  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
   const countRecordsPerDay = perDay(countRecords);
   return (
     <>

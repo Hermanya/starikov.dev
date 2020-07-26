@@ -1,5 +1,5 @@
 import { useSuspense } from "use-suspense-today";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { API } from "aws-amplify";
 
 export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
@@ -19,5 +19,21 @@ export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
 
   useSuspense(suspended);
 
-  return data;
+  const updateData = useCallback(
+    (newData) => {
+      API.put("starikovDev", "/userData", {
+        body: {
+          id: login,
+          ...newData,
+        },
+      });
+      setData({
+        ...data,
+        ...newData,
+      });
+    },
+    [data, login]
+  );
+
+  return [data, updateData];
 };
