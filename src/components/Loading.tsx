@@ -11,7 +11,7 @@ const Container = styled.div`
 
 // const Loading = () => <Container>Loading</Container>;
 
-const spinning = keyframes`
+const opacityAnimation = keyframes`
   
     0% {
       opacity: 1;
@@ -22,7 +22,7 @@ const spinning = keyframes`
   
 `;
 
-const Spinner = styled.div`
+const IosLookingSpinner = styled.div`
   display: inline-block;
   position: relative;
   width: 80px;
@@ -30,7 +30,7 @@ const Spinner = styled.div`
 
   div {
     transform-origin: 40px 40px;
-    animation: ${spinning} 1.2s linear infinite;
+    animation: ${opacityAnimation} 1.2s linear infinite;
   }
   div:after {
     content: " ";
@@ -94,9 +94,9 @@ const Spinner = styled.div`
   }
 `;
 
-const Loading = () => (
+const IosLoader = () => (
   <Container>
-    <Spinner>
+    <IosLookingSpinner>
       <div></div>
       <div></div>
       <div></div>
@@ -109,8 +109,157 @@ const Loading = () => (
       <div></div>
       <div></div>
       <div></div>
-    </Spinner>
+    </IosLookingSpinner>
   </Container>
 );
+
+const spinningAnimation = keyframes`
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  
+`;
+
+const AndroidLookingSpinner = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  opacity: 0.25;
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid var(--text);
+    border-radius: 50%;
+    animation: ${spinningAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: var(--text) transparent transparent transparent;
+  }
+  div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+`;
+
+const AndroidLookingLoader = () => (
+  <Container>
+    <AndroidLookingSpinner>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </AndroidLookingSpinner>
+  </Container>
+);
+
+const EdgeLookingSpinner = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  opacity: 0.25;
+  div {
+    animation: ${spinningAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text);
+    margin: -4px 0 0 -4px;
+  }
+  div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+`;
+
+const EdgeLookingLoader = () => (
+  <Container>
+    <EdgeLookingSpinner>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </EdgeLookingSpinner>
+  </Container>
+);
+
+const Loading = navigator.userAgent.match(/Edg/)
+  ? EdgeLookingLoader
+  : navigator.userAgent.match(/Chrome/)
+  ? AndroidLookingLoader
+  : IosLoader;
 
 export default Loading;
