@@ -208,7 +208,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             from={"Counter"}
             fromArgs={[username, countee]}
           >
-            Historical Data
+            Historical Data for {camelCaseToTitleCase(countee)}
           </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Counters"}
@@ -216,15 +216,15 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
             from={"Counter"}
             fromArgs={[username, countee]}
           >
-            Counters
+            Other Counters
           </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}
-            toArgs={["Herman"]}
+            toArgs={[username]}
             from={"Counter"}
             fromArgs={[username, countee]}
           >
-            starikov.dev
+            More from {username}
           </NavigationLinkListItem>
         </Card>
       </section>

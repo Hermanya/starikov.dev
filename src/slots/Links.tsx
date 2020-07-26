@@ -4,7 +4,8 @@ import { Title, Heading } from "../components/typography";
 import ExternalLink from "components/ExternalLink";
 import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
-import { Card } from "exports";
+import { Card, NavigationLinkListItem as LinkListItem } from "exports";
+import { camelCaseToTitleCase } from "./Counter/utils";
 
 const Link = styled(ExternalLink)`
   display: block;
@@ -24,32 +25,84 @@ const SubSection = styled.div`
   }
 `;
 
+type linkType = {
+  url: string;
+  name: string;
+  group: string;
+};
+
+type Group = {
+  name: string;
+  items: linkType[];
+};
+
+const links: linkType[] = [
+  {
+    url: "mailto:herman@starikov.dev",
+    name: "Email",
+    group: "Contact",
+  },
+  {
+    url: "https://linkedin.com/in/hermanstarikov",
+    name: "LinkedIn",
+    group: "Contact",
+  },
+  {
+    url: "https://m.me/hermanhasawish",
+    name: "Messenger",
+    group: "Contact",
+  },
+  {
+    url: "http://t.me/hermanya",
+    name: "Telegram",
+    group: "Contact",
+  },
+];
+
 const Links = () => {
   return (
     <>
       <section
         style={{
           flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
         }}
       >
-        <Title>Links</Title>
-        <Gap />
-        <Card withPadding>
-          <Heading>Contact</Heading>
-          <Gap />
-          <Flex>
-            <Link href="mailto:herman@starikov.dev">Email</Link>
-            <Gap />
-            <Link href="https://linkedin.com/in/hermanstarikov">LinkedIn</Link>
-            <Gap />
-            <Link href="https://m.me/hermanhasawish">Messenger</Link>
-            <Gap />
-            <Link href="http://t.me/hermanya">Telegram</Link>
-          </Flex>
-        </Card>
+        <Title>Herman's Links</Title>
+        {links
+          .reduce((groups, item) => {
+            let group = groups.find((_) => _.name === item.group);
+            if (group) {
+              group.items.push(item);
+              return groups;
+            } else {
+              group = {
+                name: item.group,
+                items: [item],
+              };
+              return groups.concat(group);
+            }
+          }, [] as Group[])
+          .map((group) => {
+            return (
+              <div key={group.name}>
+                <Gap />
+                <Gap />
+                <Heading>{camelCaseToTitleCase(group.name)}</Heading>
+                <Gap />
+                <Card withPadding={false}>
+                  {group.items.map((link) => (
+                    <LinkListItem
+                      href={link.url}
+                      key={link.name}
+                      target="_blank"
+                    >
+                      {link.name}
+                    </LinkListItem>
+                  ))}
+                </Card>
+              </div>
+            );
+          })}
       </section>
       <Gap />
       <section style={{ flex: 1 }}>

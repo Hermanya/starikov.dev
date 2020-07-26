@@ -196,7 +196,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
               from={"CounterDashboard"}
               fromArgs={[username, countee]}
             >
-              Counter
+              {camelCaseToTitleCase(countee)} Counter
             </NavigationLinkListItem>
           )}
           <NavigationLinkListItem
@@ -209,11 +209,11 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
           </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}
-            toArgs={["Herman"]}
+            toArgs={[username]}
             from={"CounterDashboard"}
             fromArgs={[username, countee]}
           >
-            starikov.dev
+            More from {username}
           </NavigationLinkListItem>
         </Card>
       </div>

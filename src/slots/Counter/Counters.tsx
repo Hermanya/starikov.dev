@@ -44,7 +44,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
           }, [] as Group[])
           .map((group) => {
             return (
-              <div>
+              <div key={group.name}>
                 <Gap />
                 <Gap />
                 <Heading>{camelCaseToTitleCase(group.name)}</Heading>
@@ -53,13 +53,16 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
                   {group.counters.map((counter) => (
                     <NavigationLinkListItem
                       renderIfActive
+                      key={counter.name}
                       to={"CounterDashboard"}
                       toArgs={[username, counter.name]}
                       from={"Counters"}
                       fromArgs={[username]}
                     >
-                      {counter.lastUpdatedAt &&
-                      Date.now() - counter.lastUpdatedAt < 1000 * 60 * 30 ? (
+                      {localStorage.login === username &&
+                      counter.lastUpdatedAt &&
+                      Date.now() - counter.lastUpdatedAt <
+                        1000 * 60 * 60 * 4 ? (
                         <span>
                           {"☑️"}&nbsp;&nbsp;{" "}
                           {camelCaseToTitleCase(counter.name)}
@@ -85,11 +88,11 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"Profile"}
-            toArgs={["Herman"]}
+            toArgs={[username]}
             from={"Counters"}
             fromArgs={[username]}
           >
-            More about Herman
+            More from Herman
           </NavigationLinkListItem>
         </Card>
       </div>
