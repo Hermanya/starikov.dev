@@ -3,6 +3,9 @@ import { NavigationLinkListItem, useNextSlotFor } from "navigation";
 import { Heading, Title } from "components/typography";
 import Card from "components/Card";
 import Gap from "components/Gap";
+import { useAmlifyApi } from "api/amplify";
+import { camelCaseToTitleCase } from "./utils";
+import { Counter, Group } from "./types";
 
 const Counters: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
@@ -12,88 +15,68 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
     from: "Counters",
     fromArgs: [username],
   });
+  const [response] = useAmlifyApi(username, "Counters");
+  const counters: Counter[] = response?.Counters;
+  if (!counters) {
+    return null;
+  }
   return (
     <>
       <section
         style={{
-          flex: 1,
+          flex: 2,
         }}
       >
-        <Title>Counters</Title>
-        <Gap />
-        <Gap />
-        <Heading>Push ups</Heading>
-        <Gap />
-        <Card withPadding={false}>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "PushUps"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Push ups
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "DeclinePushUps"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Decline Push ups
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "DiamondPushUps"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Diamond Push ups
-          </NavigationLinkListItem>
-        </Card>
+        <Title>{username}'s Counters</Title>
+        {counters
+          .reduce((groups, counter) => {
+            let group = groups.find((_) => _.name === counter.group);
+            if (group) {
+              group.counters.push(counter);
+              return groups;
+            } else {
+              group = {
+                name: counter.group,
+                counters: [counter],
+              };
+              return groups.concat(group);
+            }
+          }, [] as Group[])
+          .map((group) => {
+            return (
+              <div>
+                <Gap />
+                <Gap />
+                <Heading>{camelCaseToTitleCase(group.name)}</Heading>
+                <Gap />
+                <Card withPadding={false}>
+                  {group.counters.map((counter) => (
+                    <NavigationLinkListItem
+                      renderIfActive
+                      to={"CounterDashboard"}
+                      toArgs={[username, counter.name]}
+                      from={"Counters"}
+                      fromArgs={[username]}
+                    >
+                      {counter.lastUpdatedAt &&
+                      Date.now() - counter.lastUpdatedAt < 1000 * 60 * 30 ? (
+                        <span>
+                          {"☑️"}&nbsp;&nbsp;{" "}
+                          {camelCaseToTitleCase(counter.name)}
+                        </span>
+                      ) : (
+                        <span>{camelCaseToTitleCase(counter.name)}</span>
+                      )}
+                    </NavigationLinkListItem>
+                  ))}
+                </Card>
+              </div>
+            );
+          })}
       </section>
-      <Gap />
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
-        <Heading>Other exercises</Heading>
-        <Gap />
 
-        <Card withPadding={false}>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "SitUps"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Sit Ups
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "Squats"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Squats
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"CounterDashboard"}
-            toArgs={[username, "LegRaises"]}
-            from={"Counters"}
-            fromArgs={[username]}
-          >
-            Leg Raises
-          </NavigationLinkListItem>
-        </Card>
-      </div>
       <Gap />
+
       <div
         style={{
           flex: 1,
@@ -106,7 +89,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
             from={"Counters"}
             fromArgs={[username]}
           >
-            starikov.dev
+            More about Herman
           </NavigationLinkListItem>
         </Card>
       </div>

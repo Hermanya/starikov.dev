@@ -62,7 +62,9 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   return (
     <>
       <section style={{ flex: 1 }}>
-        <Title>{camelCaseToTitleCase(countee)}</Title>
+        <Title>
+          {username}'s {camelCaseToTitleCase(countee)}
+        </Title>
         <Gap />
         <>
           <Day
