@@ -139,7 +139,7 @@ const Links = () => {
             toArgs={["Herman"]}
             from={"Links"}
           >
-            starikov.dev
+            More from Herman
           </NavigationLinkListItem>
           <NavigationLinkListItem
             renderIfActive

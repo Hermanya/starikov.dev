@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Title } from "../components/typography";
 import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
 import { Card } from "exports";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <>
       <Gap />
@@ -21,6 +23,16 @@ const Login = () => {
       <Gap />
       <section style={{ flex: 1 }}>
         <Card withPadding>
+          <input
+            placeholder="username"
+            onChange={(event) => setUsername(event.target.value)}
+            value={username}
+          />
+          <input
+            placeholder="password"
+            onChange={(event) => setPassword(event.target.value)}
+            value={password}
+          />
           <button
             onClick={() => {
               localStorage.login = "Herman";

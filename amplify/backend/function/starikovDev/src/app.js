@@ -3,6 +3,7 @@ const AWS = require("aws-sdk");
 var awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
 var bodyParser = require("body-parser");
 var express = require("express");
+const crypto = require("crypto");
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -100,6 +101,66 @@ app.put(path, function (req, res) {
             }
           }
         );
+      }
+    }
+  );
+});
+
+app.put("/login", function (req, res) {
+  const { username, password } = req.body;
+  dynamodb.get(
+    {
+      TableName: tableName,
+      Key: {
+        id: username,
+      },
+      ProjectionExpression: "PasswordHash",
+    },
+    (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.json({ error: "Could not load items: " + err.message });
+      } else {
+        const { PasswordHash } = data.Item;
+        console.log("sallt", process.env.SALT);
+        crypto.scrypt(password, process.env.SALT, 64, (err, derivedKey) => {
+          if (err) throw err;
+          const hash = derivedKey.toString("hex");
+
+          if (PasswordHash) {
+            if (PasswordHash === hash) {
+              res.cookie("Auth", hash);
+              res.statusCode = 200;
+              res.json({ error: "Logged in" });
+            } else {
+              res.statusCode = 401;
+              res.json({ error: "Invalid login or password" });
+            }
+          } else {
+            res.cookie("Auth", hash);
+            dynamodb.put(
+              {
+                TableName: tableName,
+                Item: {
+                  ...data.Item,
+                  PasswordHash: hash,
+                },
+              },
+              (err, data) => {
+                if (err) {
+                  res.statusCode = 500;
+                  res.json({ error: err, url: req.url, body: req.body });
+                } else {
+                  res.json({
+                    success: "Registered and logged in",
+                    url: req.url,
+                    data: data,
+                  });
+                }
+              }
+            );
+          }
+        });
       }
     }
   );
