@@ -108,63 +108,63 @@ app.put(path, function (req, res) {
 });
 
 app.put(path + "/login", function (req, res) {
-  const { username, password } = req.body;
-  dynamodb.get(
+  // const { username, password } = req.body;
+  // dynamodb.get(
+  //   {
+  //     TableName: tableName,
+  //     Key: {
+  //       id: username,
+  //     },
+  //   },
+  //   (err, data) => {
+  //     if (err) {
+  //       res.statusCode = 500;
+  //       res.json({ error: "Could not load items: " + err.message });
+  //     } else {
+  //       const { PasswordHash } = data.Item ?? {};
+  //       crypto.scrypt(password, process.env.SALT, 64, (err, derivedKey) => {
+  //         if (err) throw err;
+  //         const hash = derivedKey.toString("hex");
+
+  //         if (PasswordHash) {
+  //           if (PasswordHash === hash) {
+  //             res.cookie("Auth", hash);
+  //             res.statusCode = 200;
+  //             res.json({ error: "Logged in" });
+  //           } else {
+  //             res.statusCode = 401;
+  //             res.json({ error: "Invalid login or password" });
+  //           }
+  //         } else {
+  //           res.cookie("Auth", hash);
+  dynamodb.put(
     {
       TableName: tableName,
-      Key: {
-        id: username,
+      Item: {
+        // id: username,
+        ...mock,
+        // ...data.Item,
+        // PasswordHash: hash,
       },
     },
     (err, data) => {
       if (err) {
         res.statusCode = 500;
-        res.json({ error: "Could not load items: " + err.message });
+        res.json({ error: err, url: req.url, body: req.body });
       } else {
-        const { PasswordHash } = data.Item ?? {};
-        crypto.scrypt(password, process.env.SALT, 64, (err, derivedKey) => {
-          if (err) throw err;
-          const hash = derivedKey.toString("hex");
-
-          if (PasswordHash) {
-            if (PasswordHash === hash) {
-              res.cookie("Auth", hash);
-              res.statusCode = 200;
-              res.json({ error: "Logged in" });
-            } else {
-              res.statusCode = 401;
-              res.json({ error: "Invalid login or password" });
-            }
-          } else {
-            res.cookie("Auth", hash);
-            dynamodb.put(
-              {
-                TableName: tableName,
-                Item: {
-                  id: username,
-                  ...mock,
-                  ...data.Item,
-                  PasswordHash: hash,
-                },
-              },
-              (err, data) => {
-                if (err) {
-                  res.statusCode = 500;
-                  res.json({ error: err, url: req.url, body: req.body });
-                } else {
-                  res.json({
-                    success: "Registered and logged in",
-                    url: req.url,
-                    data: data,
-                  });
-                }
-              }
-            );
-          }
+        res.json({
+          success: "Registered and logged in",
+          url: req.url,
+          data: data,
         });
       }
     }
   );
+  // }
+  //       });
+  //     }
+  // }
+  // );
 });
 
 app.listen(3000, function () {
