@@ -4,6 +4,7 @@ var awsServerlessExpressMiddleware = require("aws-serverless-express/middleware"
 var bodyParser = require("body-parser");
 var express = require("express");
 const crypto = require("crypto");
+const mock = require("./mock");
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -114,7 +115,6 @@ app.put(path + "/login", function (req, res) {
       Key: {
         id: username,
       },
-      ProjectionExpression: "PasswordHash",
     },
     (err, data) => {
       if (err) {
@@ -122,7 +122,6 @@ app.put(path + "/login", function (req, res) {
         res.json({ error: "Could not load items: " + err.message });
       } else {
         const { PasswordHash } = data.Item;
-        console.log("sallt", process.env.SALT);
         crypto.scrypt(password, process.env.SALT, 64, (err, derivedKey) => {
           if (err) throw err;
           const hash = derivedKey.toString("hex");
@@ -143,6 +142,7 @@ app.put(path + "/login", function (req, res) {
                 TableName: tableName,
                 Item: {
                   id: username,
+                  ...mock,
                   ...data.Item,
                   PasswordHash: hash,
                 },
