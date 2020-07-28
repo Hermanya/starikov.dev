@@ -176,7 +176,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                   count: count - 1,
                 };
                 updateData({
-                  [countee]: JSON.stringify([...countRecords, countRecord]),
+                  [countee]: [...countRecords, countRecord],
                   Counters: counters.map((counter) => {
                     if (counter.name === countee) {
                       counter.lastUpdatedAt = Date.now();

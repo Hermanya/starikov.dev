@@ -128,7 +128,7 @@ app.put(path + "/login", function (req, res) {
 
   //         if (PasswordHash) {
   //           if (PasswordHash === hash) {
-  //             res.cookie("Auth", hash);
+  //             res.cookie("Auth", hash , { maxAge: 900000, httpOnly: true });
   //             res.statusCode = 200;
   //             res.json({ error: "Logged in" });
   //           } else {
@@ -136,7 +136,7 @@ app.put(path + "/login", function (req, res) {
   //             res.json({ error: "Invalid login or password" });
   //           }
   //         } else {
-  //           res.cookie("Auth", hash);
+  //           res.cookie("Auth", hash, { maxAge: 900000, httpOnly: true });
   dynamodb.put(
     {
       TableName: tableName,
@@ -150,7 +150,11 @@ app.put(path + "/login", function (req, res) {
     (err, data) => {
       if (err) {
         res.statusCode = 500;
-        res.json({ error: err, url: req.url, body: req.body });
+        res.json({
+          error: err,
+          url: req.url,
+          body: req.body,
+        });
       } else {
         res.json({
           success: "Registered and logged in",
