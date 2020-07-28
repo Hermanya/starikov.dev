@@ -32,7 +32,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
   const [count, setCount] = useState(0);
 
   const [response, updateData] = useAmlifyApi(username, `${countee}, Counters`);
-  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
+  const countRecords: CountRecord[] = response?.[countee] || [];
   const counters: CounterType[] = response?.Counters;
   const last7Days = countRecords.filter(
     (_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7

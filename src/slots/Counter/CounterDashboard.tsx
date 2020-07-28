@@ -57,7 +57,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   if (!response) {
     return null;
   }
-  const countRecords: CountRecord[] = JSON.parse(response?.[countee] || "[]");
+  const countRecords: CountRecord[] = response?.[countee] || [];
   const countRecordsPerDay = perDay(countRecords);
   return (
     <>
