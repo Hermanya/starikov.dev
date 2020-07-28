@@ -142,6 +142,7 @@ app.put(path + "/login", function (req, res) {
               {
                 TableName: tableName,
                 Item: {
+                  id: username,
                   ...data.Item,
                   PasswordHash: hash,
                 },
