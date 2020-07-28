@@ -121,7 +121,7 @@ app.put(path + "/login", function (req, res) {
         res.statusCode = 500;
         res.json({ error: "Could not load items: " + err.message });
       } else {
-        const { PasswordHash } = data.Item;
+        const { PasswordHash } = data.Item ?? {};
         crypto.scrypt(password, process.env.SALT, 64, (err, derivedKey) => {
           if (err) throw err;
           const hash = derivedKey.toString("hex");
