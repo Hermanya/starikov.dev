@@ -189,7 +189,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
         }}
       >
         <Card withPadding={false}>
-          {localStorage.login === username && (
+          {localStorage.Login === username && (
             <NavigationLinkListItem
               to={"Counter"}
               toArgs={[username, countee]}

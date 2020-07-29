@@ -25,6 +25,7 @@ export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
         body: {
           id: login,
           ...newData,
+          AccessKey: localStorage.AccessKey,
         },
       });
       setData({

@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "starikovdev-production-20190910220828-deployment",
-					"S3Key": "amplify-builds/starikovDev-544e75494666734a5073-build.zip"
+					"S3Key": "amplify-builds/starikovDev-376f6d464e7061384867-build.zip"
 				}
 			}
 		},

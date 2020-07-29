@@ -59,7 +59,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
                       from={"Counters"}
                       fromArgs={[username]}
                     >
-                      {localStorage.login === username &&
+                      {localStorage.Login === username &&
                       counter.lastUpdatedAt &&
                       Date.now() - counter.lastUpdatedAt <
                         1000 * 60 * 60 * 3 ? (

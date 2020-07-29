@@ -6,7 +6,7 @@ import { Card } from "exports";
 import { API } from "aws-amplify";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(localStorage.Login || "");
   const [password, setPassword] = useState("");
   const onSubmit = useCallback(() => {
     API.put("starikovDev", "/userData/login", {
@@ -14,6 +14,9 @@ const Login = () => {
         username,
         password,
       },
+    }).then((response) => {
+      localStorage.AccessKey = response.AccessKey;
+      localStorage.Login = username;
     });
   }, [password, username]);
   return (
