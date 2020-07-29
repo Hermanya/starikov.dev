@@ -53,6 +53,7 @@ app.get(path + "/object/:id", function (req, res) {
         res.json({ error: "Could not load items: " + err.message });
       } else {
         if (data.Item) {
+          data.Item.AccessKey = undefined;
           res.json(data.Item);
         } else {
           res.json(data);
