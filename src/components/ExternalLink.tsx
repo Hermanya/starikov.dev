@@ -4,7 +4,7 @@ const ExternalLink = styled.a`
   color: var(--blue);
   text-decoration: none;
   &:visited {
-    color: var(--purple);
+    color: var(--blue);
   }
   &:hover,
   &:focus {

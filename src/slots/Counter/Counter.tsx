@@ -54,8 +54,8 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
     ? dayCircleRadius * 2 * Math.PI
     : 0;
 
-  const dayTarget = Number.isFinite(maxRepsPerDay(countRecords))
-    ? maxRepsPerDay(countRecords)
+  const dayTarget = Number.isFinite(maxRepsPerDay(last7Days))
+    ? maxRepsPerDay(last7Days)
     : 100;
   const dayTotal = todaysTotal(countRecords);
 
@@ -83,7 +83,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                 countee
               )} in this set`}
           </div>
-          <div style={{ color: "var(--indigo)", textAlign: "center" }}>
+          <div style={{ color: "var(--blue)", textAlign: "center" }}>
             {dayTarget && `targetting ${dayTarget} by the end of day`}
           </div>
         </div>
@@ -136,7 +136,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               }}
             />
             <circle
-              stroke="var(--indigo)"
+              stroke="var(--blue)"
               strokeWidth="8px"
               fill="transparent"
               r="46"
@@ -146,7 +146,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
               opacity="0.25"
             />
             <circle
-              stroke="var(--indigo)"
+              stroke="var(--blue)"
               strokeWidth="8px"
               strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
               fill="transparent"

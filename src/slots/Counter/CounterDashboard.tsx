@@ -38,7 +38,7 @@ const Value = styled.div`
 `;
 
 const HistoricalValue = styled(Value)`
-  color: var(--indigo);
+  color: var(--blue);
 `;
 
 const Sign = styled(Value)`
@@ -110,7 +110,7 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
                 autoDrawDuration={500}
                 autoDrawEasing="ease-out"
                 data={countRecordsPerDay.map((_) => _.total)}
-                gradient={["var(--indigo)"]}
+                gradient={["var(--blue)"]}
                 radius={10}
                 strokeWidth={2}
                 strokeLinecap={"round"}

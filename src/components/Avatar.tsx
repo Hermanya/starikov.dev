@@ -18,7 +18,7 @@ const Me = styled.div<{ width: number }>`
 
   @media (prefers-color-scheme: dark) {
     filter: brightness(0.85);
-    background-image: linear-gradient(0deg, var(--red) 0%, var(--purple) 100%);
+    background-image: linear-gradient(0deg, var(--red) 0%, var(--blue) 100%);
   }
 `;
 
