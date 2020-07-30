@@ -13,6 +13,7 @@ const allSlots = {
   Login: React.lazy(() => import("./slots/Login")),
   Profile: React.lazy(() => import("./slots/Profile")),
   Links: React.lazy(() => import("./slots/Links")),
+  Notes: React.lazy(() => import("./slots/Notes")),
   Counter: React.lazy(() => import("./slots/Counter/Counter")),
   Counters: React.lazy(() => import("./slots/Counter/Counters")),
   CounterDashboard: React.lazy(() =>

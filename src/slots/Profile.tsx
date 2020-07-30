@@ -86,9 +86,19 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
 
           <NavigationLinkListItem
             renderIfActive
+            to={"Notes"}
+            toArgs={[username]}
+            from={"Profile"}
+            fromArgs={[username]}
+          >
+            Notes
+          </NavigationLinkListItem>
+
+          <NavigationLinkListItem
+            renderIfActive
             to={"Links"}
             from={"Profile"}
-            fromArgs={["Herman"]}
+            fromArgs={[username]}
           >
             Links
           </NavigationLinkListItem>
