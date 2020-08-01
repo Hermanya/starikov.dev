@@ -44,7 +44,6 @@ const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             }}
           >
             <Gap />
-
             <input
               placeholder="Note"
               onChange={(event) => setNoteText(event.target.value)}

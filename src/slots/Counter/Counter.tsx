@@ -32,6 +32,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
   const [count, setCount] = useState(0);
 
   const [response, updateData] = useAmlifyApi(username, `${countee}, Counters`);
+
   const countRecords: CountRecord[] = response?.[countee] || [];
   const counters: CounterType[] = response?.Counters;
   const last7Days = countRecords.filter(

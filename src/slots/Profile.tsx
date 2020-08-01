@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Card from "components/Card";
 import Gap from "components/Gap";
 import ExternalLink from "components/ExternalLink";
+import { useAmlifyApi } from "api/amplify";
 
 const PageTitle = styled.h1`
   font-size: 32px;
@@ -16,14 +17,29 @@ const PageTitle = styled.h1`
   margin: 0;
 `;
 
+type PersonalInfo = {
+  name: string;
+  title: string;
+  description: string;
+  ru?: PersonalInfo;
+};
+
 const Profile: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
 }) => {
+  const [response, updateData] = useAmlifyApi(username, `PersonalInfo`);
+  const personalInfo: PersonalInfo = response?.PersonalInfo;
+
   useNextSlotFor("Counters", {
     toArgs: [username],
     from: "Profile",
     fromArgs: [username],
   });
+
+  if (!personalInfo) {
+    return null;
+  }
+
   return (
     <>
       <section
@@ -39,7 +55,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
         <Avatar width={128} />
         <Gap />
 
-        <PageTitle>{username} Starikov</PageTitle>
+        <PageTitle>{personalInfo.name}</PageTitle>
         <div
           style={{
             color: "var(--gray2)",
@@ -48,20 +64,16 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
               '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
           }}
         >
-          Стариков Герман Владимирович
+          {personalInfo.ru?.name}
         </div>
       </section>
       <Gap />
       <section style={{ flex: 1 }}>
         <Card withPadding>
-          <Heading>Developer at Coursera</Heading>
+          <Heading>{personalInfo.title}</Heading>
           <Gap />
-          <Paragraph>
-            Born and raised in Moscow. Immigrated to Toronto to study software
-            development. In my spare time I make web stuff, check it out.
-          </Paragraph>
+          <Paragraph>{personalInfo.description}</Paragraph>
           <Gap />
-
           <ExternalLink href="mailto:hermanstarikov@gmail.com">
             <InteractiveText>Email</InteractiveText>
           </ExternalLink>
@@ -81,7 +93,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
             from={"Profile"}
             fromArgs={[username]}
           >
-            Counters
+            Fitness
           </NavigationLinkListItem>
 
           <NavigationLinkListItem
@@ -97,6 +109,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
           <NavigationLinkListItem
             renderIfActive
             to={"Links"}
+            toArgs={[username]}
             from={"Profile"}
             fromArgs={[username]}
           >

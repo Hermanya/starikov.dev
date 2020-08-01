@@ -1,6 +1,6 @@
 import React from "react";
 
-import { hydrate, render } from "react-dom";
+import * as ReactDOM from "react-dom";
 import * as _ from "styled-components/cssprop"; // eslint-disable-line
 import "./hljs.css";
 import * as serviceWorker from "./serviceWorker";
@@ -28,12 +28,15 @@ const App = () => {
   );
 };
 
-const rootElement = document.getElementById("root");
-if (rootElement!.hasChildNodes()) {
-  hydrate(<App />, rootElement);
-} else {
-  render(<App />, rootElement);
-}
+// const rootElement = document.getElementById("root");
+// if (rootElement!.hasChildNodes()) {
+//   hydrate(<App />, rootElement);
+// } else {
+//   render(<App />, rootElement);
+// }
+
+// @ts-ignore
+ReactDOM.unstable_createRoot(document.getElementById("root")).render(<App />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

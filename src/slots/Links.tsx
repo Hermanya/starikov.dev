@@ -59,7 +59,7 @@ const links: linkType[] = [
   },
 ];
 
-const Links = () => {
+const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
   return (
     <>
       <section
@@ -67,7 +67,7 @@ const Links = () => {
           flex: 1,
         }}
       >
-        <Title>Herman's Links</Title>
+        <Title>{username}'s Links</Title>
         {links
           .reduce((groups, item) => {
             let group = groups.find((_) => _.name === item.group);

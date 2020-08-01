@@ -1,11 +1,12 @@
 import { useSuspense } from "use-suspense-today";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useLayoutEffect, useCallback } from "react";
 import { API } from "aws-amplify";
 
 export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
   const [suspended, setSuspended] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     const promise = API.get("starikovDev", `/userData/object/${login}`, {
       queryStringParameters: { ProjectionExpression },
     });
@@ -36,5 +37,5 @@ export const useAmlifyApi = (login: string, ProjectionExpression: string) => {
     [data, login]
   );
 
-  return [data, updateData];
+  return [data, updateData, suspended];
 };

@@ -27,7 +27,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
           flex: 2,
         }}
       >
-        <Title>{username}'s Counters</Title>
+        <Title>{username}'s Fitness</Title>
         {counters
           .reduce((groups, counter) => {
             let group = groups.find((_) => _.name === counter.group);

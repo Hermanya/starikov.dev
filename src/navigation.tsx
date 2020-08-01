@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import {
   NavigationProvider,
   Link,
@@ -43,7 +43,7 @@ export const getSlotWidth = () =>
 export const Root = () => {
   const [slotWidth, setSlotWidth] = useState(getSlotWidth());
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handler = () => {
       setSlotWidth(getSlotWidth());
     };
