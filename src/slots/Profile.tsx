@@ -7,6 +7,7 @@ import Card from "components/Card";
 import Gap from "components/Gap";
 import ExternalLink from "components/ExternalLink";
 import { useAmlifyApi } from "api/amplify";
+import Herman from "../images/Herman.jpg";
 
 const PageTitle = styled.h1`
   font-size: 32px;
@@ -52,7 +53,10 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
           position: "relative",
         }}
       >
-        <Avatar width={128} />
+        <Avatar
+          src={({ Herman } as { [key: string]: string })[username]}
+          alt={username}
+        />
         <Gap />
 
         <PageTitle>{personalInfo.name}</PageTitle>
