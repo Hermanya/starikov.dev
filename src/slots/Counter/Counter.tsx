@@ -4,9 +4,9 @@ import { useAmlifyApi } from "api/amplify";
 import { CountRecord, Counter as CounterType } from "./types";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
-import { getSlotWidth } from "navigation";
+import { getSlotWidth, NavigationLinkListItem } from "navigation";
 import { camelCaseToTitleCase } from "./utils";
-import { InteractiveText, Gap, Card, NavigationLinkListItem } from "exports";
+import { InteractiveText, Gap, Card } from "exports";
 
 const Count = styled.div`
   font-size: 48px;
