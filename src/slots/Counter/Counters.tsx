@@ -15,11 +15,9 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
     from: "Counters",
     fromArgs: [username],
   });
-  const [response] = useAmlifyApi(username, "Counters");
-  const counters: Counter[] = response?.Counters;
-  if (!counters) {
-    return null;
-  }
+  const [data] = useAmlifyApi(username, "Counters");
+  const counters: Counter[] = data?.Counters;
+
   return (
     <>
       <section

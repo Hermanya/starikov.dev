@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import {
   NavigationProvider,
   Link,
@@ -8,17 +8,28 @@ import {
 import NavigationLinkListItemStyledComponent from "./components/NavigationLinkListItem";
 import NavigationSlot from "components/NavigationSlot";
 import Loading from "components/Loading";
+import { fetchUserData } from "api/amplify";
 
 const allSlots = {
   Login: React.lazy(() => import("./slots/Login")),
-  Profile: React.lazy(() => import("./slots/Profile")),
+  Profile: {
+    component: React.lazy(() => import("./slots/Profile")),
+    data: ([username]: string[]) => fetchUserData(username, `PersonalInfo`),
+  },
   Links: React.lazy(() => import("./slots/Links")),
-  Notes: React.lazy(() => import("./slots/Notes")),
+  Notes: {
+    component: React.lazy(() => import("./slots/Notes")),
+    data: ([username]: string[]) => fetchUserData(username, `Notes`),
+  },
   Counter: React.lazy(() => import("./slots/Counter/Counter")),
-  Counters: React.lazy(() => import("./slots/Counter/Counters")),
-  CounterDashboard: React.lazy(() =>
-    import("./slots/Counter/CounterDashboard")
-  ),
+  Counters: {
+    component: React.lazy(() => import("./slots/Counter/Counters")),
+    data: ([username]: string[]) => fetchUserData(username, `Counters`),
+  },
+  CounterDashboard: {
+    component: React.lazy(() => import("./slots/Counter/CounterDashboard")),
+    data: ([username, countee]: string[]) => fetchUserData(username, countee),
+  },
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
 

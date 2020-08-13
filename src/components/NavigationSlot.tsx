@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import React from "react";
 
-const NavigationSlot = styled.div`
+const NavigationSlotContainer = styled.div`
   height: 100%;
   max-height: 100%;
   overflow: auto;
@@ -19,5 +20,17 @@ const NavigationSlot = styled.div`
     overflow: visible;
   }
 `;
+
+class NavigationSlot extends React.PureComponent<{
+  prefetchData?: any;
+}> {
+  componentDidMount() {
+    this.props.prefetchData?.();
+  }
+
+  render() {
+    return <NavigationSlotContainer {...this.props} />;
+  }
+}
 
 export default NavigationSlot;

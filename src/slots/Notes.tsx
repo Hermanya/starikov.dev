@@ -12,8 +12,8 @@ type Note = {
 };
 
 const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
-  const [response, updateData] = useAmlifyApi(username, `Notes`);
-  const notes: Note[] = response?.Notes || [];
+  const [data, updateData] = useAmlifyApi(username, `Notes`);
+  const notes: Note[] = data.Notes || [];
   const [noteText, setNoteText] = useState("");
 
   return (
@@ -41,6 +41,7 @@ const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
                   } as Note,
                 ],
               });
+              setNoteText("");
             }}
           >
             <Gap />
@@ -53,16 +54,18 @@ const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             <button type="submit">Submit</button>
           </form>
         )}
-        {notes.map((note) => (
-          <div key={note.createdAt}>
-            <Gap />
-            <Card withPadding>
-              {note.text}
+        {notes
+          .sort((a, b) => b.createdAt - a.createdAt)
+          .map((note) => (
+            <div key={note.createdAt}>
               <Gap />
-              <small>{new Date(note.createdAt).toLocaleString()}</small>
-            </Card>
-          </div>
-        ))}
+              <Card withPadding>
+                {note.text}
+                <Gap />
+                <small>{new Date(note.createdAt).toLocaleString()}</small>
+              </Card>
+            </div>
+          ))}
       </section>
       <Gap />
       <div style={{ flex: 1, justifySelf: "flex-end" }}>

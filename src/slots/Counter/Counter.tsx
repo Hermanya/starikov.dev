@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Gap from "components/Gap";
-import { NavigationLinkListItem } from "navigation";
-import { InteractiveText } from "components/typography";
-import Card from "components/Card";
+import { useAmlifyApi } from "api/amplify";
 import { CountRecord, Counter as CounterType } from "./types";
 import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth } from "navigation";
-import { useAmlifyApi } from "api/amplify";
 import { camelCaseToTitleCase } from "./utils";
+import { InteractiveText, Gap, Card, NavigationLinkListItem } from "exports";
 
 const Count = styled.div`
   font-size: 48px;
@@ -31,10 +28,10 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
 }) => {
   const [count, setCount] = useState(0);
 
-  const [response, updateData] = useAmlifyApi(username, `${countee}, Counters`);
+  const [data, updateData] = useAmlifyApi(username, `${countee}, Counters`);
 
-  const countRecords: CountRecord[] = response?.[countee] || [];
-  const counters: CounterType[] = response?.Counters;
+  const countRecords: CountRecord[] = data?.[countee] || [];
+  const counters: CounterType[] = data?.Counters;
   const last7Days = countRecords.filter(
     (_) => Date.now() - _.timestamp < 1000 * 60 * 60 * 24 * 7
   );

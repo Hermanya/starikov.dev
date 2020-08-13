@@ -27,8 +27,8 @@ type PersonalInfo = {
 const Profile: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
 }) => {
-  const [response, updateData] = useAmlifyApi(username, `PersonalInfo`);
-  const personalInfo: PersonalInfo = response?.PersonalInfo;
+  const [data] = useAmlifyApi(username, `PersonalInfo`);
+  const personalInfo: PersonalInfo = data?.PersonalInfo;
 
   useNextSlotFor("Counters", {
     toArgs: [username],
