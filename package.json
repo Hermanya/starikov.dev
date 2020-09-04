@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/use-persisted-state": "^0.3.0",
     "aws-amplify": "^3.0.20",
-    "react": "^0.0.0-experimental-4c8c98ab9",
+    "react": "^16.13.1",
     "react-confetti": "^5.1.0",
     "react-dom": "^0.0.0-experimental-4c8c98ab9",
     "react-feather": "^2.0.3",
