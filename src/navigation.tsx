@@ -30,6 +30,7 @@ const allSlots = {
     component: React.lazy(() => import("./slots/Counter/CounterDashboard")),
     data: ([username, countee]: string[]) => fetchUserData(username, countee),
   },
+  FitnessOverview: React.lazy(() => import("./slots/Fitness/FitnessOverview")),
   PrivacyPolicy: React.lazy(() => import("./slots/Legal/PrivacyPolicy")),
   TermsOfService: React.lazy(() => import("./slots/Legal/TermsOfService")),
 

@@ -1,4 +1,4 @@
-const dayMs = 1000 * 60 * 60 * 24;
+export const dayMs = 1000 * 60 * 60 * 24;
 // const daysSinceBeginning = new Array(
 //   Math.floor((Date.now() - countRecords[0].timestamp) / dayMs)
 // )
@@ -29,7 +29,7 @@ export const yesterdaysRecords = (records: Record[]): Record[] =>
 export const todaysCounts = (records: Record[]): number[] =>
   todaysRecords(records).map((_) => _.count);
 
-type CountsPerDay = {
+export type CountsPerDay = {
   date: string;
   counts: number[];
   timestamps: number[];

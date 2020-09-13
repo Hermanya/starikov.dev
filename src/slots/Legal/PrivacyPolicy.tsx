@@ -2,12 +2,12 @@ import React from "react";
 import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
 import Card from "components/Card";
-import { Heading } from "components/typography";
+import { Title } from "components/typography";
 
 export default () => {
   return (
     <div>
-      <Heading as="h2">Privacy Policy</Heading>
+      <Title as="h2">Privacy Policy</Title>
       <p>
         Your privacy is important to me. It is my policy to respect your privacy
         regarding any information I may collect from you across my website,{" "}
