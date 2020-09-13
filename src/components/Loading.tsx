@@ -6,7 +6,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  opacity: 0.5;
+  opacity: 1;
 `;
 
 // const Loading = () => <Container>Loading</Container>;

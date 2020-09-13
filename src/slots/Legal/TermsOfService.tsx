@@ -2,11 +2,12 @@ import React from "react";
 import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
 import Card from "components/Card";
+import { Heading } from "components/typography";
 
 export default () => {
   return (
     <div>
-      <h2>Terms of Service</h2>
+      <Heading as="h2">Terms of Service</Heading>
       <h3>1. Terms</h3>
       <p>
         By accessing the website at{" "}

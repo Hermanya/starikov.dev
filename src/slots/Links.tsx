@@ -138,6 +138,7 @@ const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             to={"Profile"}
             toArgs={["Herman"]}
             from={"Links"}
+            fromArgs={[username]}
           >
             More from Herman
           </NavigationLinkListItem>
@@ -145,6 +146,7 @@ const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             renderIfActive
             to={"PrivacyPolicy"}
             from={"Links"}
+            fromArgs={[username]}
           >
             Privacy Policy
           </NavigationLinkListItem>
@@ -152,6 +154,7 @@ const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             renderIfActive
             to={"TermsOfService"}
             from={"Links"}
+            fromArgs={[username]}
           >
             Terms of Service
           </NavigationLinkListItem>
