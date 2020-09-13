@@ -7,6 +7,7 @@ import { useAmlifyApi } from "api/amplify";
 import { Counter, CountRecord } from "slots/Counter/types";
 import { dayMs, perDay, CountsPerDay } from "historical-data/data";
 import styled from "styled-components";
+import { camelCaseToTitleCase } from "slots/Counter/utils";
 
 const colors = [
   "var(--red)",
@@ -39,7 +40,7 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
       {day.split("/")[1].toString().padStart(2, "0")}
       &nbsp;&nbsp;&nbsp;&nbsp;
       {Object.keys(y).map((key, index) => {
-        const value = (y[key].find((_: any) => _.date === day)?.total || 0)
+        const value = (y[key].find((_: any) => _.date === day)?.total || "00")
           .toString()
           .padStart(2, "0");
         return (
@@ -47,7 +48,7 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
             <div
               style={{
                 color: colors[index],
-                opacity: value === "00" ? 0.1 : 1,
+                fontVariantNumeric: "tabular-nums",
               }}
             >
               {value}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -60,7 +61,7 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
   </div>
 );
 
-const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
+const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
 }) => {
   const [data] = useAmlifyApi(username, "Counters");
@@ -101,7 +102,7 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
             width: "100%",
             backdropFilter: "blur(5px)",
             paddingBottom: "16px",
-            height: "96px",
+            height: 72,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -110,7 +111,7 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
           <Title>{username}'s Fitness</Title>
 
           <Box>
-            {["Date", ...Object.keys(x)].map((_, index) => (
+            {["Date", ...Object.keys(x)].map((countee, index) => (
               <span
                 style={{
                   transform: "rotate(-45deg)",
@@ -120,7 +121,7 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
                   color: index === 0 ? "black" : colors[index - 1],
                 }}
               >
-                {_}
+                {camelCaseToTitleCase(countee)}
               </span>
             ))}
           </Box>
@@ -129,7 +130,7 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
           style={{
             maxHeight: "100%",
             overflow: "auto",
-            paddingTop: 96,
+            paddingTop: 72,
             paddingBottom: 32,
           }}
         >
@@ -173,7 +174,7 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
             <NavigationLinkListItem
               to={"Profile"}
               toArgs={[username]}
-              from={"FitnessOverview"}
+              from={"FitnessLog"}
               fromArgs={[username]}
             >
               More from Herman
@@ -185,4 +186,4 @@ const FitnessOverview: React.FC<{ slotArgs: string[] }> = ({
   );
 };
 
-export default FitnessOverview;
+export default FitnessLog;
