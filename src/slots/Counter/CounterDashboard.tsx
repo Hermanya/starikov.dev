@@ -8,8 +8,6 @@ import { CountRecord } from "./types";
 import { camelCaseToTitleCase } from "./utils";
 import { useAmlifyApi } from "api/amplify";
 
-// @ts-ignore
-import Trend from "react-trend";
 import {
   todaysRecords,
   perDay,
@@ -102,20 +100,6 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
                 </Label>
               </Heading>
               <Gap />
-              <Trend
-                smooth
-                autoDraw
-                autoDrawDuration={500}
-                autoDrawEasing="ease-out"
-                data={countRecordsPerDay.map((_) => _.total)}
-                gradient={["var(--blue)"]}
-                radius={10}
-                strokeWidth={2}
-                strokeLinecap={"round"}
-              />
-              <Gap />
-              <Gap />
-
               <Row>
                 <Column>
                   <Label>Max Reps/Set</Label>

@@ -120,14 +120,14 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
             Links
           </NavigationLinkListItem>
 
-          {/* <NavigationLinkListItem
+          <NavigationLinkListItem
             renderIfActive
             to={"ReactSlotNavigation"}
             from={"Profile"}
             fromArgs={[username]}
           >
             Slot Navigation
-          </NavigationLinkListItem> */}
+          </NavigationLinkListItem>
         </Card>
       </div>
     </>
