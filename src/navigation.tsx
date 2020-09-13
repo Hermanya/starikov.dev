@@ -49,8 +49,8 @@ type LinkProps = {
 export const getSlotWidth = () =>
   document.documentElement.clientWidth > 600 &&
   document.documentElement.clientWidth < 1000
-    ? document.documentElement.clientWidth - 24
-    : Math.min(420, document.documentElement.clientWidth - 24);
+    ? document.documentElement.clientWidth
+    : Math.min(420, document.documentElement.clientWidth);
 
 export const Root = () => {
   const [slotWidth, setSlotWidth] = useState(getSlotWidth());
@@ -71,6 +71,10 @@ export const Root = () => {
       suspenseFallback={Loading}
       slotWidth={slotWidth}
       slotComponent={NavigationSlot}
+      style={{
+        padding:
+          slotWidth === document.documentElement.clientWidth ? 0 : "0 12px",
+      }}
     />
   );
 };

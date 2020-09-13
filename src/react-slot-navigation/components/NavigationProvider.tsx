@@ -48,20 +48,22 @@ type SlotComponentWithData = {
   data: (slotArgs: string[]) => any;
 };
 
-export const NavigationProvider: React.FC<{
-  startWith: string;
-  allSlots: {
-    [slotName: string]: SlotComponent | SlotComponentWithData;
-  };
-  suspenseFallback: React.ComponentType;
-  notFoundFallback?: React.ComponentType;
-  slotWidth: number;
-  slotComponent: React.ComponentType<
-    React.HTMLAttributes<HTMLElement> & {
-      prefetchData?: (slotArgs: string[]) => any;
-    }
-  >;
-}> = React.memo(
+export const NavigationProvider: React.FC<
+  {
+    startWith: string;
+    allSlots: {
+      [slotName: string]: SlotComponent | SlotComponentWithData;
+    };
+    suspenseFallback: React.ComponentType;
+    notFoundFallback?: React.ComponentType;
+    slotWidth: number;
+    slotComponent: React.ComponentType<
+      React.HTMLAttributes<HTMLElement> & {
+        prefetchData?: (slotArgs: string[]) => any;
+      }
+    >;
+  } & React.HTMLAttributes<HTMLElement>
+> = React.memo(
   ({
     startWith: ComponentToStartWith,
     allSlots,
@@ -69,6 +71,7 @@ export const NavigationProvider: React.FC<{
     notFoundFallback: NotFoundComponent,
     slotWidth: SLOT_WIDTH,
     slotComponent: Slot,
+    ...props
   }) => {
     const stackSize = Math.max(Math.floor(useWindowWidth() / SLOT_WIDTH), 1);
 
@@ -169,47 +172,49 @@ export const NavigationProvider: React.FC<{
     });
 
     return (
-      <NavigationStateContext.Provider value={state}>
-        <NavigationDispatchContext.Provider value={dispatch}>
-          {state.stack.map((urlFragment, index) => {
-            const [componentName, slotArgs] = fromUrlFragment(urlFragment);
-            let Component: SlotComponent =
-              (allSlots[componentName] as SlotComponentWithData)?.component ||
-              (allSlots[componentName] as SlotComponent) ||
-              NotFoundComponent ||
-              (() => `Add "${componentName}" to "allSlots"`);
-            let prefetchData;
-            if (
-              (allSlots[componentName] as SlotComponentWithData | undefined)
-                ?.data
-            ) {
-              prefetchData = () =>
-                (allSlots[componentName] as SlotComponentWithData).data(
-                  slotArgs
-                );
-            }
+      <div {...props}>
+        <NavigationStateContext.Provider value={state}>
+          <NavigationDispatchContext.Provider value={dispatch}>
+            {state.stack.map((urlFragment, index) => {
+              const [componentName, slotArgs] = fromUrlFragment(urlFragment);
+              let Component: SlotComponent =
+                (allSlots[componentName] as SlotComponentWithData)?.component ||
+                (allSlots[componentName] as SlotComponent) ||
+                NotFoundComponent ||
+                (() => `Add "${componentName}" to "allSlots"`);
+              let prefetchData;
+              if (
+                (allSlots[componentName] as SlotComponentWithData | undefined)
+                  ?.data
+              ) {
+                prefetchData = () =>
+                  (allSlots[componentName] as SlotComponentWithData).data(
+                    slotArgs
+                  );
+              }
 
-            return (
-              <Slot
-                key={urlFragment}
-                style={{
-                  transform: `translateX(${
-                    SLOT_WIDTH * index -
-                    (stackOverflow > 0 ? stackOverflow * SLOT_WIDTH : 0)
-                  }px)`,
-                  width: `${SLOT_WIDTH}px`,
-                  zIndex: state.stack.length - index,
-                }}
-                prefetchData={prefetchData}
-              >
-                <React.Suspense fallback={<FallbackComponent />}>
-                  <Component slotArgs={slotArgs} />
-                </React.Suspense>
-              </Slot>
-            );
-          })}
-        </NavigationDispatchContext.Provider>
-      </NavigationStateContext.Provider>
+              return (
+                <Slot
+                  key={urlFragment}
+                  style={{
+                    transform: `translateX(${
+                      SLOT_WIDTH * index -
+                      (stackOverflow > 0 ? stackOverflow * SLOT_WIDTH : 0)
+                    }px)`,
+                    width: `${SLOT_WIDTH}px`,
+                    zIndex: state.stack.length - index,
+                  }}
+                  prefetchData={prefetchData}
+                >
+                  <React.Suspense fallback={<FallbackComponent />}>
+                    <Component slotArgs={slotArgs} />
+                  </React.Suspense>
+                </Slot>
+              );
+            })}
+          </NavigationDispatchContext.Provider>
+        </NavigationStateContext.Provider>
+      </div>
     );
   }
 );
