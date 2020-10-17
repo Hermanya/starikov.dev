@@ -38,7 +38,6 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
   <div key={day}>
     <Box>
       {day.split("/")[1].toString().padStart(2, "0")}
-      &nbsp;&nbsp;&nbsp;&nbsp;
       {Object.keys(y).map((key, index) => {
         const value = (y[key].find((_: any) => _.date === day)?.total || "00")
           .toString()
@@ -47,11 +46,12 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
           <div key={index}>
             <div
               style={{
-                color: colors[index],
+                color: value === "00" ? "var(--gray3)" : colors[index],
                 fontVariantNumeric: "tabular-nums",
+                marginLeft: "24px",
               }}
             >
-              {value}&nbsp;&nbsp;&nbsp;&nbsp;
+              {value}
             </div>
           </div>
         );
@@ -117,8 +117,8 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
                   transform: "rotate(-45deg)",
                   fontSize: "8px",
                   transformOrigin: "0, 0",
-                  width: "34px",
-                  color: index === 0 ? "black" : colors[index - 1],
+                  width: "45px",
+                  color: index === 0 ? "var(--gray)" : colors[index - 1],
                 }}
               >
                 {camelCaseToTitleCase(countee)}
