@@ -25,7 +25,7 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
           flex: 2,
         }}
       >
-        <Title>{username}'s Fitness</Title>
+        <Title>{username}'s Counters</Title>
         {counters
           .reduce((groups, counter) => {
             let group = groups.find((_) => _.name === counter.group);
@@ -84,6 +84,14 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
         }}
       >
         <Card withPadding={false}>
+          <NavigationLinkListItem
+            to={"FitnessLog"}
+            toArgs={[username]}
+            from={"Counters"}
+            fromArgs={[username]}
+          >
+            Fitness Log
+          </NavigationLinkListItem>
           <NavigationLinkListItem
             to={"Profile"}
             toArgs={[username]}

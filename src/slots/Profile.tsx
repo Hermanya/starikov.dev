@@ -97,7 +97,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
             from={"Profile"}
             fromArgs={[username]}
           >
-            Fitness
+            Counters
           </NavigationLinkListItem>
 
           <NavigationLinkListItem

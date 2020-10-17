@@ -21,6 +21,7 @@ const colors = [
 
 const Box = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 var getMonth = function (idx: any) {
@@ -48,7 +49,6 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
               style={{
                 color: value === "00" ? "var(--gray3)" : colors[index],
                 fontVariantNumeric: "tabular-nums",
-                marginLeft: "28px",
               }}
             >
               {value}
@@ -110,17 +110,23 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
 
           <Box>
             {["Date", ...Object.keys(x)].map((countee, index) => (
-              <span
+              <div
                 style={{
                   transform: "rotate(-45deg)",
                   fontSize: "8px",
                   transformOrigin: "0, 0",
-                  width: "45px",
                   color: index === 0 ? "var(--gray)" : colors[index - 1],
                 }}
               >
-                {camelCaseToTitleCase(countee)}
-              </span>
+                <div
+                  style={{
+                    width: "45px",
+                    margin: "auto",
+                  }}
+                >
+                  {camelCaseToTitleCase(countee)}
+                </div>
+              </div>
             ))}
           </Box>
         </div>
@@ -169,6 +175,14 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
           }}
         >
           <Card withPadding={false}>
+            <NavigationLinkListItem
+              to={"Counters"}
+              toArgs={[username]}
+              from={"FitnessLog"}
+              fromArgs={[username]}
+            >
+              Counters
+            </NavigationLinkListItem>
             <NavigationLinkListItem
               to={"Profile"}
               toArgs={[username]}
