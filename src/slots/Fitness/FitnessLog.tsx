@@ -5,7 +5,7 @@ import Card from "components/Card";
 import Gap from "components/Gap";
 import { useAmlifyApi } from "api/amplify";
 import { Counter, CountRecord } from "slots/Counter/types";
-import { dayMs, perDay, CountsPerDay } from "historical-data/data";
+import { dayMs, perDay, CountsPerDay, formatDate } from "historical-data/data";
 import styled from "styled-components";
 import { camelCaseToTitleCase } from "slots/Counter/utils";
 
@@ -37,7 +37,7 @@ var getMonth = function (idx: any) {
 const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
   <div key={day}>
     <Box>
-      {day.split("/")[1].toString().padStart(2, "0")}
+      {day.split("/")[2].toString().padStart(2, "0")}
       {Object.keys(y).map((key, index) => {
         const value = (y[key].find((_: any) => _.date === day)?.total || "00")
           .toString()
@@ -83,9 +83,7 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
     )
   )
     .fill(1)
-    .map((_, index) =>
-      new Date(Date.now() - dayMs * index).toLocaleDateString()
-    );
+    .map((_, index) => formatDate(Date.now() - dayMs * index));
 
   return (
     <>
@@ -136,7 +134,7 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
         >
           {daysSinceBeginning
             .reduce((all, date) => {
-              const [m] = date.split("/");
+              const m = date.split("/")[1];
               const month = getMonth(m);
               const match = all.find((_) => _.month === month);
               if (match) {

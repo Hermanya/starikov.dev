@@ -1,9 +1,8 @@
 export const dayMs = 1000 * 60 * 60 * 24;
-// const daysSinceBeginning = new Array(
-//   Math.floor((Date.now() - countRecords[0].timestamp) / dayMs)
-// )
-//   .fill(1)
-//   .map((_, index) => new Date(Date.now() - dayMs * index).toLocaleDateString());
+export const formatDate = (ts: number) => {
+  const date = new Date(ts);
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+};
 
 type Record = {
   timestamp: number;
@@ -14,17 +13,11 @@ export const average = (records: Record[]): number =>
   records.reduce((sum, x) => sum + x.count, 0) / records.length;
 
 export const todaysRecords = (records: Record[]): Record[] =>
-  records.filter(
-    (_) =>
-      new Date(_.timestamp).toLocaleDateString() ===
-      new Date(Date.now()).toLocaleDateString()
-  );
+  records.filter((_) => formatDate(_.timestamp) === formatDate(Date.now()));
 
 export const yesterdaysRecords = (records: Record[]): Record[] =>
   records.filter(
-    (_) =>
-      new Date(_.timestamp).toLocaleDateString() ===
-      new Date(Date.now() - dayMs).toLocaleDateString()
+    (_) => formatDate(_.timestamp) === formatDate(Date.now() - dayMs)
   );
 export const todaysCounts = (records: Record[]): number[] =>
   todaysRecords(records).map((_) => _.count);
@@ -38,7 +31,7 @@ export type CountsPerDay = {
 
 export const perDay = (records: Record[]): CountsPerDay[] =>
   records.reduce((days, item) => {
-    const date = new Date(item.timestamp).toLocaleDateString();
+    const date = formatDate(item.timestamp);
 
     const day = days.find((_) => _.date === date);
 
