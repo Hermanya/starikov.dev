@@ -48,7 +48,7 @@ const Day: React.FC<{ day: string; y: any }> = ({ day, y }) => (
               style={{
                 color: value === "00" ? "var(--gray3)" : colors[index],
                 fontVariantNumeric: "tabular-nums",
-                marginLeft: "24px",
+                marginLeft: "28px",
               }}
             >
               {value}
