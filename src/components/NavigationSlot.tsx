@@ -7,7 +7,6 @@ const NavigationSlotContainer = styled.div`
   overflow: auto;
   position: absolute;
   background: var(--background);
-  padding: 24px 12px;
   display: flex;
   flex-direction: column;
   transition: transform 0.5s ease-in;

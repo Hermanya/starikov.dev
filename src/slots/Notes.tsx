@@ -4,6 +4,7 @@ import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
 import { Card } from "exports";
 import { useAmlifyApi } from "api/amplify";
+import { FixedLayout } from "components/FixedLayout";
 
 type Note = {
   text: string;
@@ -17,58 +18,42 @@ const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
   const [noteText, setNoteText] = useState("");
 
   return (
-    <>
-      <Gap />
-      <section
-        style={{
-          flex: 2,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Title>{username} Notes</Title>
-        <Gap />
-        {localStorage.Login === username && (
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              updateData({
-                Notes: [
-                  ...notes,
-                  {
-                    text: noteText,
-                    createdAt: Date.now(),
-                  } as Note,
-                ],
-              });
-              setNoteText("");
-            }}
-          >
-            <Gap />
-            <input
-              placeholder="Note"
-              onChange={(event) => setNoteText(event.target.value)}
-              value={noteText}
-            />
-
-            <button type="submit">Submit</button>
-          </form>
-        )}
-        {notes
-          .sort((a, b) => b.createdAt - a.createdAt)
-          .map((note) => (
-            <div key={note.createdAt}>
+    <FixedLayout
+      before={
+        <>
+          <Title>{`${username}'s Notes`}</Title>
+          <Gap />
+          {`${notes.length} total`}
+          <Gap />
+          {localStorage.Login === username && (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                updateData({
+                  Notes: [
+                    ...notes,
+                    {
+                      text: noteText,
+                      createdAt: Date.now(),
+                    } as Note,
+                  ],
+                });
+                setNoteText("");
+              }}
+            >
               <Gap />
-              <Card withPadding>
-                {note.text}
-                <Gap />
-                <small>{new Date(note.createdAt).toLocaleString()}</small>
-              </Card>
-            </div>
-          ))}
-      </section>
-      <Gap />
-      <div style={{ flex: 1, justifySelf: "flex-end" }}>
+              <input
+                placeholder="Note"
+                onChange={(event) => setNoteText(event.target.value)}
+                value={noteText}
+              />
+
+              <button type="submit">Submit</button>
+            </form>
+          )}
+        </>
+      }
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"Profile"}
@@ -78,10 +63,30 @@ const Notes: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
           >
             More from {username}
           </NavigationLinkListItem>
+          <NavigationLinkListItem
+            to={"FitnessLog"}
+            toArgs={[username]}
+            from={"Notes"}
+            fromArgs={[username]}
+          >
+            test
+          </NavigationLinkListItem>
         </Card>
-      </div>
-      <Gap />
-    </>
+      }
+    >
+      {notes
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .map((note, index) => (
+          <div key={note.createdAt}>
+            {index > 0 && <Gap />}
+            <Card withPadding>
+              {note.text}
+              <Gap />
+              <small>{new Date(note.createdAt).toLocaleString()}</small>
+            </Card>
+          </div>
+        ))}
+    </FixedLayout>
   );
 };
 

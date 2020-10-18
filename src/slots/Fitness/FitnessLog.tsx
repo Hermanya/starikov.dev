@@ -8,6 +8,7 @@ import { Counter, CountRecord } from "slots/Counter/types";
 import { dayMs, perDay, CountsPerDay, formatDate } from "historical-data/data";
 import styled from "styled-components";
 import { camelCaseToTitleCase } from "slots/Counter/utils";
+import { FixedLayout } from "components/FixedLayout";
 
 const colors = [
   "var(--red)",
@@ -86,41 +87,24 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
     .map((_, index) => formatDate(Date.now() - dayMs * index));
 
   return (
-    <>
-      <div
-        style={{
-          height: "100%",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            width: "100%",
-            backdropFilter: "blur(5px)",
-            paddingBottom: "16px",
-            height: 72,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
+    <FixedLayout
+      before={
+        <>
           <Title>{username}'s Fitness</Title>
-
+          <Gap />
           <Box>
             {["Date", ...Object.keys(x)].map((countee, index) => (
               <div
                 style={{
                   transform: "rotate(-45deg)",
-                  fontSize: "8px",
+                  fontSize: "10px",
                   transformOrigin: "0, 0",
                   color: index === 0 ? "var(--gray)" : colors[index - 1],
                 }}
               >
                 <div
                   style={{
-                    width: "45px",
+                    width: "24px",
                     margin: "auto",
                   }}
                 >
@@ -129,72 +113,58 @@ const FitnessLog: React.FC<{ slotArgs: string[] }> = ({
               </div>
             ))}
           </Box>
-        </div>
-        <section
-          style={{
-            maxHeight: "100%",
-            overflow: "auto",
-            paddingTop: 72,
-            paddingBottom: 32,
-          }}
-        >
-          {daysSinceBeginning
-            .reduce((all, date) => {
-              const m = date.split("/")[1];
-              const month = getMonth(m);
-              const match = all.find((_) => _.month === month);
-              if (match) {
-                match.dates.push(date);
-              } else {
-                all.push({
-                  month,
-                  dates: [date],
-                });
-              }
-              return all;
-            }, [] as { month: string; dates: string[] }[])
-            .map(({ month, dates }) => {
-              return (
-                <div key={month}>
-                  <Heading>{month}</Heading>
-                  <Gap />
-                  {dates.map((day) => (
-                    <Day day={day} y={y} />
-                  ))}
-                  <Gap />
-                  <Gap />
-                </div>
-              );
-            })}
-        </section>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            width: "100%",
-          }}
-        >
-          <Card withPadding={false}>
-            <NavigationLinkListItem
-              to={"Counters"}
-              toArgs={[username]}
-              from={"FitnessLog"}
-              fromArgs={[username]}
-            >
-              Counters
-            </NavigationLinkListItem>
-            <NavigationLinkListItem
-              to={"Profile"}
-              toArgs={[username]}
-              from={"FitnessLog"}
-              fromArgs={[username]}
-            >
-              More from Herman
-            </NavigationLinkListItem>
-          </Card>
-        </div>
-      </div>
-    </>
+        </>
+      }
+      after={
+        <Card withPadding={false}>
+          <NavigationLinkListItem
+            to={"Counters"}
+            toArgs={[username]}
+            from={"FitnessLog"}
+            fromArgs={[username]}
+          >
+            Counters
+          </NavigationLinkListItem>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={[username]}
+            from={"FitnessLog"}
+            fromArgs={[username]}
+          >
+            More from Herman
+          </NavigationLinkListItem>
+        </Card>
+      }
+    >
+      {daysSinceBeginning
+        .reduce((all, date) => {
+          const m = date.split("/")[1];
+          const month = getMonth(m);
+          const match = all.find((_) => _.month === month);
+          if (match) {
+            match.dates.push(date);
+          } else {
+            all.push({
+              month,
+              dates: [date],
+            });
+          }
+          return all;
+        }, [] as { month: string; dates: string[] }[])
+        .map(({ month, dates }) => {
+          return (
+            <div key={month}>
+              <Heading>{month}</Heading>
+              <Gap />
+              {dates.map((day) => (
+                <Day day={day} y={y} />
+              ))}
+              <Gap />
+              <Gap />
+            </div>
+          );
+        })}
+    </FixedLayout>
   );
 };
 

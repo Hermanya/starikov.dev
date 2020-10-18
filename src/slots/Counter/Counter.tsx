@@ -6,7 +6,8 @@ import { maxRepsPerDay, todaysTotal } from "historical-data/data";
 import Confetti from "react-confetti";
 import { getSlotWidth, NavigationLinkListItem } from "navigation";
 import { camelCaseToTitleCase } from "./utils";
-import { InteractiveText, Gap, Card } from "exports";
+import { InteractiveText, Gap, Card, Title } from "exports";
+import { FixedLayout } from "components/FixedLayout";
 
 const Count = styled.div`
   font-size: 48px;
@@ -59,173 +60,191 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
 
   return (
     <>
-      {count >= setTarget && (
-        <Confetti
-          width={getSlotWidth()}
-          height={window.innerHeight}
-          numberOfPieces={50}
-        />
-      )}
-      <CountCard
-        onPointerDown={() => {
-          setCount(count + 1);
-        }}
-        style={{
-          flex: 3,
-        }}
+      <FixedLayout
+        before={
+          <>
+            <Title>{`Let's go`}</Title>
+            <Gap />
+            <Gap />
+            <div style={{ color: "var(--green)" }}>
+              {setTarget &&
+                `Let's do ${setTarget} ${camelCaseToTitleCase(
+                  countee
+                )} in this set`}
+            </div>
+            <Gap />
+
+            <div style={{ color: "var(--blue)" }}>
+              {dayTarget && `targetting ${dayTarget} by the end of day`}
+            </div>
+          </>
+        }
+        after={
+          <>
+            {count > 0 && (
+              <>
+                <button
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "11px 16px",
+                    background: "var(--gray5)",
+                    color: "var(--blue)",
+                    border: "none",
+                  }}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const countRecord: CountRecord = {
+                      timestamp: Date.now(),
+                      count: count - 1,
+                    };
+                    updateData({
+                      [countee]: [...countRecords, countRecord],
+                      Counters: counters.map((counter) => {
+                        if (counter.name === countee) {
+                          counter.lastUpdatedAt = Date.now();
+                        }
+                        return counter;
+                      }),
+                    });
+                    setCount(0);
+                  }}
+                >
+                  Save
+                </button>
+                <Gap />
+              </>
+            )}
+            <Card withPadding={false}>
+              <NavigationLinkListItem
+                to={"CounterDashboard"}
+                toArgs={[username, countee]}
+                from={"Counter"}
+                fromArgs={[username, countee]}
+              >
+                Historical Data for {camelCaseToTitleCase(countee)}
+              </NavigationLinkListItem>
+              <NavigationLinkListItem
+                to={"Counters"}
+                toArgs={[username]}
+                from={"Counter"}
+                fromArgs={[username, countee]}
+              >
+                Other Counters
+              </NavigationLinkListItem>
+              <NavigationLinkListItem
+                to={"Profile"}
+                toArgs={[username]}
+                from={"Counter"}
+                fromArgs={[username, countee]}
+              >
+                More from {username}
+              </NavigationLinkListItem>
+            </Card>
+          </>
+        }
       >
-        <div>
-          <div style={{ color: "var(--green)", textAlign: "center" }}>
-            {setTarget &&
-              `Let's do ${setTarget} ${camelCaseToTitleCase(
-                countee
-              )} in this set`}
-          </div>
-          <div style={{ color: "var(--blue)", textAlign: "center" }}>
-            {dayTarget && `targetting ${dayTarget} by the end of day`}
-          </div>
-        </div>
-        <Count
+        {count >= setTarget && (
+          <Confetti
+            width={getSlotWidth()}
+            height={window.innerHeight}
+            numberOfPieces={50}
+          />
+        )}
+        <CountCard
+          onPointerDown={() => {
+            setCount(count + 1);
+          }}
           style={{
-            transition: "0.25s",
-            color: "var(--text)",
-            position: "relative",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {count.toString().padStart(2, "0")}
-
-          <svg
-            width="128"
-            height="128"
-            viewBox="0 0 100 100"
+          <Count
             style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
+              transition: "0.25s",
+              color: "var(--text)",
+              position: "relative",
             }}
           >
-            <circle
-              stroke="var(--green)"
-              strokeWidth="8px"
-              fill="transparent"
-              r="36"
-              cx="50"
-              cy="50"
-              strokeLinecap="round"
-              opacity="0.25"
-            />
-            <circle
-              stroke="var(--green)"
-              strokeWidth="8px"
-              strokeDasharray={`${setCirlceCircumference} ${setCirlceCircumference}`}
-              fill="transparent"
-              r="36"
-              cx="50"
-              cy="50"
-              strokeLinecap="round"
-              ref={setCircleRef}
+            {count.toString().padStart(2, "0")}
+
+            <svg
+              width="128"
+              height="128"
+              viewBox="0 0 100 100"
               style={{
-                transform: "rotate(-90deg)",
-                transformOrigin: "50% 50%",
-                strokeDashoffset:
-                  setCirlceCircumference * (1 - count / setTarget),
-                transition: "stroke-dashoffset 0.250s",
-              }}
-            />
-            <circle
-              stroke="var(--blue)"
-              strokeWidth="8px"
-              fill="transparent"
-              r="46"
-              cx="50"
-              cy="50"
-              strokeLinecap="round"
-              opacity="0.25"
-            />
-            <circle
-              stroke="var(--blue)"
-              strokeWidth="8px"
-              strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
-              fill="transparent"
-              r="46"
-              cx="50"
-              cy="50"
-              strokeLinecap="round"
-              ref={dayCircleRef}
-              style={{
-                transform: "rotate(-90deg)",
-                transformOrigin: "50% 50%",
-                strokeDashoffset:
-                  dayCirlceCircumference * (1 - (dayTotal + count) / dayTarget),
-                transition: "stroke-dashoffset 0.250s",
-              }}
-            />
-          </svg>
-        </Count>
-        <div>
-          {count ? (
-            <InteractiveText
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                const countRecord: CountRecord = {
-                  timestamp: Date.now(),
-                  count: count - 1,
-                };
-                updateData({
-                  [countee]: [...countRecords, countRecord],
-                  Counters: counters.map((counter) => {
-                    if (counter.name === countee) {
-                      counter.lastUpdatedAt = Date.now();
-                    }
-                    return counter;
-                  }),
-                });
-                setCount(0);
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
               }}
             >
-              Save
-            </InteractiveText>
-          ) : (
-            <InteractiveText>Start tapping</InteractiveText>
-          )}
-          <Gap />
-        </div>
-      </CountCard>
-      <Gap />
-      <section
-        style={{
-          flex: 1,
-        }}
-      >
-        <Card withPadding={false}>
-          <NavigationLinkListItem
-            to={"CounterDashboard"}
-            toArgs={[username, countee]}
-            from={"Counter"}
-            fromArgs={[username, countee]}
-          >
-            Historical Data for {camelCaseToTitleCase(countee)}
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            to={"Counters"}
-            toArgs={[username]}
-            from={"Counter"}
-            fromArgs={[username, countee]}
-          >
-            Other Counters
-          </NavigationLinkListItem>
-          <NavigationLinkListItem
-            to={"Profile"}
-            toArgs={[username]}
-            from={"Counter"}
-            fromArgs={[username, countee]}
-          >
-            More from {username}
-          </NavigationLinkListItem>
-        </Card>
-      </section>
+              <circle
+                stroke="var(--green)"
+                strokeWidth="8px"
+                fill="transparent"
+                r="36"
+                cx="50"
+                cy="50"
+                strokeLinecap="round"
+                opacity="0.25"
+              />
+              <circle
+                stroke="var(--green)"
+                strokeWidth="8px"
+                strokeDasharray={`${setCirlceCircumference} ${setCirlceCircumference}`}
+                fill="transparent"
+                r="36"
+                cx="50"
+                cy="50"
+                strokeLinecap="round"
+                ref={setCircleRef}
+                style={{
+                  transform: "rotate(-90deg)",
+                  transformOrigin: "50% 50%",
+                  strokeDashoffset:
+                    setCirlceCircumference * (1 - count / setTarget),
+                  transition: "stroke-dashoffset 0.250s",
+                }}
+              />
+              <circle
+                stroke="var(--blue)"
+                strokeWidth="8px"
+                fill="transparent"
+                r="46"
+                cx="50"
+                cy="50"
+                strokeLinecap="round"
+                opacity="0.25"
+              />
+              <circle
+                stroke="var(--blue)"
+                strokeWidth="8px"
+                strokeDasharray={`${dayCirlceCircumference} ${dayCirlceCircumference}`}
+                fill="transparent"
+                r="46"
+                cx="50"
+                cy="50"
+                strokeLinecap="round"
+                ref={dayCircleRef}
+                style={{
+                  transform: "rotate(-90deg)",
+                  transformOrigin: "50% 50%",
+                  strokeDashoffset:
+                    dayCirlceCircumference *
+                    (1 - (dayTotal + count) / dayTarget),
+                  transition: "stroke-dashoffset 0.250s",
+                }}
+              />
+            </svg>
+          </Count>
+        </CountCard>
+      </FixedLayout>
     </>
   );
 };

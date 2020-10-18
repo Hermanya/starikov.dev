@@ -3,10 +3,23 @@ import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
 import Card from "components/Card";
 import { Title } from "components/typography";
+import { FixedLayout } from "components/FixedLayout";
 
 export default () => {
   return (
-    <div>
+    <FixedLayout
+      after={
+        <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={["Herman"]}
+            from={"PrivacyPolicy"}
+          >
+            starikov.dev
+          </NavigationLinkListItem>
+        </Card>
+      }
+    >
       <Title as="h2">Privacy Policy</Title>
       <p>
         Your privacy is important to me. It is my policy to respect your privacy
@@ -55,15 +68,6 @@ export default () => {
           Privacy Policy created with GetTerms.
         </ExternalLink>
       </p>
-      <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
-        <NavigationLinkListItem
-          to={"Profile"}
-          toArgs={["Herman"]}
-          from={"PrivacyPolicy"}
-        >
-          starikov.dev
-        </NavigationLinkListItem>
-      </Card>
-    </div>
+    </FixedLayout>
   );
 };

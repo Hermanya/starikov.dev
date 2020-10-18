@@ -6,6 +6,7 @@ import Gap from "components/Gap";
 import { useAmlifyApi } from "api/amplify";
 import { camelCaseToTitleCase } from "./utils";
 import { Counter, Group } from "./types";
+import { FixedLayout } from "components/FixedLayout";
 
 const Counters: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
@@ -19,70 +20,9 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
   const counters: Counter[] = data?.Counters;
 
   return (
-    <>
-      <section
-        style={{
-          flex: 2,
-        }}
-      >
-        <Title>{username}'s Counters</Title>
-        {counters
-          .reduce((groups, counter) => {
-            let group = groups.find((_) => _.name === counter.group);
-            if (group) {
-              group.counters.push(counter);
-              return groups;
-            } else {
-              group = {
-                name: counter.group,
-                counters: [counter],
-              };
-              return groups.concat(group);
-            }
-          }, [] as Group[])
-          .map((group) => {
-            return (
-              <div key={group.name}>
-                <Gap />
-                <Gap />
-                <Heading>{camelCaseToTitleCase(group.name)}</Heading>
-                <Gap />
-                <Card withPadding={false}>
-                  {group.counters.map((counter) => (
-                    <NavigationLinkListItem
-                      renderIfActive
-                      key={counter.name}
-                      to={"CounterDashboard"}
-                      toArgs={[username, counter.name]}
-                      from={"Counters"}
-                      fromArgs={[username]}
-                    >
-                      {localStorage.Login === username &&
-                      counter.lastUpdatedAt &&
-                      Date.now() - counter.lastUpdatedAt <
-                        1000 * 60 * 60 * 3 ? (
-                        <span>
-                          {"☑️"}&nbsp;&nbsp;{" "}
-                          {camelCaseToTitleCase(counter.name)}
-                        </span>
-                      ) : (
-                        <span>{camelCaseToTitleCase(counter.name)}</span>
-                      )}
-                    </NavigationLinkListItem>
-                  ))}
-                </Card>
-              </div>
-            );
-          })}
-      </section>
-
-      <Gap />
-
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
+    <FixedLayout
+      before={<Title>{username}'s Counters</Title>}
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"FitnessLog"}
@@ -101,8 +41,55 @@ const Counters: React.FC<{ slotArgs: string[] }> = ({
             More from Herman
           </NavigationLinkListItem>
         </Card>
-      </div>
-    </>
+      }
+    >
+      {counters
+        .reduce((groups, counter) => {
+          let group = groups.find((_) => _.name === counter.group);
+          if (group) {
+            group.counters.push(counter);
+            return groups;
+          } else {
+            group = {
+              name: counter.group,
+              counters: [counter],
+            };
+            return groups.concat(group);
+          }
+        }, [] as Group[])
+        .map((group) => {
+          return (
+            <div key={group.name}>
+              <Heading>{camelCaseToTitleCase(group.name)}</Heading>
+              <Gap />
+              <Card withPadding={false}>
+                {group.counters.map((counter) => (
+                  <NavigationLinkListItem
+                    renderIfActive
+                    key={counter.name}
+                    to={"CounterDashboard"}
+                    toArgs={[username, counter.name]}
+                    from={"Counters"}
+                    fromArgs={[username]}
+                  >
+                    {localStorage.Login === username &&
+                    counter.lastUpdatedAt &&
+                    Date.now() - counter.lastUpdatedAt < 1000 * 60 * 60 * 3 ? (
+                      <span>
+                        {"☑️"}&nbsp;&nbsp; {camelCaseToTitleCase(counter.name)}
+                      </span>
+                    ) : (
+                      <span>{camelCaseToTitleCase(counter.name)}</span>
+                    )}
+                  </NavigationLinkListItem>
+                ))}
+              </Card>
+              <Gap />
+              <Gap />
+            </div>
+          );
+        })}
+    </FixedLayout>
   );
 };
 

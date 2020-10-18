@@ -14,6 +14,7 @@ import {
   maxRepsPerDay,
   yesterdaysRecords,
 } from "historical-data/data";
+import { FixedLayout } from "components/FixedLayout";
 
 const Row = styled.div`
   display: flex;
@@ -56,120 +57,15 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
   const countRecords: CountRecord[] = response?.[countee] || [];
   const countRecordsPerDay = perDay(countRecords);
   return (
-    <>
-      <section style={{ flex: 1 }}>
-        <Title>
-          {username}'s {camelCaseToTitleCase(countee)}
-        </Title>
-        <Gap />
+    <FixedLayout
+      before={
         <>
-          <Day
-            text="Today"
-            records={todaysRecords(countRecords)}
-            onSetClick={(index) => () => {}}
-            // onSetClick={(index) => () => {
-            //   if (window.confirm("Do you want to delete this record?")) {
-            //     setCountRecords(
-            //       countRecords.filter(
-            //         ({ timestamp }) =>
-            //           timestamp !== todaysRecords(countRecords)[index].timestamp
-            //       )
-            //     );
-            //   }
-            // }}
-          />
-          <Gap />
-          <Day
-            text="Yesterday"
-            records={yesterdaysRecords(countRecords)}
-            onSetClick={(index) => () => {}}
-          />
+          <Title>
+            {username}'s {camelCaseToTitleCase(countee)}
+          </Title>
         </>
-      </section>
-      <Gap />
-
-      <section style={{ flex: 1 }}>
-        {countRecordsPerDay.length >= 2 ? (
-          <>
-            <Card withPadding>
-              <Heading>
-                All time
-                <Label style={{ marginLeft: "auto" }}>
-                  Since{" "}
-                  {new Date(countRecords[0].timestamp).toLocaleDateString()}
-                </Label>
-              </Heading>
-              <Gap />
-              <Row>
-                <Column>
-                  <Label>Max Reps/Set</Label>
-                  <Gap />
-                  <SetValue>
-                    {Math.max(...countRecords.map((set: any) => set.count))}
-                  </SetValue>
-                </Column>
-                <Column>
-                  <Label>Max Reps/Day</Label>
-                  <Gap />
-                  <HistoricalValue>
-                    {maxRepsPerDay(countRecords)}
-                  </HistoricalValue>
-                </Column>
-                <Column>
-                  <Label>Avg Reps/Day</Label>
-                  <Gap />
-                  <HistoricalValue>
-                    {Math.round(
-                      countRecordsPerDay
-                        .map((day) => day.total)
-                        .reduce((a, b) => a + b) / countRecordsPerDay.length
-                    )}
-                  </HistoricalValue>
-                </Column>
-              </Row>
-
-              <Gap />
-              <Gap />
-
-              <Row>
-                <Column>
-                  <Label>Total Reps</Label>
-                  <Gap />
-                  <Value>
-                    {countRecords
-                      .reduce(
-                        (total: any, record: any) => total + record.count,
-                        0
-                      )
-                      .toLocaleString()}
-                  </Value>
-                </Column>
-                <Column>
-                  <Label>Total Sets</Label>
-                  <Gap />
-                  <Value>{countRecords.length}</Value>
-                </Column>
-                <Column>
-                  <Label>Total Days</Label>
-                  <Gap />
-                  <Value>{countRecordsPerDay.length}</Value>
-                </Column>
-              </Row>
-            </Card>
-          </>
-        ) : (
-          <>
-            <Heading>No Historical Records</Heading>
-          </>
-        )}
-      </section>
-
-      <Gap />
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
+      }
+      after={
         <Card withPadding={false}>
           {localStorage.Login === username && (
             <NavigationLinkListItem
@@ -198,8 +94,63 @@ const CounterDashboard: React.FC<{ slotArgs: string[] }> = ({
             More from {username}
           </NavigationLinkListItem>
         </Card>
-      </div>
-    </>
+      }
+    >
+      <Day
+        text="Today"
+        records={todaysRecords(countRecords)}
+        onSetClick={(index) => () => {}}
+      />
+      <Gap />
+      <Day
+        text="Yesterday"
+        records={yesterdaysRecords(countRecords)}
+        onSetClick={(index) => () => {}}
+      />
+      <Gap />
+
+      {countRecordsPerDay.length >= 2 ? (
+        <>
+          <Card withPadding>
+            <Heading>
+              All time
+              <Label style={{ marginLeft: "auto" }}>
+                Since {new Date(countRecords[0].timestamp).toLocaleDateString()}
+              </Label>
+            </Heading>
+            <Gap />
+            <Row>
+              <Column>
+                <Label>Total Reps</Label>
+                <Gap />
+                <Value>
+                  {countRecords
+                    .reduce(
+                      (total: any, record: any) => total + record.count,
+                      0
+                    )
+                    .toLocaleString()}
+                </Value>
+              </Column>
+              <Column>
+                <Label>Total Sets</Label>
+                <Gap />
+                <Value>{countRecords.length}</Value>
+              </Column>
+              <Column>
+                <Label>Total Days</Label>
+                <Gap />
+                <Value>{countRecordsPerDay.length}</Value>
+              </Column>
+            </Row>
+          </Card>
+        </>
+      ) : (
+        <>
+          <Heading>No Historical Records</Heading>
+        </>
+      )}
+    </FixedLayout>
   );
 };
 

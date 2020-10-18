@@ -8,11 +8,11 @@ import Gap from "components/Gap";
 import ExternalLink from "components/ExternalLink";
 import { useAmlifyApi } from "api/amplify";
 import Herman from "../images/Herman.jpg";
+import { FixedLayout } from "components/FixedLayout";
 
 const PageTitle = styled.h1`
   font-size: 32px;
   line-height: 1.1;
-  text-align: center;
   font-weight: 700;
   letter-spacing: 0em;
   margin: 0;
@@ -42,95 +42,90 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
   }
 
   return (
-    <>
-      <section
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-        }}
-      >
-        <Avatar
-          src={({ Herman } as { [key: string]: string })[username]}
-          alt={username}
-        />
-        <Gap />
-
-        <PageTitle>{personalInfo.name}</PageTitle>
+    <FixedLayout
+      before={
         <div
           style={{
-            color: "var(--gray2)",
-            fontStyle: "italic",
-            fontFamily:
-              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {personalInfo.ru?.name}
+          <Avatar
+            src={({ Herman } as { [key: string]: string })[username]}
+            alt={username}
+          />
+          <Gap />
+
+          <PageTitle>{personalInfo.name}</PageTitle>
+          <div
+            style={{
+              color: "var(--gray2)",
+              fontStyle: "italic",
+              fontFamily:
+                '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+            }}
+          >
+            {personalInfo.ru?.name}
+          </div>
         </div>
-      </section>
-      <Gap />
-      <section style={{ flex: 1 }}>
-        <Card withPadding>
-          <Heading>{personalInfo.title}</Heading>
-          <Gap />
-          <Paragraph>{personalInfo.description}</Paragraph>
-          <Gap />
-          <ExternalLink href="mailto:hermanstarikov@gmail.com">
-            <InteractiveText>Email</InteractiveText>
-          </ExternalLink>
-        </Card>
-      </section>
-      <Gap />
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
-        <Card withPadding={false}>
-          <NavigationLinkListItem
-            renderIfActive
-            to={"Counters"}
-            toArgs={[username]}
-            from={"Profile"}
-            fromArgs={[username]}
-          >
-            Counters
-          </NavigationLinkListItem>
+      }
+      after={
+        <>
+          <Card withPadding={false}>
+            <NavigationLinkListItem
+              renderIfActive
+              to={"Counters"}
+              toArgs={[username]}
+              from={"Profile"}
+              fromArgs={[username]}
+            >
+              Counters
+            </NavigationLinkListItem>
 
-          <NavigationLinkListItem
-            renderIfActive
-            to={"Notes"}
-            toArgs={[username]}
-            from={"Profile"}
-            fromArgs={[username]}
-          >
-            Notes
-          </NavigationLinkListItem>
+            <NavigationLinkListItem
+              renderIfActive
+              to={"Notes"}
+              toArgs={[username]}
+              from={"Profile"}
+              fromArgs={[username]}
+            >
+              Notes
+            </NavigationLinkListItem>
 
-          <NavigationLinkListItem
-            renderIfActive
-            to={"Links"}
-            toArgs={[username]}
-            from={"Profile"}
-            fromArgs={[username]}
-          >
-            Links
-          </NavigationLinkListItem>
+            <NavigationLinkListItem
+              renderIfActive
+              to={"Links"}
+              toArgs={[username]}
+              from={"Profile"}
+              fromArgs={[username]}
+            >
+              Links
+            </NavigationLinkListItem>
 
-          <NavigationLinkListItem
-            renderIfActive
-            to={"ReactSlotNavigation"}
-            from={"Profile"}
-            fromArgs={[username]}
-          >
-            Slot Navigation
-          </NavigationLinkListItem>
-        </Card>
-      </div>
-    </>
+            <NavigationLinkListItem
+              renderIfActive
+              to={"ReactSlotNavigation"}
+              from={"Profile"}
+              fromArgs={[username]}
+            >
+              Slot Navigation
+            </NavigationLinkListItem>
+          </Card>
+        </>
+      }
+    >
+      <Card withPadding>
+        <Heading>{personalInfo.title}</Heading>
+        <Gap />
+        <Paragraph>{personalInfo.description}</Paragraph>
+        <Gap />
+        <ExternalLink href="mailto:hermanstarikov@gmail.com">
+          <InteractiveText>Email</InteractiveText>
+        </ExternalLink>
+      </Card>
+    </FixedLayout>
   );
 };
 

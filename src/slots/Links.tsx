@@ -6,6 +6,7 @@ import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
 import { Card, NavigationLinkListItem as LinkListItem } from "exports";
 import { camelCaseToTitleCase } from "./Counter/utils";
+import { FixedLayout } from "components/FixedLayout";
 
 const Link = styled(ExternalLink)`
   display: block;
@@ -61,78 +62,48 @@ const links: linkType[] = [
 
 const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
   return (
-    <>
-      <section
-        style={{
-          flex: 1,
-        }}
-      >
-        <Title>{username}'s Links</Title>
-        {links
-          .reduce((groups, item) => {
-            let group = groups.find((_) => _.name === item.group);
-            if (group) {
-              group.items.push(item);
-              return groups;
-            } else {
-              group = {
-                name: item.group,
-                items: [item],
-              };
-              return groups.concat(group);
-            }
-          }, [] as Group[])
-          .map((group) => {
-            return (
-              <div key={group.name}>
-                <Gap />
-                <Gap />
-                <Heading>{camelCaseToTitleCase(group.name)}</Heading>
-                <Gap />
-                <Card withPadding={false}>
-                  {group.items.map((link) => (
-                    <LinkListItem
-                      href={link.url}
-                      key={link.name}
-                      target="_blank"
-                    >
-                      {link.name}
-                    </LinkListItem>
-                  ))}
-                </Card>
-              </div>
-            );
-          })}
-      </section>
-      <Gap />
-      <section style={{ flex: 1 }}>
-        <Card withPadding>
-          <Flex>
-            <SubSection>
-              <Heading>Coding</Heading>
-              <Gap />
-              <Link href="https://github.com/hermanya">GitHub</Link>
-              <Link href="https://stackoverflow.com/users/7228427/herman-starikov">
-                StackOverflow
-              </Link>
-              <Link href="https://twitter.com/hermanhasawish">Twitter</Link>
-              <Link href="https://codepen.io/Hermanya">CodePen</Link>
-            </SubSection>
-            <SubSection>
-              <Heading>Other</Heading>
-              <Gap />
-              <Link href="https://instagram.com/hermanya">Instagram</Link>
-              <Link href="https://facebook.com/hermanhasawish">Facebook</Link>
-              <Link href="https://www.producthunt.com/@hermanhasawish/made">
-                Product Hunt
-              </Link>
-              <Link href="https://dribbble.com/hermanya">Dribbble</Link>
-            </SubSection>
-          </Flex>
-        </Card>
-      </section>
-      <Gap />
-      <div style={{ flex: 1, justifySelf: "flex-end" }}>
+    <FixedLayout
+      before={
+        <>
+          <Title>{username}'s Links</Title>
+          {links
+            .reduce((groups, item) => {
+              let group = groups.find((_) => _.name === item.group);
+              if (group) {
+                group.items.push(item);
+                return groups;
+              } else {
+                group = {
+                  name: item.group,
+                  items: [item],
+                };
+                return groups.concat(group);
+              }
+            }, [] as Group[])
+            .map((group) => {
+              return (
+                <div key={group.name}>
+                  <Gap />
+                  <Gap />
+                  <Heading>{camelCaseToTitleCase(group.name)}</Heading>
+                  <Gap />
+                  <Card withPadding={false}>
+                    {group.items.map((link) => (
+                      <LinkListItem
+                        href={link.url}
+                        key={link.name}
+                        target="_blank"
+                      >
+                        {link.name}
+                      </LinkListItem>
+                    ))}
+                  </Card>
+                </div>
+              );
+            })}
+        </>
+      }
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"Profile"}
@@ -159,8 +130,33 @@ const Links: React.FC<{ slotArgs: string[] }> = ({ slotArgs: [username] }) => {
             Terms of Service
           </NavigationLinkListItem>
         </Card>
-      </div>
-    </>
+      }
+    >
+      <Card withPadding>
+        <Flex>
+          <SubSection>
+            <Heading>Coding</Heading>
+            <Gap />
+            <Link href="https://github.com/hermanya">GitHub</Link>
+            <Link href="https://stackoverflow.com/users/7228427/herman-starikov">
+              StackOverflow
+            </Link>
+            <Link href="https://twitter.com/hermanhasawish">Twitter</Link>
+            <Link href="https://codepen.io/Hermanya">CodePen</Link>
+          </SubSection>
+          <SubSection>
+            <Heading>Other</Heading>
+            <Gap />
+            <Link href="https://instagram.com/hermanya">Instagram</Link>
+            <Link href="https://facebook.com/hermanhasawish">Facebook</Link>
+            <Link href="https://www.producthunt.com/@hermanhasawish/made">
+              Product Hunt
+            </Link>
+            <Link href="https://dribbble.com/hermanya">Dribbble</Link>
+          </SubSection>
+        </Flex>
+      </Card>
+    </FixedLayout>
   );
 };
 

@@ -3,10 +3,23 @@ import { NavigationLinkListItem } from "navigation";
 import ExternalLink from "components/ExternalLink";
 import Card from "components/Card";
 import { Title } from "components/typography";
+import { FixedLayout } from "components/FixedLayout";
 
 export default () => {
   return (
-    <div>
+    <FixedLayout
+      after={
+        <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
+          <NavigationLinkListItem
+            to={"Profile"}
+            toArgs={["Herman"]}
+            from={"TermsOfService"}
+          >
+            starikov.dev
+          </NavigationLinkListItem>
+        </Card>
+      }
+    >
       <Title as="h2">Terms of Service</Title>
       <h3>1. Terms</h3>
       <p>
@@ -121,15 +134,6 @@ export default () => {
           Terms of Use created with GetTerms.
         </ExternalLink>
       </p>
-      <Card withPadding={false} style={{ margin: "auto 0 16px" }}>
-        <NavigationLinkListItem
-          to={"Profile"}
-          toArgs={["Herman"]}
-          from={"TermsOfService"}
-        >
-          starikov.dev
-        </NavigationLinkListItem>
-      </Card>
-    </div>
+    </FixedLayout>
   );
 };
