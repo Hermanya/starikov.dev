@@ -10,7 +10,8 @@ const Layout = styled.div`
 
 const Appendage = styled.div`
   position: absolute;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(4px);
+  background: var(--background);
   background: var(--backdrop);
   padding: 12px;
 `;

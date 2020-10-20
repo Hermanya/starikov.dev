@@ -98,7 +98,7 @@ const Counter: React.FC<{ slotArgs: string[] }> = ({
                     event.stopPropagation();
                     const countRecord: CountRecord = {
                       timestamp: Date.now(),
-                      count: count - 1,
+                      count,
                     };
                     updateData({
                       [countee]: [...countRecords, countRecord],
