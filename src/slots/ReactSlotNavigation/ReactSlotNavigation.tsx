@@ -2,20 +2,20 @@ import React from "react";
 import { ReactPackageName } from "components/ReactPackageName";
 import { useNextSlotFor } from "react-slot-navigation/hooks/useNextSlotFor";
 import { NavigationLinkListItem } from "navigation";
-import { Gap, Card } from "exports";
+import { Card } from "exports";
+import { FixedLayout } from "components/FixedLayout";
 
 const ReactSlotNavigation: React.FC = () => {
   useNextSlotFor("Exports", { from: "ReactSlotNavigation" });
   return (
-    <>
-      <div style={{ flex: 1 }}>
+    <FixedLayout
+      before={
         <ReactPackageName
           name="React slot navigation"
           description="Moving between mobile-size components across all screen sizes"
         />
-      </div>
-      <Gap />
-      <nav style={{ flex: 1 }}>
+      }
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             renderIfActive
@@ -55,8 +55,8 @@ const ReactSlotNavigation: React.FC = () => {
             By starikov.dev
           </NavigationLinkListItem>
         </Card>
-      </nav>
-    </>
+      }
+    ></FixedLayout>
   );
 };
 

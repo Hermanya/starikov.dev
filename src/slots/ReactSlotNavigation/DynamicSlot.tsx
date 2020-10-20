@@ -1,23 +1,14 @@
 import React from "react";
 import { NavigationLinkListItem } from "navigation";
 import { Card, Title, Gap } from "exports";
+import { FixedLayout } from "components/FixedLayout";
 
 const DynamicSlot: React.FC<{
   slotArgs: string[];
 }> = ({ slotArgs = [] }) => {
   return (
-    <>
-      <section style={{ flex: 1 }}>
-        <Title>This slot is dynamic</Title>
-        <Gap />
-
-        <Card withPadding>
-          Hello <strong>{slotArgs.join(", ")}</strong>
-        </Card>
-      </section>
-      <Gap />
-
-      <section style={{ flex: 1 }}>
+    <FixedLayout
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"ReactSlotNavigation"}
@@ -27,8 +18,14 @@ const DynamicSlot: React.FC<{
             React Slot Navigation
           </NavigationLinkListItem>
         </Card>
-      </section>
-    </>
+      }
+    >
+      <Title>This slot is dynamic</Title>
+      <Gap />
+      <Card withPadding>
+        Hello <strong>{slotArgs.join(", ")}</strong>
+      </Card>
+    </FixedLayout>
   );
 };
 

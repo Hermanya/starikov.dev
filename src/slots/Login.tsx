@@ -4,6 +4,7 @@ import { NavigationLinkListItem } from "navigation";
 import Gap from "components/Gap";
 import { Card } from "exports";
 import { API } from "aws-amplify";
+import { FixedLayout } from "components/FixedLayout";
 
 const Login = () => {
   const [username, setUsername] = useState(localStorage.Login || "");
@@ -17,39 +18,13 @@ const Login = () => {
     }).then((response) => {
       localStorage.AccessKey = response.AccessKey;
       localStorage.Login = username;
+      window.location.href = "/";
     });
   }, [password, username]);
   return (
-    <>
-      <Gap />
-      <section
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Title>Login</Title>
-      </section>
-      <Gap />
-      <section style={{ flex: 1 }}>
-        <Card withPadding>
-          <input
-            placeholder="username"
-            onChange={(event) => setUsername(event.target.value)}
-            value={username}
-          />
-          <input
-            placeholder="password"
-            onChange={(event) => setPassword(event.target.value)}
-            value={password}
-          />
-          <button onClick={onSubmit}>Let's go</button>
-        </Card>
-      </section>
-      <Gap />
-      <div style={{ flex: 1, justifySelf: "flex-end" }}>
+    <FixedLayout
+      before={<Title>Login</Title>}
+      after={
         <Card withPadding={false}>
           <NavigationLinkListItem
             to={"Profile"}
@@ -59,9 +34,22 @@ const Login = () => {
             starikov.dev
           </NavigationLinkListItem>
         </Card>
-      </div>
-      <Gap />
-    </>
+      }
+    >
+      <Card withPadding>
+        <input
+          placeholder="username"
+          onChange={(event) => setUsername(event.target.value)}
+          value={username}
+        />
+        <input
+          placeholder="password"
+          onChange={(event) => setPassword(event.target.value)}
+          value={password}
+        />
+        <button onClick={onSubmit}>Let's go</button>
+      </Card>
+    </FixedLayout>
   );
 };
 
