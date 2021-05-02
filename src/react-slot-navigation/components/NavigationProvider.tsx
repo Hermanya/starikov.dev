@@ -125,6 +125,12 @@ export const NavigationProvider: React.FC<
 
       console.log("push stating", newUrl);
 
+      // @ts-ignore
+      if (typeof ga !== "undefined") {
+        // @ts-ignore
+        ga("send", "pageview", newUrl);
+      }
+
       if (
         (state.lastNavigationAction as PushAction)?.payload.onlyIfThereIsRoom
       ) {
