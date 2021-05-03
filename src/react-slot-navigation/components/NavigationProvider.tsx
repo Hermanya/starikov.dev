@@ -126,9 +126,11 @@ export const NavigationProvider: React.FC<
       console.log("push stating", newUrl);
 
       // @ts-ignore
-      if (typeof ga !== "undefined") {
+      if (typeof gtag !== "undefined") {
         // @ts-ignore
-        ga("send", "pageview", newUrl);
+        gtag("event", "page_view", {
+          page_path: newUrl,
+        });
       }
 
       if (
