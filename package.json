@@ -48,7 +48,7 @@
     "lqip.macro": "^0.1.5",
     "marked": "^0.7.0",
     "preval.macro": "^3.0.0",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^4.0.3",
     "typescript": "^3.9.5"
   },
   "scripts": {
