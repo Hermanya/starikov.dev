@@ -10,6 +10,7 @@
   "homepage": "https://www.starikov.dev",
   "license": "MIT",
   "dependencies": {
+    "@babel/helper-regex": "^7.10.5",
     "@types/use-persisted-state": "^0.3.0",
     "aws-amplify": "^3.0.20",
     "react": "^0.0.0-experimental-269dd6ec5",
