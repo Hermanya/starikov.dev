@@ -125,8 +125,11 @@ export const NavigationProvider: React.FC<
 
       console.log("push stating", newUrl);
 
-      // @ts-ignore
-      if (typeof gtag !== "undefined") {
+      if (
+        // @ts-ignore
+        typeof gtag !== "undefined" &&
+        window.location.hostname !== "localhost"
+      ) {
         // @ts-ignore
         gtag("event", "page_view", {
           page_path: newUrl,

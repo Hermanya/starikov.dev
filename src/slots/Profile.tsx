@@ -28,7 +28,21 @@ type PersonalInfo = {
 const Profile: React.FC<{ slotArgs: string[] }> = ({
   slotArgs: [username],
 }) => {
-  const [data] = useAmlifyApi(username, `PersonalInfo`);
+  // const [data] = useAmlifyApi(username, `PersonalInfo`);
+  const data = {
+    PersonalInfo: {
+      name: "Herman Starikov",
+      description:
+        "Born and raised in Moscow. Immigrated to Toronto to study software development. In my spare time I make web stuff, check it out.",
+      ru: {
+        name: "Стариков Герман Владимирович",
+        title: "Разработчик в Курсере",
+        description:
+          "Родился и вырос в Москве. Эмигрировал в Торонто, чтобы учиться программированию. В свободное время Я делаю вещи в интернете, зацените)",
+      },
+      title: "Developer at Coursera",
+    },
+  };
   const personalInfo: PersonalInfo = data?.PersonalInfo;
 
   useNextSlotFor("Counters", {
@@ -74,7 +88,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
       after={
         <>
           <Card withPadding={false}>
-            <NavigationLinkListItem
+            {/* <NavigationLinkListItem
               renderIfActive
               to={"Counters"}
               toArgs={[username]}
@@ -82,9 +96,9 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
               fromArgs={[username]}
             >
               Counters
-            </NavigationLinkListItem>
+            </NavigationLinkListItem> */}
 
-            <NavigationLinkListItem
+            {/* <NavigationLinkListItem
               renderIfActive
               to={"Notes"}
               toArgs={[username]}
@@ -92,7 +106,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
               fromArgs={[username]}
             >
               Notes
-            </NavigationLinkListItem>
+            </NavigationLinkListItem> */}
 
             <NavigationLinkListItem
               renderIfActive

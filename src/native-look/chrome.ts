@@ -20,7 +20,7 @@ export default createGlobalStyle`
     --text: #212121;
     --background: var(--gray6);
     --backdrop: #FAFAFA88;
-    --card-background: #ffffff;
+    --card-background: var(--gray6);
     --react: #61dafb;
     --card-border-radius: 4px;
     /* --card-border:  1px solid var(--gray3); */
@@ -50,7 +50,7 @@ export default createGlobalStyle`
         --text: rgb(204, 204, 204);
         --background: #000000;
         --backdrop: #00000055;
-        --card-background: #34363A;
+        --card-background: #000000;
         --react: #61dafb;
     }
 }
