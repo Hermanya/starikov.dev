@@ -45,7 +45,7 @@ const Profile: React.FC<{ slotArgs: string[] }> = ({
   };
   const personalInfo: PersonalInfo = data?.PersonalInfo;
 
-  useNextSlotFor("Counters", {
+  useNextSlotFor("Links", {
     toArgs: [username],
     from: "Profile",
     fromArgs: [username],
