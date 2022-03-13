@@ -9,12 +9,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yarn install
+        - npm install
         - "# This installs Chrome on any RHEL/CentOS/Amazon Linux variant."
         - curl https://intoli.com/install-google-chrome.sh | bash
     build:
       commands:
-        - yarn run build
+        - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: build
