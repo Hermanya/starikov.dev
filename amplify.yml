@@ -1,4 +1,7 @@
 version: 0.1
+env:
+  variables:
+    VERSION_AMPLIFY: 7.6.23
 backend:
   phases:
     build:
