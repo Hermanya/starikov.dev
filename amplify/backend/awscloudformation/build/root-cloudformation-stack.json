@@ -151,16 +151,6 @@
           "Ref": "UnauthRoleName"
         }
       }
-    },
-    "hostingS3AndCloudFront": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/hosting/template.json",
-        "Parameters": {
-          "bucketName": "starikovdev-20190910220925-hostingbucket",
-          "env": "production"
-        }
-      }
     }
   }
 }

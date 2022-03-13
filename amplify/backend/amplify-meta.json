@@ -12,26 +12,7 @@
       "AmplifyAppId": "d34q5rmn2aec1f"
     }
   },
-  "hosting": {
-    "S3AndCloudFront": {
-      "service": "S3AndCloudFront",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "CloudFrontSecureURL": "https://d4erurm7hfyf7.cloudfront.net",
-        "S3BucketSecureURL": "https://starikovdev-20190910220925-hostingbucket-production.s3.amazonaws.com",
-        "WebsiteURL": "http://starikovdev-20190910220925-hostingbucket-production.s3-website-us-east-1.amazonaws.com",
-        "CloudFrontDistributionID": "E26UT01UANU2VI",
-        "Region": "us-east-1",
-        "HostingBucketName": "starikovdev-20190910220925-hostingbucket-production",
-        "CloudFrontDomainName": "d4erurm7hfyf7.cloudfront.net"
-      },
-      "lastPushTimeStamp": "2022-03-13T01:03:48.308Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/hosting/template.json",
-        "logicalId": "hostingS3AndCloudFront"
-      }
-    }
-  },
+  "hosting": {},
   "storage": {},
   "function": {},
   "api": {}
