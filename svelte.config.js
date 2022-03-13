@@ -8,7 +8,10 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      pages: "dist",
+      assets: "dist",
+    }),
 
     // Override http methods in the Todo forms
     methodOverride: {
