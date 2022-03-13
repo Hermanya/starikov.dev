@@ -9,29 +9,5 @@ export type AmplifyDependentResourcesAttributes = {
             "CloudFrontDomainName": "string",
             "CloudFrontSecureURL": "string"
         }
-    },
-    "storage": {
-        "starikovDev": {
-            "Name": "string",
-            "Arn": "string",
-            "StreamArn": "string",
-            "PartitionKeyName": "string",
-            "PartitionKeyType": "string",
-            "Region": "string"
-        }
-    },
-    "function": {
-        "starikovDev": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        }
-    },
-    "api": {
-        "starikovDev": {
-            "RootUrl": "string",
-            "ApiName": "string"
-        }
     }
 }

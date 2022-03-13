@@ -12,15 +12,8 @@ const awsmobile = {
             "tableName": "starikovDevUserData-production",
             "region": "us-east-1"
         }
-    ],
-    "aws_cloud_logic_custom": [
-        {
-            "name": "starikovDev",
-            "endpoint": "https://3meou6qp87.execute-api.us-east-1.amazonaws.com/production",
-            "region": "us-east-1"
-        }
     ]
 };
 
 
-export default awsmobile;
+module.exports = {default: awsmobile};

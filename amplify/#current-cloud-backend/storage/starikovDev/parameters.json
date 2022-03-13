@@ -1,5 +1,0 @@
-{
-    "tableName": "starikovDevUserData",
-    "partitionKeyName": "id",
-    "partitionKeyType": "S"
-}

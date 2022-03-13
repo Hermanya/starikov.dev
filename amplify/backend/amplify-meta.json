@@ -25,59 +25,14 @@
         "HostingBucketName": "starikovdev-20190910220925-hostingbucket-production",
         "CloudFrontDomainName": "d4erurm7hfyf7.cloudfront.net"
       },
-      "lastPushTimeStamp": "2022-03-13T00:38:30.715Z",
+      "lastPushTimeStamp": "2022-03-13T01:03:48.308Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/hosting/template.json",
         "logicalId": "hostingS3AndCloudFront"
       }
     }
   },
-  "storage": {
-    "starikovDev": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "PartitionKeyName": "id",
-        "Region": "us-east-1",
-        "Arn": "arn:aws:dynamodb:us-east-1:317189602285:table/starikovDevUserData-production",
-        "StreamArn": "arn:aws:dynamodb:us-east-1:317189602285:table/starikovDevUserData-production/stream/2020-07-12T15:46:31.345",
-        "PartitionKeyType": "S",
-        "Name": "starikovDevUserData-production"
-      },
-      "lastPushTimeStamp": "2022-03-13T00:38:30.717Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/storage/starikovDev-cloudformation-template.json",
-        "logicalId": "storagestarikovDev"
-      }
-    }
-  },
-  "function": {
-    "starikovDev": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true,
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "starikovDev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "output": {
-        "Region": "us-east-1",
-        "Arn": "arn:aws:lambda:us-east-1:317189602285:function:starikovDevUserData-production",
-        "Name": "starikovDevUserData-production",
-        "LambdaExecutionRole": "starikovdevLambdaRole5adb1928-production"
-      },
-      "lastPushTimeStamp": "2022-03-13T00:38:30.718Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/function/starikovDev-cloudformation-template.json",
-        "logicalId": "functionstarikovDev"
-      }
-    }
-  },
+  "storage": {},
+  "function": {},
   "api": {}
 }

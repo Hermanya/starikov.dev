@@ -9,7 +9,7 @@
       "UnauthRoleName": "starikovdev-production-20190910220828-unauthRole",
       "StackName": "starikovdev-production-20190910220828",
       "StackId": "arn:aws:cloudformation:us-east-1:317189602285:stack/starikovdev-production-20190910220828/0c0af5a0-d439-11e9-a938-0e6c2daa9b2c",
-      "AmplifyAppId": "dslbidwskk7vm"
+      "AmplifyAppId": "d34q5rmn2aec1f"
     }
   },
   "hosting": {
@@ -25,90 +25,14 @@
         "HostingBucketName": "starikovdev-20190910220925-hostingbucket-production",
         "CloudFrontDomainName": "d4erurm7hfyf7.cloudfront.net"
       },
-      "lastPushTimeStamp": "2021-05-03T02:50:59.725Z",
+      "lastPushTimeStamp": "2022-03-13T01:03:00.989Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/hosting/template.json",
         "logicalId": "hostingS3AndCloudFront"
-      },
-      "lastPushDirHash": "TCH/U51kYWs5j5+PFeWjYKJDrKE="
+      }
     }
   },
-  "storage": {
-    "starikovDev": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "PartitionKeyName": "id",
-        "Region": "us-east-1",
-        "Arn": "arn:aws:dynamodb:us-east-1:317189602285:table/starikovDevUserData-production",
-        "StreamArn": "arn:aws:dynamodb:us-east-1:317189602285:table/starikovDevUserData-production/stream/2020-07-12T15:46:31.345",
-        "PartitionKeyType": "S",
-        "Name": "starikovDevUserData-production"
-      },
-      "lastPushTimeStamp": "2021-05-03T02:50:59.725Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/storage/starikovDev-cloudformation-template.json",
-        "logicalId": "storagestarikovDev"
-      },
-      "lastPushDirHash": "mcAPWKR8Whu59nWrdV3+n/tT3Y4="
-    }
-  },
-  "function": {
-    "starikovDev": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true,
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "starikovDev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "output": {
-        "Region": "us-east-1",
-        "Arn": "arn:aws:lambda:us-east-1:317189602285:function:starikovDevUserData-production",
-        "Name": "starikovDevUserData-production",
-        "LambdaExecutionRole": "starikovdevLambdaRole5adb1928-production"
-      },
-      "lastPushTimeStamp": "2021-05-03T02:50:59.725Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/function/starikovDev-cloudformation-template.json",
-        "logicalId": "functionstarikovDev"
-      },
-      "lastBuildTimeStamp": "2021-05-03T02:50:25.032Z",
-      "lastPackageTimeStamp": "2021-05-03T02:50:28.420Z",
-      "distZipFilename": "starikovDev-386f376d4a4271796b75-build.zip",
-      "lastPushDirHash": "mlpNZT93/YVjYnU1snpfpYS9Vjg="
-    }
-  },
-  "api": {
-    "starikovDev": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "starikovDev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "output": {
-        "ApiName": "starikovDev",
-        "RootUrl": "https://3meou6qp87.execute-api.us-east-1.amazonaws.com/production"
-      },
-      "lastPushTimeStamp": "2021-05-03T02:50:59.725Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/api/starikovDev-cloudformation-template.json",
-        "logicalId": "apistarikovDev"
-      },
-      "lastPushDirHash": "swhTVFTqg3pMyjFA9RR0w5h4R4Y="
-    }
-  }
+  "storage": {},
+  "function": {},
+  "api": {}
 }

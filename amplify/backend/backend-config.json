@@ -5,28 +5,7 @@
       "providerPlugin": "awscloudformation"
     }
   },
-  "storage": {
-    "starikovDev": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  },
-  "function": {
-    "starikovDev": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true,
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "starikovDev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
-    }
-  },
+  "storage": {},
+  "function": {},
   "api": {}
 }

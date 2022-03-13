@@ -10,11 +10,6 @@
       "StackName": "starikovdev-production-20190910220828",
       "StackId": "arn:aws:cloudformation:us-east-1:317189602285:stack/starikovdev-production-20190910220828/0c0af5a0-d439-11e9-a938-0e6c2daa9b2c",
       "AmplifyAppId": "d34q5rmn2aec1f"
-    },
-    "categories": {
-      "function": {
-        "starikovDev": {}
-      }
     }
   }
 }
