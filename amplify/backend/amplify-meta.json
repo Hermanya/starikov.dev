@@ -79,29 +79,5 @@
       }
     }
   },
-  "api": {
-    "starikovDev": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "starikovDev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "output": {
-        "ApiName": "starikovDev",
-        "RootUrl": "https://3meou6qp87.execute-api.us-east-1.amazonaws.com/production"
-      },
-      "lastPushTimeStamp": "2022-03-13T00:38:30.719Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/starikovdev-production-20190910220828-deployment/amplify-cfn-templates/api/starikovDev-cloudformation-template.json",
-        "logicalId": "apistarikovDev"
-      }
-    }
-  }
+  "api": {}
 }
