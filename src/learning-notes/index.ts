@@ -18,7 +18,7 @@ const courses = [
   //   cert: "https://www.coursera.org/account/accomplishments/certificate/H3KYJ2UC29X6",
   // },
   {
-    id: "life-after-covid",
+    id: "life-after-covid-19-get-ready-for-our-post-pandemic-future",
     name: "Life after COVID-19",
     completion: "November 2021",
     cert: "https://www.coursera.org/account/accomplishments/verify/D4SB6CCJP6F8",
@@ -30,12 +30,12 @@ const courses = [
   //   completion: "August 2021",
   //   cert: "https://www.coursera.org/account/accomplishments/verify/6PVSA82JZZ4F",
   // },
-  // {
-  //   id: "financial-markets",
-  //   name: "Financial Markets",
-  //   completion: "April 2021",
-  //   cert: "https://www.coursera.org/account/accomplishments/verify/CCLNB5YEPEQC",
-  // },
+  {
+    id: "financial-markets",
+    name: "Financial Markets",
+    completion: "April 2021",
+    cert: "https://www.coursera.org/account/accomplishments/verify/CCLNB5YEPEQC",
+  },
 ];
 
 export default courses;
