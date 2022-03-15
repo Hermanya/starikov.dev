@@ -13,6 +13,12 @@ const config = {
       assets: "dist",
     }),
 
+    prerender: {
+      crawl: true,
+      enabled: true,
+      default: true,
+    },
+
     // Override http methods in the Todo forms
     methodOverride: {
       allowed: ["PATCH", "DELETE"],

@@ -1,23 +1,23 @@
 <script context="module" lang="ts">
-  // import type { Load } from "@sveltejs/kit";
+  import type { Load } from "@sveltejs/kit";
 
-  // // see https://kit.svelte.dev/docs#loading
-  // export const load: Load = async ({ fetch, params }) => {
-  //   const res = await fetch(`/notes/${params.uid}.json`);
+  // see https://kit.svelte.dev/docs#loading
+  export const load: Load = async ({ fetch, params }) => {
+    const res = await fetch(`/notes/${params.uid.replace(".html", "")}.json`);
 
-  //   if (res.ok) {
-  //     const course = await res.json();
-  //     return {
-  //       props: { course },
-  //     };
-  //   }
+    if (res.ok) {
+      const course = await res.json();
+      return {
+        props: { course },
+      };
+    }
 
-  //   const { message } = await res.json();
+    const { message } = await res.json();
 
-  //   return {
-  //     error: new Error(message),
-  //   };
-  // };
+    return {
+      error: new Error(message),
+    };
+  };
   export const prerender = true;
 </script>
 
@@ -29,12 +29,8 @@
     instructor: string;
     notes: { topic: string; quote: string; source: string; note?: string }[];
   };
-  import recentCourses from "../../learning-notes";
-  import lifeAfterCovid from "../../learning-notes/life-after-covid.json";
-  export const course: Course = {
-    ...recentCourses[0],
-    notes: lifeAfterCovid.notes,
-  };
+
+  export let course: Course;
 
   export let groupedNotes: {
     topic: string;

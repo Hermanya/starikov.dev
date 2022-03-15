@@ -21,7 +21,7 @@
         <p class="completed">Completed in {course.completion}</p>
         <section class="buttons">
           <a href={course.cert}>Certificate</a>
-          <a sveltekit:prefetch href={`/notes/${course.id}`} class="button"
+          <a sveltekit:prefetch href={`/notes/${course.id}.html`} class="button"
             >View my notes</a
           >
         </section>
