@@ -5,30 +5,46 @@
 <script lang="ts">
   import recentCourses from "../learning-notes";
   import PersonalCard from "$lib/PersonalCard.svelte";
+  import Card from "$lib/Card.svelte";
+  import CardActions from "$lib/CardActions.svelte";
+  import LinkButton from "$lib/LinkButton.svelte";
+  import Link from "$lib/Link.svelte";
 </script>
 
 <svelte:head>
   <title>Hello from Herman</title>
 </svelte:head>
 
-<section>
+<div>
   <PersonalCard />
   <h2>Courses I recently completed</h2>
-  <section class="courses">
+  <section class="grid">
     {#each recentCourses as course}
-      <div class="course">
+      <Card>
         <h3 class="courseName">{course.name}</h3>
         <p class="completed">Completed in {course.completion}</p>
-        <section class="buttons">
-          <a href={course.cert}>Certificate</a>
-          <a sveltekit:prefetch href={`/notes/${course.id}.html`} class="button"
-            >View my notes</a
+        <CardActions>
+          <Link href={course.cert}>Certificate</Link>
+          <LinkButton href={`/notes/${course.id}.html`}
+            >View my notes</LinkButton
           >
-        </section>
-      </div>
+        </CardActions>
+      </Card>
     {/each}
   </section>
-</section>
+  <!-- <h2>Other note-worthy things</h2>
+  <section class="grid">
+    <Card>
+      <h3 class="courseName">Inspiring personal websites</h3>
+      <p class="completed">Created in March 2022</p>
+      <CardActions>
+        <LinkButton href={`/inspiring-personal-websites.html`}
+          >View list</LinkButton
+        >
+      </CardActions>
+    </Card>
+  </section> -->
+</div>
 
 <style>
   h2 {
@@ -36,7 +52,7 @@
     padding-top: 1rem;
   }
 
-  .courses {
+  .grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -44,18 +60,9 @@
   }
 
   @media only screen and (min-width: 80ch) {
-    .courses {
+    .grid {
       grid-template-columns: 1fr 1fr;
     }
-  }
-
-  .course {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: var(--card-background);
-    border-radius: var(--card-border-radius);
-    padding: 1rem;
   }
 
   .courseName {
@@ -65,30 +72,6 @@
 
   .completed {
     margin: 0;
-
     color: var(--gray);
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    margin-top: auto;
-  }
-
-  .button {
-    background: var(--blue);
-    color: var(--background);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-  }
-  .button:visited {
-    background: var(--purple);
-  }
-
-  a {
-    font-weight: 600;
   }
 </style>

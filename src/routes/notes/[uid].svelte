@@ -22,6 +22,9 @@
 </script>
 
 <script lang="ts">
+  import Card from "$lib/Card.svelte";
+  import CardActions from "$lib/CardActions.svelte";
+
   type Course = {
     name: string;
     completion: string;
@@ -66,23 +69,18 @@
       <h2>{group.topic}</h2>
       <div class="notes">
         {#each group.notes as note}
-          <div class="note">
-            <figure>
-              <blockquote>
-                {note.quote}
-              </blockquote>
-              <figcaption>
-                <cite
-                  >— <a href={note.source}>{course.instructor || "Source"}</a
-                  ></cite
-                >
-              </figcaption>
-            </figure>
+          <Card>
+            <blockquote cite={note.source}>
+              {note.quote}
+            </blockquote>
 
             {#if note.note}
               <div class="my-note">{note.note}</div>
             {/if}
-          </div>
+            <CardActions>
+              <a href={note.source}>Source</a>
+            </CardActions>
+          </Card>
         {/each}
       </div>
     {/each}
@@ -95,53 +93,20 @@
     margin-bottom: 1rem;
   }
 
-  .note {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: var(--card-background);
-    border-radius: var(--card-border-radius);
-    padding: 1rem;
-  }
   .notes {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  figure {
-    /* border-left: 0.25rem solid var(--cyan); */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: var(--card-border-radius);
-  }
+
   blockquote {
     font-style: italic;
     position: relative;
-  }
-
-  blockquote:before,
-  blockquote::after {
-    color: var(--gray);
-    line-height: 1rem;
-    transform: scale(6);
-    position: absolute;
-    opacity: 0.2;
-  }
-  blockquote:before {
-    content: "\201C";
-    transform: translate(-1rem, 0rem) scale(4);
-  }
-
-  blockquote:after {
-    content: "”";
-    transform: translate(1rem, 1rem) scale(4);
-    right: 1.5rem;
+    border-left: 4px solid var(--yellow);
+    padding: 0 1rem;
   }
 
   blockquote,
-  figure,
   h2 {
     margin: 0;
   }
@@ -150,10 +115,5 @@
   }
   a {
     font-weight: 600;
-  }
-
-  .my-note {
-    border-left: 4px solid var(--yellow);
-    padding: 1rem;
   }
 </style>

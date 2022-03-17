@@ -1,5 +1,5 @@
 <div class="card">
-  <img class="avatar" src="/avatar.png" alt="" height="200" width="200" />
+  <img class="avatar" src="/avatar.png" alt="" height="138" width="114" />
   <section>
     <h1>
       <span id="name">Herman</span> Starikov
@@ -12,17 +12,19 @@
 <style>
   .card {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     border-radius: var(--card-border-radius);
     background-color: var(--cyan);
     overflow: hidden;
     width: 100%;
+    gap: 2rem;
   }
   section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     color: var(--text-inverted);
+    padding: 2rem 0;
   }
   h1 {
     margin: 0;

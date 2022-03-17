@@ -12,17 +12,20 @@
   <h2>My links</h2>
   <ul>
     <li>
+      <a href="https://twitter.com/Starikov_dev">Twitter</a>
+    </li>
+    <li>
       <a href="https://www.coursera.org/user/fed7ba97abb24a83aa7621d94f756d6b"
         >Coursera</a
       >
     </li>
     <li>
+      <a href="https://github.com/hermanya">Github</a>
+    </li>
+    <li>
       <a href="https://stackoverflow.com/users/7228427/herman-starikov"
         >StackOverflow</a
       >
-    </li>
-    <li>
-      <a href="https://github.com/hermanya">Github</a>
     </li>
     <li>
       <a href="https://codepen.io/Hermanya">Codepen</a>
