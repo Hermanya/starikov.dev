@@ -15,7 +15,7 @@
   <title>Hello from Herman</title>
 </svelte:head>
 
-<div>
+<div class="container">
   <PersonalCard />
   <h2>Courses I recently completed</h2>
   <section class="grid">
@@ -25,28 +25,38 @@
         <p class="completed">Completed in {course.completion}</p>
         <CardActions>
           <Link href={course.cert}>Certificate</Link>
-          <LinkButton href={`/notes/${course.id}.html`}
-            >View my notes</LinkButton
+          <LinkButton href={`/study-notes/${course.id}.html`}
+            >Study notes</LinkButton
           >
         </CardActions>
       </Card>
     {/each}
   </section>
-  <!-- <h2>Other note-worthy things</h2>
+  <h2>Other note-worthy things</h2>
   <section class="grid">
     <Card>
-      <h3 class="courseName">Inspiring personal websites</h3>
-      <p class="completed">Created in March 2022</p>
+      <h3 class="courseName">Résumé</h3>
+      <p class="completed">Published in March 2022</p>
       <CardActions>
-        <LinkButton href={`/inspiring-personal-websites.html`}
-          >View list</LinkButton
+        <LinkButton href={`/notes/resume.html`}>View</LinkButton>
+      </CardActions>
+    </Card>
+    <Card>
+      <h3 class="courseName">Inspiring personal websites</h3>
+      <p class="completed">Published in March 2022</p>
+      <CardActions>
+        <LinkButton href={`/notes/inspiring-personal-websites.html`}
+          >View</LinkButton
         >
       </CardActions>
     </Card>
-  </section> -->
+  </section>
 </div>
 
 <style>
+  .container {
+    padding-top: 1rem;
+  }
   h2 {
     padding-left: 1rem;
     padding-top: 1rem;

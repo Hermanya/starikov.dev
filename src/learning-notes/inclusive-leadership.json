@@ -2,29 +2,31 @@
   "courseId": "inclusive-leadership",
   "notes": [
     {
-      "topic": "Lesson 1",
+      "topic": "Leadership",
       "quote": "Leadership is a process of social influence which maximizes the efforts of others toward the achievement of a goal.",
       "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/jUGwo?t=97"
     },
     {
-      "topic": "Lesson 1",
+      "topic": "Leadership",
       "quote": "Based on their studies Dylan and Bourke concluded that highly inclusive leaders demonstrate six signature traits. Those traits are commitment, courage, cognizance of bias, curiosity, cultural intelligence and collaboration.",
       "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/90vZ7?t=263"
     },
     {
-      "topic": "Lesson 2",
+      "topic": "Leadership",
       "quote": "Similar to how leaders in general addressed top priorities, highly inclusive leaders allocate a variety of resources to diversity and inclusion. In addition to money, these resources include leaders time and energy. For example, leaders participate in professional development along with other employees. They talk about what they learned, and how they are applying what they learned.",
       "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/lEYJl?t=428"
     },
     {
-      "topic": "Lesson 2",
+      "topic": "Leadership",
       "quote": "Are you ever aware of having an inner conversation with yourself, that's known as intrapersonal communication, the topic of this lesson. Communication scholar Stanley Cunningham defined intrapersonal communication as the unique process of message exchange and information transformation within the individual. Intrapersonal communication is expressed through thoughts, speech, or in writing. It can be intentional or unintentional.",
-      "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/mmo4i?t=8"
+      "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/mmo4i?t=8",
+      "note": "Meditation is probably another example here."
     },
     {
-      "topic": "Lesson 9",
+      "topic": "Leadership",
       "quote": "As leaders gain knowledge, they will realize that privilege is not about individuals, including themselves being bad people. Rather, privileges about systems that have developed overtime in favor of dominant groups. Such as right-handed people, men, white people, able-bodied people, people from dominant religions, an heterosexuals.",
-      "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/azdPf?t=116"
+      "source": "https://www.coursera.org/learn/inclusiveleadership/lecture/azdPf?t=116",
+      "note": "We do tend to develop systems for dominant groups, because they maximize value compared to effort required. That's the problem."
     }
   ]
 }

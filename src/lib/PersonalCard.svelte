@@ -24,7 +24,7 @@
     flex-direction: column;
     gap: 0.5rem;
     color: var(--text-inverted);
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
   h1 {
     margin: 0;
@@ -38,7 +38,7 @@
   p {
     margin: 0;
     font-size: 1rem;
-    opacity: 0.8;
+    opacity: 0.95;
   }
   img {
     display: block;
@@ -58,16 +58,9 @@
       color: #fff;
     }
   }
-  /* @media only screen and (max-width: 80ch) {
-    h1 {
-      font-size: 1.5rem;
+  @media only screen and (min-width: 80ch) {
+    section {
+      padding: 2rem 0;
     }
-    p {
-      font-size: 1rem;
-    }
-    .avatar {
-      width: 25%;
-      height: auto;
-    }
-  } */
+  }
 </style>

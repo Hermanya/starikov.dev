@@ -1,8 +1,5 @@
 <script lang="ts">
-  import Header from "$lib/header/Header.svelte";
 </script>
-
-<Header />
 
 <main>
   <slot />
@@ -27,6 +24,10 @@
         >StackOverflow</a
       >
     </li>
+    <li>
+      <a href="https://www.linkedin.com/in/hermanstarikov/">LinkedIn</a>
+    </li>
+
     <li>
       <a href="https://codepen.io/Hermanya">Codepen</a>
     </li>
@@ -66,5 +67,10 @@
   ul li {
     display: block;
     font-weight: 600;
+  }
+  @media print {
+    footer {
+      display: none !important;
+    }
   }
 </style>

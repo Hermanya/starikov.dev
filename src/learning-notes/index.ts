@@ -24,12 +24,12 @@ const courses = [
     cert: "https://www.coursera.org/account/accomplishments/verify/D4SB6CCJP6F8",
     instructor: "Jane McGonigal",
   },
-  // {
-  //   id: "inclusive-leadership",
-  //   name: "Inclusive Leadership",
-  //   completion: "August 2021",
-  //   cert: "https://www.coursera.org/account/accomplishments/verify/6PVSA82JZZ4F",
-  // },
+  {
+    id: "inclusive-leadership",
+    name: "Inclusive Leadership",
+    completion: "August 2021",
+    cert: "https://www.coursera.org/account/accomplishments/verify/6PVSA82JZZ4F",
+  },
   {
     id: "financial-markets",
     name: "Financial Markets",
