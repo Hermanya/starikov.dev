@@ -1,5 +1,12 @@
 <div class="card">
-  <img class="avatar" src="/avatar.png" alt="" height="138" width="114" />
+  <img
+    class="avatar"
+    src="/avatar.png"
+    alt=""
+    height="138"
+    width="114"
+    loading="lazy"
+  />
   <section>
     <h1>
       <span id="name">Herman</span> Starikov
@@ -23,7 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    color: var(--text-inverted);
+    /* color: var(--text-inverted); */
     padding: 1rem 0;
   }
   h1 {

@@ -36,18 +36,25 @@
   <section class="grid">
     <Card>
       <h3 class="courseName">Résumé</h3>
-      <p class="completed">Published in March 2022</p>
+      <p class="completed">Last updated in March 2022</p>
       <CardActions>
         <LinkButton href={`/notes/resume.html`}>View</LinkButton>
       </CardActions>
     </Card>
     <Card>
-      <h3 class="courseName">Inspiring personal websites</h3>
-      <p class="completed">Published in March 2022</p>
+      <h3 class="courseName">8 inspiring personal websites</h3>
+      <p class="completed">Last updated in March 2022</p>
       <CardActions>
         <LinkButton href={`/notes/inspiring-personal-websites.html`}
           >View</LinkButton
         >
+      </CardActions>
+    </Card>
+    <Card>
+      <h3 class="courseName">6 favorite playlists</h3>
+      <p class="completed">Last updated in March 2022</p>
+      <CardActions>
+        <LinkButton href={`/notes/favorite-playlists.html`}>View</LinkButton>
       </CardActions>
     </Card>
   </section>
@@ -72,6 +79,12 @@
   @media only screen and (min-width: 80ch) {
     .grid {
       grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 120ch) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 

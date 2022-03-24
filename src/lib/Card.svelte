@@ -10,5 +10,6 @@
     background: var(--card-background);
     border-radius: var(--card-border-radius);
     padding: 1rem;
+    max-width: 80ch;
   }
 </style>

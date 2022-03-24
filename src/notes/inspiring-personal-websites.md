@@ -1,6 +1,6 @@
-# Inspiring personal websites
+# 8 Inspiring personal websites
 
-_Published in March 2022_
+_Last updated in March 2022_
 
 1. [Varun Vachhar](https://varun.ca)
 
