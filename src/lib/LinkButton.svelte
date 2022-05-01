@@ -12,6 +12,7 @@
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     font-weight: 600;
+    white-space: nowrap;
   }
   a:visited {
     background: var(--purple);

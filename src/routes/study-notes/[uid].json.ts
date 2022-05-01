@@ -6,6 +6,7 @@ import inspiringAndMotivating from "../../learning-notes/inspiring-and-motivatin
 import lifeAfterCovid from "../../learning-notes/life-after-covid.json";
 import perspectivesOnManagement from "../../learning-notes/perspectives-on-management.json";
 import teamCulture from "../../learning-notes/team-culture.json";
+import influencingPeople from "../../learning-notes/influencing-people.json";
 
 const allNotes = [
   financialMarkets,
@@ -14,6 +15,7 @@ const allNotes = [
   lifeAfterCovid,
   perspectivesOnManagement,
   teamCulture,
+  influencingPeople,
 ];
 
 // GET /study-notes/:uid.json

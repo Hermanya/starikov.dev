@@ -1,5 +1,11 @@
 const courses = [
   {
+    id: "influencing-people",
+    name: "Influencing People",
+    completion: "April 2022",
+    cert: "https://www.coursera.org/account/accomplishments/verify/L4CLSRKDEYCY",
+  },
+  {
     id: "perspectives-on-management",
     name: "Critical Perspectives on Management",
     completion: "January 2022",
