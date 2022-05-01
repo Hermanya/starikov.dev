@@ -1,12 +1,5 @@
 <div class="card">
-  <img
-    class="avatar"
-    src="/avatar.png"
-    alt=""
-    height="138"
-    width="114"
-    loading="lazy"
-  />
+  <img class="avatar" src="/avatar.png" alt="" height="223" width="180" />
   <section>
     <h1>
       <span id="name">Herman</span> Starikov
@@ -19,13 +12,14 @@
 <style>
   .card {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     border-radius: var(--card-border-radius);
-    background-color: var(--cyan);
+    background-color: var(--yellow);
     overflow: hidden;
     width: 100%;
     gap: 2rem;
   }
+
   section {
     display: flex;
     flex-direction: column;
@@ -49,6 +43,15 @@
   }
   img {
     display: block;
+    animation: test 0.2s;
+  }
+  @keyframes test {
+    0% {
+      filter: blur(10px);
+    }
+    100% {
+      filter: blur(0px);
+    }
   }
   .avatar {
     filter: brightness(1.25) drop-shadow(0 0 16px var(--gray3));
@@ -68,6 +71,9 @@
   @media only screen and (min-width: 80ch) {
     section {
       padding: 2rem 0;
+    }
+    h1 {
+      font-size: 3rem;
     }
   }
 </style>
