@@ -14,10 +14,12 @@
     display: flex;
     align-items: center;
     border-radius: var(--card-border-radius);
-    background-color: var(--yellow);
+    background-color: var(--cyan);
     overflow: hidden;
-    width: 100%;
-    gap: 2rem;
+    gap: 0rem;
+    padding-right: 1rem;
+    margin-left: var(--container-padding-left);
+    margin-right: var(--container-padding-right);
   }
 
   section {
@@ -69,6 +71,9 @@
     }
   }
   @media only screen and (min-width: 80ch) {
+    .card {
+      gap: 2rem;
+    }
     section {
       padding: 2rem 0;
     }

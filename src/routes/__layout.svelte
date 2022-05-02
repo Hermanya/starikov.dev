@@ -46,11 +46,6 @@
 
   main,
   footer {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 120ch;
-    padding-left: max(2em, env(safe-area-inset-left));
-    padding-right: max(2em, env(safe-area-inset-right));
     box-sizing: border-box;
   }
   footer {

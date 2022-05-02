@@ -35,7 +35,12 @@
 
 <Header />
 
-<div>{@html note.content}</div>
+<article>{@html note.content}</article>
 
 <style>
+  article {
+    padding-left: var(--container-padding-left);
+    padding-right: var(--container-padding-right);
+    max-width: var(--max-container-width);
+  }
 </style>

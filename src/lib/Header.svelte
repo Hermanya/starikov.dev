@@ -16,9 +16,9 @@
   a {
     position: sticky;
     top: 1rem;
+    left: var(--container-padding-left);
     box-sizing: border-box;
     z-index: 1;
-    /* backdrop-filter: blur(8px); */
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;

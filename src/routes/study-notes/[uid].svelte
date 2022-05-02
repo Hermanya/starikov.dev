@@ -62,7 +62,7 @@
 
 <Header />
 
-<div>
+<article>
   <header>
     <h1>Herman's notes on {course.name}</h1>
     <div class="header-stuff">
@@ -93,9 +93,15 @@
       </div>
     {/each}
   </section>
-</div>
+</article>
 
 <style>
+  article {
+    padding-left: var(--container-padding-left);
+    padding-right: var(--container-padding-right);
+    max-width: var(--max-container-width);
+  }
+
   header {
     margin-bottom: 1rem;
   }
