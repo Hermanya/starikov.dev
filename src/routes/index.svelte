@@ -9,6 +9,33 @@
   import CardActions from "$lib/CardActions.svelte";
   import LinkButton from "$lib/LinkButton.svelte";
   import Link from "$lib/Link.svelte";
+
+  const blog = [
+    {
+      title: "Personal website stack 2022",
+      month: "May",
+      year: 2022,
+      link: "/notes/personal-website-stack-2022.html",
+    },
+    {
+      title: "Résumé",
+      month: "March",
+      year: 2022,
+      link: "/notes/resume.html",
+    },
+    {
+      title: "8 inspiring personal websites",
+      month: "March",
+      year: 2022,
+      link: "/notes/inspiring-personal-websites.html",
+    },
+    {
+      title: "6 favorite playlists",
+      month: "March",
+      year: 2022,
+      link: "/notes/favorite-playlists.html",
+    },
+  ];
 </script>
 
 <svelte:head>
@@ -34,29 +61,15 @@
   </section>
   <h2>Other note-worthy things</h2>
   <section class="grid">
-    <Card>
-      <h3 class="courseName">Résumé</h3>
-      <p class="completed">Last updated in March 2022</p>
-      <CardActions>
-        <LinkButton href={`/notes/resume.html`}>View</LinkButton>
-      </CardActions>
-    </Card>
-    <Card>
-      <h3 class="courseName">8 inspiring personal websites</h3>
-      <p class="completed">Last updated in March 2022</p>
-      <CardActions>
-        <LinkButton href={`/notes/inspiring-personal-websites.html`}
-          >View</LinkButton
-        >
-      </CardActions>
-    </Card>
-    <Card>
-      <h3 class="courseName">6 favorite playlists</h3>
-      <p class="completed">Last updated in March 2022</p>
-      <CardActions>
-        <LinkButton href={`/notes/favorite-playlists.html`}>View</LinkButton>
-      </CardActions>
-    </Card>
+    {#each blog as post}
+      <Card>
+        <h3 class="courseName">{post.title}</h3>
+        <p class="completed">Last updated in {post.month} {post.year}</p>
+        <CardActions>
+          <LinkButton href={post.link}>View</LinkButton>
+        </CardActions>
+      </Card>
+    {/each}
   </section>
 </div>
 
@@ -85,6 +98,12 @@
   @media only screen and (min-width: 120ch) {
     .grid {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 160ch) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 
